@@ -1,0 +1,30 @@
+body {
+  background-color: rgb(46, 46, 46);
+  color: white;
+}
+
+.App-header {
+  border: 1px solid white;
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+}
+
+.App-nav {
+  width: 290px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media all and (min-width: 500px) {
+  main {
+    flex-direction: row;
+  }
+  .App-nav {
+    width: 170px;
+  }
+}

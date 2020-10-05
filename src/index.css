@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* unvisited link */
+a:link {
+  color: rgb(255, 255, 255);
+}
+
+/* visited link */
+a:visited {
+  color: rgb(255, 255, 255);
+}
+
+/* mouse over link */
+a:hover {
+  color: rgb(223, 223, 223);
+}
+
+/* selected link */
+a:active {
+  color: rgb(255, 255, 255);
+}
