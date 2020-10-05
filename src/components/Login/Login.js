@@ -2,7 +2,7 @@ import React from 'react';
 import api_helpers from '../../helpers/api_helpers';
 import TokenService from '../../helpers/token-service';
 
-class Register extends React.Component {
+class Login extends React.Component {
   state = {
     error: null,
   };
@@ -14,7 +14,7 @@ class Register extends React.Component {
       error: null,
     });
     api_helpers
-      .registerUser(user_name.value, password.value)
+      .loginUser(user_name.value, password.value)
       .then((res) => {
         user_name.value = '';
         password.value = '';
@@ -46,4 +46,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default Login;

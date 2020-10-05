@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Login from '../Login/Login';
 import { Link, Route } from 'react-router-dom';
 
 import Parties from '../Parties/Parties';
@@ -13,12 +15,13 @@ function App() {
 
         <nav className="App-nav">
           <Link to="/">Home</Link> | <Link to="/Register">Register</Link> |
-          Login
+          <Link to="/Login">Login</Link>
         </nav>
       </header>
       <main>
         <Route path="/Register" component={Register} />
         <Route exact path="/" component={Parties} />
+        <Route path="/Login" component={Login} />
       </main>
     </div>
   );
