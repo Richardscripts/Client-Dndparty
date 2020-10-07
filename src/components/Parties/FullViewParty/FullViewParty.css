@@ -1,0 +1,42 @@
+@media all and (min-width: 500px) {
+  .full-party-view {
+    border: 1px white solid;
+    width: 100%;
+    height: 650px;
+    display: flex;
+  }
+
+  .left {
+    border: 1px white solid;
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-top {
+    border: 4px grey solid;
+    flex: 2;
+  }
+
+  .left-bottom {
+    border: 4px grey solid;
+    flex: 1;
+  }
+
+  .right {
+    border: 1px white solid;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .right-top {
+    border: 4px grey solid;
+    flex: 3;
+  }
+
+  .right-bottom {
+    border: 4px grey solid;
+    flex: 1;
+  }
+}

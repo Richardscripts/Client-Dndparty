@@ -9,14 +9,15 @@ class Register extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { user_email, password } = e.target;
+    const { user_email, password, user_name } = e.target;
     this.setState({
       error: null,
     });
-    ApiHelpers.registerUser(user_email.value, password.value)
+    ApiHelpers.registerUser(user_email.value, password.value, user_name.value)
       .then((res) => {
         user_email.value = '';
         password.value = '';
+        user_name.value = '';
         TokenService.clearAuthToken();
         TokenService.saveAuthToken(res.authToken);
         this.props.loginUpdateToken();
@@ -33,6 +34,9 @@ class Register extends React.Component {
         <form onSubmit={(e) => this.handleSubmit(e)} action="#">
           <label>Email:</label>
           <input type="email" name="user_email" required></input>
+          <br />
+          <label>Nickname or Character Name:</label>
+          <input type="text" name="user_name" required></input>
           <br />
           <label>Password:</label>
           <input type="password" name="password" required></input>

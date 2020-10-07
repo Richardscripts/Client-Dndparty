@@ -23,6 +23,12 @@ class Parties extends React.Component {
       });
   }
 
+  handleJoinParty = (party_id) => {
+    ApiHelpers.joinParty(party_id).catch((res) => {
+      this.setState({ error: res.error });
+    });
+  };
+
   render() {
     const DndParties = this.state.current_parties.map((party, idx) => {
       return (
@@ -38,14 +44,19 @@ class Parties extends React.Component {
               {party.dm_needed ? <span>DM</span> : <span>-</span>}
             </div>
           </div>
-          <div className="group-image">
-            <img src={images.fullparty} alt="a full party " />
-          </div>
-          <div className="button-wrapper">
-            <Link to={`/party/${party.party_id}`}>
-              <button className="join-button">Join</button>
-            </Link>
-          </div>
+          <Link to={`/party/${party.party_id}`}>
+            <div className="group-image">
+              <img src={images.fullparty} alt="a full party " />
+            </div>
+            <div className="button-wrapper">
+              <button
+                onClick={() => this.handleJoinParty(party.party_id)}
+                className="join-button"
+              >
+                Join
+              </button>
+            </div>
+          </Link>
         </div>
       );
     });

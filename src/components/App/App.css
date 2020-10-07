@@ -36,7 +36,7 @@ footer {
 @media all and (min-width: 500px) {
   main {
     flex-direction: row;
-    width: 800px;
+    width: 94%;
     flex-wrap: wrap;
     margin: auto;
   }

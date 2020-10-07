@@ -1,8 +1,9 @@
 import React from 'react';
+
+import FullViewParty from '../Parties/FullViewParty/FullViewParty';
 import CreateParty from '../CreateParty/CreateParty';
 import CreatePartyButton from '../CreateParty/CreatePartyButton';
 import TokenService from '../../Helpers/TokenService';
-import FullViewParty from '../../Components/Parties/FullViewParty';
 
 import Login from '../Login/Login';
 import { Link, Route } from 'react-router-dom';
