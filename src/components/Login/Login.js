@@ -1,6 +1,6 @@
 import React from 'react';
-import api_helpers from '../../helpers/api_helpers';
-import TokenService from '../../helpers/token-service';
+import ApiHelpers from '../../Helpers/ApiHelpers';
+import TokenService from '../../Helpers/TokenService';
 
 class Login extends React.Component {
   state = {
@@ -9,17 +9,17 @@ class Login extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { user_name, password } = e.target;
+    const { user_email, password } = e.target;
     this.setState({
       error: null,
     });
-    api_helpers
-      .loginUser(user_name.value, password.value)
+    ApiHelpers.loginUser(user_email.value, password.value)
       .then((res) => {
-        user_name.value = '';
+        user_email.value = '';
         password.value = '';
         TokenService.clearAuthToken();
         TokenService.saveAuthToken(res.authToken);
+        this.props.loginUpdateToken();
         this.props.history.push('/');
       })
       .catch((res) => {
@@ -31,8 +31,8 @@ class Login extends React.Component {
       <div>
         {' '}
         <form onSubmit={(e) => this.handleSubmit(e)} action="#">
-          <label>Username:</label>
-          <input name="user_name" required></input>
+          <label>Email:</label>
+          <input type="email" name="user_email" required></input>
           <br />
           <label>Password:</label>
           <input type="password" name="password" required></input>

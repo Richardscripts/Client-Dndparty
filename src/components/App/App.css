@@ -14,15 +14,31 @@ body {
   width: 290px;
 }
 
+.create-table-bar {
+  text-align: center;
+}
+
+.create-table-button {
+  padding: 7px;
+  margin: 4px;
+}
+
 main {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
+footer {
+  border: 1px white solid;
+}
+
 @media all and (min-width: 500px) {
   main {
     flex-direction: row;
+    width: 800px;
+    flex-wrap: wrap;
+    margin: auto;
   }
   .App-nav {
     width: 170px;
