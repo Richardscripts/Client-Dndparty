@@ -12,6 +12,7 @@ class UserProfile extends React.Component {
     error: null,
     user_info: [],
     created_parties: [],
+    joined_parties: [],
   };
 
   componentDidMount() {
@@ -43,6 +44,11 @@ class UserProfile extends React.Component {
       .catch((res) => {
         this.setState({ error: res.error });
       });
+    ApiHelpers.getUserJoinedParty(user_id).then((res) => {
+      this.setState({
+        joined_parties: res,
+      });
+    });
   }
 
   render() {
@@ -62,11 +68,21 @@ class UserProfile extends React.Component {
         </div>
       );
     });
+    const partiesJoined = this.state.joined_parties.map((party, idx) => {
+      return (
+        <div key={idx}>
+          <h2>{party.party_name}</h2> <br />
+        </div>
+      );
+    });
+
     return (
       <div className="user-profile">
         <div className="profile-left">
           {userInfo}
-          <div className="profile-left-middle">Tables Joined</div>
+          <div className="profile-left-middle">
+            Parties Joined: {partiesJoined}
+          </div>
           <div className="profile-left-bottom">
             Tables Created:
             {partiesCreated}

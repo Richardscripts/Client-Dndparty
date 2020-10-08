@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import images from '../../Assets/Groups-image/images';
 import ApiHelpers from '../../Helpers/ApiHelpers';
+import Validators from '../../Helpers/Validators';
 
 import './Parties.css';
 
@@ -53,14 +54,16 @@ class Parties extends React.Component {
               <img src={images.fullparty} alt="a full party " />
             </div>
           </Link>
-          <div className="button-wrapper">
-            <button
-              onClick={() => this.handleJoinParty(party.party_id)}
-              className="join-button"
-            >
-              Join
-            </button>
-          </div>
+          {!Validators.ifCreatorOfParty(party.user_id_creator) && (
+            <div className="button-wrapper">
+              <button
+                onClick={() => this.handleJoinParty(party.party_id)}
+                className="join-button"
+              >
+                Join
+              </button>
+            </div>
+          )}
         </div>
       );
     });

@@ -161,7 +161,7 @@ const ApiHelpers = {
       }
     });
   },
-  getUsersJoinedParty(party_id) {
+  getUsersWhoJoinedParty(party_id) {
     return fetch(`${config.API_ENDPOINT}/parties/joined`, {
       method: 'POST',
       headers: {
@@ -169,6 +169,22 @@ const ApiHelpers = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({ party_id }),
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((e) => Promise.reject(e));
+      } else {
+        return res.json();
+      }
+    });
+  },
+  getUserJoinedParty(user_id) {
+    return fetch(`${config.API_ENDPOINT}/parties/joined/${user_id}`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify({ user_id }),
     }).then((res) => {
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));

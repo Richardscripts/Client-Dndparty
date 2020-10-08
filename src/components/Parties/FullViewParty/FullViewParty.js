@@ -1,6 +1,7 @@
 import React from 'react';
 import ApiHelpers from '../../../Helpers/ApiHelpers';
 import TokenService from '../../../Helpers/TokenService';
+import Validators from '../../../Helpers/Validators';
 
 import './FullViewParty.css';
 
@@ -47,7 +48,7 @@ class FullViewParty extends React.Component {
       .catch((res) => {
         this.setState({ error: res.error });
       });
-    ApiHelpers.getUsersJoinedParty(party_id)
+    ApiHelpers.getUsersWhoJoinedParty(party_id)
       .then((res) => {
         this.setState({
           current_joined_users: [...res],
@@ -57,20 +58,15 @@ class FullViewParty extends React.Component {
         this.setState({ error: res.error });
       });
   }
-
-  ifCreatorOfParty = () => {
-    const creatorID = this.state.current_party[0].user_id_creator;
-    return creatorID === TokenService.getUserIdFromAuthToken();
-  };
-
   render() {
-    console.log(this.state);
     const usersRequestList = this.state.current_user_requests.map(
       (user, idx) => {
         return (
           <div key={idx}>
             Player: {user.user_name} has requested to join.{' '}
-            {this.ifCreatorOfParty() && (
+            {Validators.ifCreatorOfParty(
+              this.state.current_party[0].user_id_creator
+            ) && (
               <u onClick={() => this.acceptRequester(user.user_id)}>
                 Accept request?
               </u>
