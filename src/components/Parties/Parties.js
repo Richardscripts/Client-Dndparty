@@ -26,7 +26,7 @@ class Parties extends React.Component {
   handleJoinParty = (party_id) => {
     ApiHelpers.joinParty(party_id)
       .then(() => {
-        this.props.history.push(`/party/${party_id}`);
+        this.props.history.push(`/Party/${party_id}`);
       })
       .catch((res) => {
         this.setState({ error: res.error });
@@ -48,7 +48,7 @@ class Parties extends React.Component {
               {party.dm_needed ? <span>DM</span> : <span>-</span>}
             </div>
           </div>
-          <Link to={`/party/${party.party_id}`}>
+          <Link to={`/Party/${party.party_id}`}>
             <div className="group-image">
               <img src={images.fullparty} alt="a full party " />
             </div>

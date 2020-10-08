@@ -21,6 +21,9 @@ class App extends React.Component {
     this.setState({ tokenExists: TokenService.hasAuthToken() });
   };
 
+  componentDidMount = () => {
+    this.setState({ user: TokenService.getUserIdFromAuthToken() });
+  };
   handleUserInfo = (user_id) => {
     this.setState({
       user: user_id,

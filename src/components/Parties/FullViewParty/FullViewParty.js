@@ -1,5 +1,7 @@
 import React from 'react';
 import ApiHelpers from '../../../Helpers/ApiHelpers';
+import TokenService from '../../../Helpers/TokenService';
+
 import './FullViewParty.css';
 
 // import images from '../../../Assets/Groups-image/images';
@@ -8,8 +10,20 @@ import './FullViewParty.css';
 class FullViewParty extends React.Component {
   state = {
     error: null,
-    current_party: [],
+    current_party: [{ user_name: '', user_id_creator: '' }],
     current_user_requests: [],
+    current_joined_users: [],
+  };
+
+  acceptRequester = (user_id) => {
+    const party_id = this.state.current_party[0].party_id;
+    ApiHelpers.acceptPartyJoinRequest(user_id, party_id)
+      .then(() => {
+        window.location.reload(false);
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      });
   };
 
   componentDidMount() {
@@ -33,14 +47,34 @@ class FullViewParty extends React.Component {
       .catch((res) => {
         this.setState({ error: res.error });
       });
+    ApiHelpers.getUsersJoinedParty(party_id)
+      .then((res) => {
+        this.setState({
+          current_joined_users: [...res],
+        });
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      });
   }
 
+  ifCreatorOfParty = () => {
+    const creatorID = this.state.current_party[0].user_id_creator;
+    return creatorID === TokenService.getUserIdFromAuthToken();
+  };
+
   render() {
+    console.log(this.state);
     const usersRequestList = this.state.current_user_requests.map(
       (user, idx) => {
         return (
           <div key={idx}>
-            Player: {user.user_name} has requested to join
+            Player: {user.user_name} has requested to join.{' '}
+            {this.ifCreatorOfParty() && (
+              <u onClick={() => this.acceptRequester(user.user_id)}>
+                Accept request?
+              </u>
+            )}
             <br />
           </div>
         );
@@ -65,21 +99,22 @@ class FullViewParty extends React.Component {
         </div>
       );
     });
+    const usersJoined = this.state.current_joined_users.map((user, idx) => {
+      return <div key={idx}>{user.user_name} has joined.</div>;
+    });
     return (
       <div className="full-party-view">
         <div className="left">
           <div className="left-top">
             <div>{partyInfo}</div>
+            <>{usersJoined}</>
           </div>
           <div className="left-bottom">{usersRequestList}</div>
         </div>
 
         <div className="right">
           <div className="right-top">
-            Party Creator:{' '}
-            {this.state.current_party.length !== 0 && (
-              <>{this.state.current_party[0].user_name}</>
-            )}
+            Party Creator: <>{this.state.current_party[0].user_name}</>
           </div>
           <div className="right-bottom"></div>
         </div>

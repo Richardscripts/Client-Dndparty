@@ -51,7 +51,7 @@ const ApiHelpers = {
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));
       } else {
-        return res.json();
+        return;
       }
     });
   },
@@ -122,6 +122,53 @@ const ApiHelpers = {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((e) => Promise.reject(e));
+      } else {
+        return res.json();
+      }
+    });
+  },
+  getUserCreatedParties(id) {
+    return fetch(`${config.API_ENDPOINT}/profile/created_parties/${id}`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((e) => Promise.reject(e));
+      } else {
+        return res.json();
+      }
+    });
+  },
+  acceptPartyJoinRequest(user_id, party_id) {
+    return fetch(`${config.API_ENDPOINT}/parties/accept_request`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify({ user_id, party_id }),
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((e) => Promise.reject(e));
+      } else {
+        return res.json();
+      }
+    });
+  },
+  getUsersJoinedParty(party_id) {
+    return fetch(`${config.API_ENDPOINT}/parties/joined`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify({ party_id }),
     }).then((res) => {
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));

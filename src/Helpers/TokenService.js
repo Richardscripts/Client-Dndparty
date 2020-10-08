@@ -18,11 +18,13 @@ const TokenService = {
   },
   getUserIdFromAuthToken() {
     let authToken = window.localStorage.getItem(config.TOKEN_KEY);
-    let payload = window.atob(
-      authToken.slice(7, authToken.length).split('.')[1]
-    );
-    let user = JSON.parse(payload);
-    return user.user_id;
+    if (authToken) {
+      let payload = window.atob(
+        authToken.slice(7, authToken.length).split('.')[1]
+      );
+      let user = JSON.parse(payload);
+      return user.user_id;
+    }
   },
 };
 
