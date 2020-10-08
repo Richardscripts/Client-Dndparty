@@ -1,42 +1,47 @@
 @media all and (min-width: 500px) {
-  .full-party-view {
+  .user-profile {
     border: 1px white solid;
-    width: 90%;
+    width: 80%;
     height: 650px;
     display: flex;
   }
 
-  .left {
+  .profile-left {
     border: 1px white solid;
-    flex: 4;
+    flex: 3;
     display: flex;
     flex-direction: column;
   }
 
-  .left-top {
+  .profile-left-top {
     border: 4px grey solid;
-    flex: 2;
+    height: 26px;
   }
 
-  .left-bottom {
+  .profile-left-middle {
+    border: 4px grey solid;
+    flex: 6;
+  }
+
+  .profile-left-bottom {
+    border: 4px grey solid;
+    flex: 6;
+  }
+
+  .profile-right {
+    border: 1px white solid;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-right-top {
     border: 4px grey solid;
     flex: 1;
   }
 
-  .right {
-    border: 1px white solid;
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .right-top {
+  .profile-right-bottom {
     border: 4px grey solid;
     flex: 3;
-  }
-
-  .right-bottom {
-    border: 4px grey solid;
-    flex: 1;
   }
 }

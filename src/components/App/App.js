@@ -1,23 +1,30 @@
 import React from 'react';
+import { Link, Route } from 'react-router-dom';
 
+import UserProfile from '../UserProfile/UserProfile';
 import FullViewParty from '../Parties/FullViewParty/FullViewParty';
 import CreateParty from '../CreateParty/CreateParty';
 import CreatePartyButton from '../CreateParty/CreatePartyButton';
-import TokenService from '../../Helpers/TokenService';
-
 import Login from '../Login/Login';
-import { Link, Route } from 'react-router-dom';
-
 import Parties from '../Parties/Parties';
 import Register from '../Register/Register';
 import './App.css';
 
+import TokenService from '../../Helpers/TokenService';
+
 class App extends React.Component {
   state = {
     tokenExists: TokenService.hasAuthToken(),
+    user: 0,
   };
   loginUpdateToken = () => {
     this.setState({ tokenExists: TokenService.hasAuthToken() });
+  };
+
+  handleUserInfo = (user_id) => {
+    this.setState({
+      user: user_id,
+    });
   };
 
   render() {
@@ -25,7 +32,6 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <h1>Welcome to DndParty!</h1>
-
           <nav className="App-nav">
             <Link to="/">Home</Link>
             {!this.state.tokenExists && (
@@ -37,6 +43,12 @@ class App extends React.Component {
             {!this.state.tokenExists && (
               <span>
                 <Link to="/Login">Login</Link>
+              </span>
+            )}
+            {this.state.tokenExists && (
+              <span>
+                {' '}
+                | <Link to={`/Player_profile/${this.state.user}`}>Profile</Link>
               </span>
             )}
             {this.state.tokenExists && (
@@ -62,33 +74,35 @@ class App extends React.Component {
           <Route
             path="/Register"
             render={(props) => (
-              <Register {...props} loginUpdateToken={this.loginUpdateToken} />
+              <Register
+                {...props}
+                handleUserInfo={this.handleUserInfo}
+                loginUpdateToken={this.loginUpdateToken}
+              />
             )}
           />
           <Route exact path="/" component={Parties} />
           <Route
             path="/Login"
             render={(props) => (
-              <Login {...props} loginUpdateToken={this.loginUpdateToken} />
+              <Login
+                {...props}
+                loginUpdateToken={this.loginUpdateToken}
+                handleUserInfo={this.handleUserInfo}
+              />
             )}
           />
           <Route
             path="/Create_Party"
-            render={(props) => (
-              <CreateParty
-                {...props}
-                loginUpdateToken={this.loginUpdateToken}
-              />
-            )}
+            render={(props) => <CreateParty {...props} />}
           />
           <Route
             path="/Party/:party_id"
-            render={(props) => (
-              <FullViewParty
-                {...props}
-                loginUpdateToken={this.loginUpdateToken}
-              />
-            )}
+            render={(props) => <FullViewParty {...props} />}
+          />
+          <Route
+            path="/Player_Profile/:user_id"
+            render={(props) => <UserProfile {...props} />}
           />
         </main>
         <footer></footer>

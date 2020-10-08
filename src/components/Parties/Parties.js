@@ -24,9 +24,13 @@ class Parties extends React.Component {
   }
 
   handleJoinParty = (party_id) => {
-    ApiHelpers.joinParty(party_id).catch((res) => {
-      this.setState({ error: res.error });
-    });
+    ApiHelpers.joinParty(party_id)
+      .then(() => {
+        this.props.history.push(`/party/${party_id}`);
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      });
   };
 
   render() {
@@ -48,15 +52,15 @@ class Parties extends React.Component {
             <div className="group-image">
               <img src={images.fullparty} alt="a full party " />
             </div>
-            <div className="button-wrapper">
-              <button
-                onClick={() => this.handleJoinParty(party.party_id)}
-                className="join-button"
-              >
-                Join
-              </button>
-            </div>
           </Link>
+          <div className="button-wrapper">
+            <button
+              onClick={() => this.handleJoinParty(party.party_id)}
+              className="join-button"
+            >
+              Join
+            </button>
+          </div>
         </div>
       );
     });

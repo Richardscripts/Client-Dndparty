@@ -18,7 +18,7 @@ class FullViewParty extends React.Component {
     ApiHelpers.getIndividualParty(party_id)
       .then((res) => {
         this.setState({
-          current_party: res,
+          current_party: [...res],
         });
       })
       .catch((res) => {
@@ -65,9 +65,6 @@ class FullViewParty extends React.Component {
         </div>
       );
     });
-    let name = this.state.current_party.map((name) => {
-      return name.user_name;
-    });
     return (
       <div className="full-party-view">
         <div className="left">
@@ -78,7 +75,12 @@ class FullViewParty extends React.Component {
         </div>
 
         <div className="right">
-          <div className="right-top">Party Creator: {name}</div>
+          <div className="right-top">
+            Party Creator:{' '}
+            {this.state.current_party.length !== 0 && (
+              <>{this.state.current_party[0].user_name}</>
+            )}
+          </div>
           <div className="right-bottom"></div>
         </div>
       </div>
