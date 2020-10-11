@@ -1,10 +1,13 @@
+/* Color Theme: ["272727","0491b4","8540c9","ff5833"] */
+
 body {
-  background-color: rgb(46, 46, 46);
+  background-color: rgb(0, 0, 0);
   color: white;
 }
 
 .App-header {
   border: 1px solid white;
+  background-color: #272727;
   display: flex;
   justify-content: space-evenly;
   color: white;
@@ -14,29 +17,33 @@ body {
   width: 290px;
 }
 
-.create-table-bar {
+.create-party-bar {
   text-align: center;
+  background-color: rgb(41, 41, 41);
+  padding: 20px;
 }
 
-.create-table-button {
+.create-party-button {
   padding: 7px;
   margin: 4px;
 }
 
 main {
+  background-image: linear-gradient(rgb(24, 24, 24), rgb(0, 0, 0));
   display: flex;
   justify-content: center;
   flex-direction: column;
+  overflow-y: auto;
+  opacity: 0.96;
 }
 
 footer {
-  border: 1px white solid;
+  border: 1px rgb(78, 78, 78) solid;
 }
 
 @media all and (min-width: 500px) {
   main {
     flex-direction: row;
-    width: 94%;
     flex-wrap: wrap;
     margin: auto;
   }

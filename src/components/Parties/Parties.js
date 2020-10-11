@@ -36,17 +36,39 @@ class Parties extends React.Component {
 
   render() {
     const DndParties = this.state.current_parties.map((party, idx) => {
+      const partyComplete = party.party_complete === 'Complete Party!';
       return (
         <div key={idx} className="party-table">
           <div className="party-top-info-bar">
             <div className="info-party-language">{party.language}</div>
             <div className="info-party-online">{party.online_or_not}</div>
-            <div className="info-party-id">{party.party_name}</div>
+            <div className="info-party-id">
+              Party {party.party_id}: {party.party_name}
+            </div>
             <div className="info-party-players">
-              {party.players_needed < 1 ? '-' : `Pl: ${party.players_needed}`}
+              {party.players_needed < 1 ? (
+                '-'
+              ) : (
+                <>
+                  <img
+                    className="parties-icons"
+                    src={images.players}
+                    alt="An icon representing multiple users"
+                  />{' '}
+                  {party.players_needed}
+                </>
+              )}
             </div>
             <div className="info-party-dm">
-              {party.dm_needed ? <span>DM</span> : <span>-</span>}
+              {party.dm_needed ? (
+                <img
+                  className="parties-icons parties-dm-image"
+                  src={images.dm}
+                  alt="A small icon of a wizard."
+                />
+              ) : (
+                <span>-</span>
+              )}
             </div>
           </div>
           <Link to={`/Party/${party.party_id}`}>
@@ -54,16 +76,17 @@ class Parties extends React.Component {
               <img src={images.fullparty} alt="a full party " />
             </div>
           </Link>
-          {!Validators.ifCreatorOfParty(party.user_id_creator) && (
-            <div className="button-wrapper">
-              <button
-                onClick={() => this.handleJoinParty(party.party_id)}
-                className="join-button"
-              >
-                Join
-              </button>
-            </div>
-          )}
+          {!Validators.ifCreatorOfParty(party.user_id_creator) &&
+            !partyComplete && (
+              <div className="button-wrapper">
+                <button
+                  onClick={() => this.handleJoinParty(party.party_id)}
+                  className="join-button"
+                >
+                  Join
+                </button>
+              </div>
+            )}
         </div>
       );
     });

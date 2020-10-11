@@ -1,41 +1,106 @@
+.party-legend {
+  font-size: 18px;
+  padding: 10px;
+  color: rgb(209, 209, 209);
+}
+
+.party-about-section {
+  height: 200px;
+  width: 300px;
+  overflow-y: auto;
+}
+
+.party-name {
+  text-align: center;
+  font-family: 'Anton';
+  color: white;
+  font-size: 40px;
+  text-shadow: -2px 2px 0px #070707;
+  border: 2px rgb(78, 78, 78) solid;
+  background-image: linear-gradient(rgb(85, 85, 85), rgb(0, 0, 0));
+}
+
+.fullview-players-img {
+  width: 6%;
+  margin: 3px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.request-img {
+  width: 3%;
+}
+
+.party-style-text,
+.party-important-text {
+  font-size: 21px;
+  color: white;
+}
+
+.party-important-text {
+  font-weight: bold;
+  color: #0491b4;
+}
+
+.username-style {
+  text-align: center;
+  font-family: 'Anton';
+  color: white;
+  font-size: 17px;
+  letter-spacing: 1pt;
+}
+
+.party-creator-style {
+  text-align: center;
+  font-family: 'Anton';
+  color: white;
+  font-size: 24px;
+  letter-spacing: 1pt;
+  text-decoration: underline;
+}
+
 @media all and (min-width: 500px) {
   .full-party-view {
-    border: 1px white solid;
+    background-color: #272727;
+    background-image: linear-gradient(#2e2e2e, #2f2f2f);
+    box-shadow: rgb(37, 37, 37) 1px 8px 6px 0px;
     width: 90%;
     height: 650px;
     display: flex;
+    margin-top: 30px;
   }
 
-  .left {
+  .full-party-view-left {
     border: 1px white solid;
     flex: 4;
     display: flex;
     flex-direction: column;
   }
 
-  .left-top {
+  .full-party-view-left-top {
     border: 4px grey solid;
     flex: 2;
   }
 
-  .left-bottom {
+  .full-party-view-left-bottom {
     border: 4px grey solid;
     flex: 1;
   }
 
-  .right {
+  .full-party-view-right {
     border: 1px white solid;
     flex: 2;
     display: flex;
     flex-direction: column;
   }
 
-  .right-top {
+  .full-party-view-right-top {
     border: 4px grey solid;
     flex: 3;
   }
 
-  .right-bottom {
+  .full-party-view-right-bottom {
     border: 4px grey solid;
     flex: 1;
   }

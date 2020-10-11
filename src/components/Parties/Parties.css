@@ -5,6 +5,15 @@
   border-top: 0px;
 }
 
+.parties-icons {
+  width: 51%;
+  vertical-align: bottom;
+}
+
+.parties-dm-image {
+  width: 54%;
+}
+
 .info-party-language,
 .info-party-online,
 .info-party-players,

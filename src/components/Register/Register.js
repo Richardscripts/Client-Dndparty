@@ -21,9 +21,9 @@ class Register extends React.Component {
         TokenService.clearAuthToken();
         TokenService.saveAuthToken(res.authToken);
         this.props.loginUpdateToken();
-        const user_id = TokenService.getUserIdFromAuthToken();
-        this.props.handleUserInfo(user_id);
-        this.props.history.push(`/Player_Profile/${user_id}`);
+        const user = TokenService.getUserInfoFromAuthToken();
+        this.props.handleUserInfo(user);
+        this.props.history.push(`/Player_Profile/${user.user_id}`);
       })
       .catch((res) => {
         this.setState({ error: res.error });

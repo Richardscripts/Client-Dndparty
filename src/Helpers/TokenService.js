@@ -16,16 +16,17 @@ const TokenService = {
   makeBasicAuthToken(userName, password) {
     return window.btoa(`${userName}:${password}`);
   },
-  getUserIdFromAuthToken() {
+  getUserInfoFromAuthToken() {
     let authToken = window.localStorage.getItem(config.TOKEN_KEY);
     if (authToken) {
-      let payload = window.atob(
+      let userInfo = window.atob(
         authToken.slice(7, authToken.length).split('.')[1]
       );
-      let user = JSON.parse(payload);
-      return user.user_id;
+      return JSON.parse(userInfo);
+    } else {
+      return { user_id: 0, user_name: '' };
     }
-  },
+  },  
 };
 
 export default TokenService;

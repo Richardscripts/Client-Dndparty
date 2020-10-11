@@ -1,10 +1,13 @@
 import React from 'react';
+
 import { Link, Route } from 'react-router-dom';
 
 import UserProfile from '../UserProfile/UserProfile';
 import FullViewParty from '../Parties/FullViewParty/FullViewParty';
 import CreateParty from '../CreateParty/CreateParty';
+import CreatePartyNav from '../CreateParty/CreatePartyTopBar';
 import CreatePartyButton from '../CreateParty/CreatePartyButton';
+
 import Login from '../Login/Login';
 import Parties from '../Parties/Parties';
 import Register from '../Register/Register';
@@ -16,45 +19,54 @@ class App extends React.Component {
   state = {
     tokenExists: TokenService.hasAuthToken(),
     user: 0,
+    user_name: '',
   };
+
   loginUpdateToken = () => {
     this.setState({ tokenExists: TokenService.hasAuthToken() });
   };
 
   componentDidMount = () => {
-    this.setState({ user: TokenService.getUserIdFromAuthToken() });
-  };
-  handleUserInfo = (user_id) => {
+    const user = TokenService.getUserInfoFromAuthToken();
     this.setState({
-      user: user_id,
+      user: user.user_id,
+      user_name: user.user_name,
+    });
+  };
+
+  handleUserInfo = (user) => {
+    this.setState({
+      user: user.user_id,
+      user_name: user.user_name,
     });
   };
 
   render() {
+    const ifToken = this.state.tokenExists;
     return (
       <div className="App">
         <header className="App-header">
           <h1>Welcome to DndParty!</h1>
           <nav className="App-nav">
             <Link to="/">Home</Link>
-            {!this.state.tokenExists && (
+            {!ifToken && (
               <span>
                 {' '}
                 | <Link to="/Register">Register</Link> |{' '}
               </span>
             )}
-            {!this.state.tokenExists && (
+            {!ifToken && (
               <span>
                 <Link to="/Login">Login</Link>
               </span>
             )}
-            {this.state.tokenExists && (
+            {ifToken && (
               <span>
                 {' '}
                 | <Link to={`/Player_profile/${this.state.user}`}>Profile</Link>
               </span>
             )}
-            {this.state.tokenExists && (
+            {ifToken && (
               <span>
                 {' '}
                 |{' '}
@@ -68,11 +80,18 @@ class App extends React.Component {
                 </span>
               </span>
             )}
+            {ifToken && (
+              <>
+                <br />
+                <span>Logged in as {this.state.user_name}</span>
+              </>
+            )}
           </nav>
         </header>
         {this.state.tokenExists && (
           <Route exact path="/" component={CreatePartyButton} />
         )}
+        <Route path="/create_party" component={CreatePartyNav} />
         <main>
           <Route
             path="/Register"
@@ -95,10 +114,7 @@ class App extends React.Component {
               />
             )}
           />
-          <Route
-            path="/Create_Party"
-            render={(props) => <CreateParty {...props} />}
-          />
+
           <Route
             path="/Party/:party_id"
             render={(props) => <FullViewParty {...props} />}
@@ -107,8 +123,12 @@ class App extends React.Component {
             path="/Player_Profile/:user_id"
             render={(props) => <UserProfile {...props} />}
           />
+
+          <Route
+            path="/Create_Party"
+            render={(props) => <CreateParty {...props} />}
+          />
         </main>
-        <footer></footer>
       </div>
     );
   }

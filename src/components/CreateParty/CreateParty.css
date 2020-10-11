@@ -1,4 +1,166 @@
+h2 {
+  margin: 0px;
+  padding: 0px;
+  display: inline;
+}
+
+.center {
+  text-align: center;
+}
+
 input,
 select {
   margin: 10px;
+  background-color: rgb(194, 194, 194);
+}
+
+textarea {
+  vertical-align: middle;
+  margin: 2px;
+  resize: none;
+}
+
+.create-party-nav {
+  background-image: url('../../Assets/Groups-image/fantasy5.png');
+  background-position-y: 9%;
+  background-position-x: 19%;
+  text-align: center;
+  font-family: 'Anton';
+  color: white;
+  font-size: 42px;
+  opacity: 0.9;
+  margin: auto;
+  text-shadow: -2px 2px 0px #070707;
+}
+
+.create-icons {
+  vertical-align: middle;
+}
+
+.players-image {
+  width: 6%;
+  margin: 3px;
+}
+
+.dm-image {
+  width: 8%;
+  margin: 4px;
+}
+
+.create-party-form-wrapper {
+  width: 650px;
+  height: 700px;
+  background-image: linear-gradient(rgb(66, 66, 66), rgb(40, 40, 40));
+  border-bottom: 4px rgb(73, 73, 73) solid;
+  border-left: 5px rgb(88, 88, 88) solid;
+  border-right: 5px rgb(61, 61, 61) solid;
+  border-top: 8px rgb(73, 73, 73) solid;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+
+.create-party-form {
+  margin-top: 20px;
+  font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+  overflow: auto;
+}
+
+.party-form-top {
+  text-align: center;
+}
+
+.required-inputs {
+  border: 3px grey solid;
+  padding: 10px;
+  width: 380px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.optional-inputs {
+  display: inline-flex;
+  margin: auto;
+}
+
+.optional-inputs-left,
+.optional-inputs-right {
+  width: 250px;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-top: 16px;
+  padding: 20px;
+}
+
+.optional-inputs-left {
+  border-left: 3px #0491b4 solid;
+  border-radius: 8%;
+}
+
+.optional-inputs-right {
+  border-right: 3px#0491b4 solid;
+  border-radius: 8%;
+}
+
+.create-party-h2 {
+  font-size: 23px;
+  text-shadow: 2px 2px 0 #000000, 2px 2px 0 #000000;
+}
+
+#players_needed {
+  width: 35px;
+}
+
+#about {
+  width: 232px;
+  height: 65px;
+}
+
+#language {
+  width: 100px;
+}
+
+#online_or_not {
+  width: 100px;
+}
+
+#dnd_edition {
+  width: 100px;
+}
+
+#time_of_event {
+  width: 180px;
+}
+
+#homebrew_rules {
+  width: 180px;
+}
+
+.button-wrapper {
+  text-align: center;
+}
+
+.myButton {
+  box-shadow: -4px 6px 1px 1px #000f12;
+  background: linear-gradient(to bottom, #8440c9 5%, #0491b4 100%);
+  background-color: #8440c9;
+  border-radius: 8px;
+  border: 2px solid #000000;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 52px;
+  text-decoration: none;
+  text-shadow: -1px 2px 2px #000000;
+}
+.myButton:hover {
+  background: linear-gradient(to bottom, #0491b4 5%, #8440c9 100%);
+  background-color: #0491b4;
+}
+.myButton:active {
+  position: relative;
+  top: 1px;
 }

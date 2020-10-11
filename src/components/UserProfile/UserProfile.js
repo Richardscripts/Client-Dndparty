@@ -55,7 +55,7 @@ class UserProfile extends React.Component {
     const userInfo = this.state.user_info.map((user, idx) => {
       return (
         <div key={idx} className="profile-left-top">
-          {user.user_name} Profile
+          {user.user_name}'s Profile
         </div>
       );
     });

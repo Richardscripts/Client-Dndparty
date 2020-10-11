@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 export default function CreatePartyButton(props) {
   return (
-    <div className="create-table-bar">
+    <div className="create-party-bar">
       <Link to="/Create_Party">
-        <button className="create-table-button">Create Party Table</button>
+        <button className="create-party-button">Create Party Table</button>
       </Link>
     </div>
   );
