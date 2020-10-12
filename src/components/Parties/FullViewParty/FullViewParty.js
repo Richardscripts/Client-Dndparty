@@ -182,17 +182,13 @@ class FullViewParty extends React.Component {
           ) : (
             ''
           )}
-
-          {party.date_created}
-          <div className="party-about-section">
-            {' '}
-            {party.about && (
-              <div className="party-important-text">
-                {party.about}
-                <br />
-              </div>
-            )}
-          </div>
+          {party.date_created}{' '}
+          {party.about && (
+            <div className="party-about-section">
+              {party.about}
+              <br />
+            </div>
+          )}
         </div>
       );
     });

@@ -20,12 +20,12 @@ textarea {
   resize: none;
 }
 
-.create-party-nav {
+.create-party-topbar {
   background-image: url('../../Assets/Groups-image/fantasy5.png');
   background-position-y: 9%;
   background-position-x: 19%;
   text-align: center;
-  font-family: 'Anton';
+  font-family: 'Anton', Arial, Helvetica, sans-serif;
   color: white;
   font-size: 42px;
   opacity: 0.9;

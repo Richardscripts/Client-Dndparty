@@ -1,12 +1,12 @@
 import React from 'react';
-
 import { Link, Route } from 'react-router-dom';
 
 import UserProfile from '../UserProfile/UserProfile';
 import FullViewParty from '../Parties/FullViewParty/FullViewParty';
 import CreateParty from '../CreateParty/CreateParty';
-import CreatePartyNav from '../CreateParty/CreatePartyTopBar';
+import CreatePartyTopBar from '../CreateParty/CreatePartyTopBar';
 import CreatePartyButton from '../CreateParty/CreatePartyButton';
+import FullViewPartyTopBar from '../Parties/FullViewParty/FullViewPartyTopBar';
 
 import Login from '../Login/Login';
 import Parties from '../Parties/Parties';
@@ -91,7 +91,8 @@ class App extends React.Component {
         {this.state.tokenExists && (
           <Route exact path="/" component={CreatePartyButton} />
         )}
-        <Route path="/create_party" component={CreatePartyNav} />
+        <Route path="/create_party" component={CreatePartyTopBar} />
+        <Route path="/Party" component={FullViewPartyTopBar} />
         <main>
           <Route
             path="/Register"

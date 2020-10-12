@@ -158,7 +158,7 @@ const ApiHelpers = {
         return res.json().then((e) => Promise.reject(e));
       } else {
         return res.json();
-      } 
+      }
     });
   },
   getUsersWhoJoinedParty(party_id) {
@@ -185,6 +185,22 @@ const ApiHelpers = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({ user_id }),
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((e) => Promise.reject(e));
+      } else {
+        return res.json();
+      }
+    });
+  },
+  editUserProfile(userInfo, user_id) {
+    return fetch(`${config.API_ENDPOINT}/profile/${user_id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(userInfo),
     }).then((res) => {
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));

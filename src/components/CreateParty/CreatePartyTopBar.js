@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function CreatePartyNav(props) {
-  return <div className="create-party-nav">Create Party</div>;
+export default function CreatePartyTopBar(props) {
+  return <div className="create-party-topbar">Create Party</div>;
 }

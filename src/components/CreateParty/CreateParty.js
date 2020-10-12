@@ -29,7 +29,7 @@ export default class CreateParty extends React.Component {
       group_personality,
       campaign_or_custom,
     } = e.target;
-    if (!players_needed.value && !this.state.checked) {
+    if (!players_needed.value && !this.state.dm_checked) {
       this.setState({
         error: 'Must need atleast 1 Player or a Dungeon Master',
       });
@@ -83,6 +83,7 @@ export default class CreateParty extends React.Component {
             />
             <label htmlFor="players_needed">Player(s) Needed:</label>
             <input
+              min={0}
               type="number"
               name="players_needed"
               id="players_needed"

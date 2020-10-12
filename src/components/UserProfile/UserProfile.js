@@ -1,5 +1,8 @@
 import React from 'react';
+import images from '../../Assets/Groups-image/images';
 import ApiHelpers from '../../Helpers/ApiHelpers';
+import UserInfo from './UserInfo/UserInfo';
+
 import './UserProfile.css';
 
 //import ApiHelpers from '../../../Helpers/ApiHelpers';
@@ -10,9 +13,50 @@ import './UserProfile.css';
 class UserProfile extends React.Component {
   state = {
     error: null,
-    user_info: [],
+    user_info: [{ user_name: '' }],
     created_parties: [],
     joined_parties: [],
+    editing: false,
+  };
+
+  handleEditProfile = () => {
+    this.setState({ editing: true });
+  };
+
+  handleSubmitEditProfile = (e) => {
+    e.preventDefault();
+    const user_id = this.state.user_info[0].user_id;
+    const {
+      first_name,
+      last_name,
+      dnd_experience,
+      location,
+      languages,
+      about,
+      preferred_editions,
+      preferred_classes,
+    } = e.target;
+    const userInfo = {
+      first_name: first_name.value,
+      last_name: last_name.value,
+      dnd_experience: dnd_experience.value,
+      location: location.value,
+      languages: languages.value,
+      about: about.value,
+      preferred_editions: preferred_editions.value,
+      preferred_classes: preferred_classes.value,
+    };
+    this.setState({
+      error: null,
+    });
+    ApiHelpers.editUserProfile(userInfo, user_id)
+      .then((userInfo) => {
+        this.setState({ user_info: [userInfo] });
+        window.location.reload();
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      });
   };
 
   componentDidMount() {
@@ -52,13 +96,13 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    const userInfo = this.state.user_info.map((user, idx) => {
-      return (
-        <div key={idx} className="profile-left-top">
-          {user.user_name}'s Profile
-        </div>
-      );
-    });
+    // const userInfo = this.state.user_info.map((user, idx) => {
+    //   return (
+    //     <div key={idx} className="profile-left-top">
+    //       {user.user_name}'s Profile
+    //     </div>
+    //   );
+    // });
     const partiesCreated = this.state.created_parties.map((party, idx) => {
       return (
         <div key={idx}>
@@ -70,7 +114,7 @@ class UserProfile extends React.Component {
     });
     const partiesJoined = this.state.joined_parties.map((party, idx) => {
       return (
-        <div key={idx}>
+        <div className="parties-joined-container" key={idx}>
           <h2>{party.party_name}</h2> <br />
         </div>
       );
@@ -79,18 +123,50 @@ class UserProfile extends React.Component {
     return (
       <div className="user-profile">
         <div className="profile-left">
-          {userInfo}
+          {this.state.user_info[0].user_name}'s Profile
           <div className="profile-left-middle">
-            Parties Joined: {partiesJoined}
+            Parties Joined:
+            <div className="parties-joined-container">{partiesJoined}</div>
           </div>
           <div className="profile-left-bottom">
-            Tables Created:
-            {partiesCreated}
+            Party Tables Created:
+            <div className="parties-created-container">{partiesCreated}</div>
           </div>
         </div>
         <div className="profile-right">
-          <div className="profile-right-top">Player Icon</div>
-          <div className="profile-right-bottom">Player's Information</div>
+          <div className="profile-right-top">
+            <span className="player-name-style">
+              {this.state.user_info[0].user_name}
+            </span>
+            <br />
+            <img
+              className="swords-img"
+              src={images.swords}
+              alt="Icon of crossing swords"
+            />
+          </div>
+          <div className="profile-right-bottom">
+            Player's Information
+            <br />
+            <UserInfo
+              info={this.state.user_info}
+              editing={this.state.editing}
+              handleSubmitEditProfile={this.handleSubmitEditProfile}
+            />
+          </div>
+          {this.state.editing && (
+            <button
+              form="edit-profile"
+              type="submit"
+              value="Submit"
+              onSubmit={(e) => this.handleSubmitEditProfile(e)}
+            >
+              Submit
+            </button>
+          )}
+          {!this.state.editing && (
+            <button onClick={this.handleEditProfile}>Edit Profile</button>
+          )}
         </div>
       </div>
     );

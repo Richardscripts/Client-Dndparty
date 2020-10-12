@@ -1,13 +1,15 @@
 .party-legend {
   font-size: 18px;
-  padding: 10px;
   color: rgb(209, 209, 209);
 }
 
 .party-about-section {
+  color: white;
+  margin-top: 10px;
   height: 200px;
-  width: 300px;
   overflow-y: auto;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .party-name {
@@ -16,8 +18,7 @@
   color: white;
   font-size: 40px;
   text-shadow: -2px 2px 0px #070707;
-  border: 2px rgb(78, 78, 78) solid;
-  background-image: linear-gradient(rgb(85, 85, 85), rgb(0, 0, 0));
+  background-image: linear-gradient(#47226b, #8540c9);
 }
 
 .fullview-players-img {
@@ -28,6 +29,13 @@
   margin-left: 6px;
   vertical-align: middle;
 }
+
+/* .fullviewparty-topbar {
+  background-image: url('../../../Assets/Groups-image/fantasy.jpg');
+  background-position-y: 55%;
+  background-size: cover;
+  padding: 40px;
+} */
 .request-img {
   width: 3%;
 }
@@ -65,8 +73,8 @@
     background-color: #272727;
     background-image: linear-gradient(#2e2e2e, #2f2f2f);
     box-shadow: rgb(37, 37, 37) 1px 8px 6px 0px;
-    width: 90%;
-    height: 650px;
+    width: 82%;
+    height: 720px;
     display: flex;
     margin-top: 30px;
   }
@@ -80,7 +88,7 @@
 
   .full-party-view-left-top {
     border: 4px grey solid;
-    flex: 2;
+    flex: 4;
   }
 
   .full-party-view-left-bottom {
