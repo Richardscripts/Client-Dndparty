@@ -6,15 +6,26 @@
 }
 
 .parties-icons {
-  width: 51%;
-  vertical-align: bottom;
+  width: 25px;
+  vertical-align: middle;
+  margin-top: 3px;
 }
 
 .parties-dm-image {
-  width: 54%;
+  width: 32px;
+  margin-top: 1px;
 }
 
-.info-party-language,
+.online-img {
+  width: 30px;
+  margin-top: 1px;
+}
+
+.book-img {
+  width: 30px;
+}
+
+.info-party-edition,
 .info-party-online,
 .info-party-players,
 .info-party-dm {
@@ -22,15 +33,35 @@
   padding: 5px;
   background-color: rgb(65, 65, 65);
   width: 42px;
-  height: 18px;
+  height: 33px;
   align-self: flex-end;
   word-break: break-all;
+}
+
+.info-party-edition {
+  background-color: rgb(71, 77, 93);
+}
+
+.info-party-online {
+  background-color: rgb(71, 64, 71);
+}
+
+.info-party-players {
+  background-color: rgb(65, 73, 72);
+}
+
+.info-party-dm {
+  background-color: rgb(60, 63, 55);
+}
+
+.edition-font {
+  font-size: 14px;
 }
 
 .info-party-id {
   text-align: center;
   padding: 5px;
-  background-color: rgb(65, 65, 65);
+  background-color: rgb(32, 32, 32);
   width: 72px;
   border: 3px rgb(129, 129, 129) solid;
   border-bottom: 1px rgb(129, 129, 129) solid;

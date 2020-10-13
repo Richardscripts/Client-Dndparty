@@ -65,8 +65,8 @@ class App extends React.Component {
             )}
             {ifToken && (
               <span>
-                {/* | <Link to={`/Player_Profile/${this.state.user}`}>Profile</Link> */}
-                <a href={`/Player_Profile/${this.state.user}`}> | Profile</a>
+                | <Link to={`/Player_Profile/${this.state.user}`}>Profile</Link>
+                {/* <a href={`/Player_Profile/${this.state.user}`}> | Profile</a> */}
               </span>
             )}
             {ifToken && (

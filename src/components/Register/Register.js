@@ -38,11 +38,11 @@ class Register extends React.Component {
           <input type="email" name="user_email" required></input>
           <br />
           <label>Nickname or Character Name:</label>
-          <input maxlength="30" type="text" name="user_name" required></input>
+          <input maxLength="30" type="text" name="user_name" required></input>
           <br />
           <label>Password:</label>
           <input
-            maxlength="72"
+            maxLength="72"
             type="password"
             name="password"
             required

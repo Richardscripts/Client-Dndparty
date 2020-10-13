@@ -5,12 +5,19 @@ body {
   color: white;
 }
 
+/* h1 {
+  padding: 0px;
+  margin: 0px;
+} */
+
 .App-header {
   border: 1px solid white;
   background-color: #272727;
   display: flex;
   justify-content: space-evenly;
   color: white;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .App-nav {
@@ -20,7 +27,7 @@ body {
 .create-party-bar {
   text-align: center;
   background-color: rgb(41, 41, 41);
-  padding: 20px;
+  padding: 40px;
 }
 
 .create-party-button {
@@ -33,7 +40,6 @@ main {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  overflow-y: auto;
   opacity: 0.96;
 }
 

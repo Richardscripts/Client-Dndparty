@@ -1,92 +1,125 @@
 .user-profile {
-  margin-top: 25px;
-  border: 1px white solid;
+  border: 3px white solid;
   border-bottom: 4px white solid;
-  width: 75%;
-  height: 750px;
   display: flex;
+  flex-direction: column;
+
   /* background-image: linear-gradient(rgb(44, 44, 44), rgb(36, 36, 36)); */
 }
 
-.profile-bg-img {
-  display: flex;
-  justify-content: center;
+hr {
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
+
+.top-row-profile {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(rgb(49, 49, 49), rgb(22, 22, 22));
+}
+
+.second-row-profile {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(rgb(49, 49, 49), rgb(22, 22, 22));
+}
+
+.third-row-profile {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(rgb(49, 49, 49), rgb(17, 17, 17));
+}
+
+.fourth-row-profile {
+  display: flex;
+  flex-direction: column;
+  background-image: url('../../Assets/Groups-image/fantasy5.png');
+}
+
+.fifth-row-profile {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(rgb(49, 49, 49), rgb(22, 22, 22));
+}
+
+/* .profile-bg-img {
+  display: flex;
+  justify-content: center;  
+} */
 
 .player-name-style {
   text-align: center;
   font-family: 'Anton', Arial, Helvetica, sans-serif;
-  color: white;
-  font-size: 38px;
-  opacity: 0.95;
+  color: #ff5833;
+  font-size: 42px;
   margin: auto;
   text-shadow: -2px 2px 0px #070707;
 }
-
+/* 
 .profile-left {
   border: 1px white solid;
-  flex: 2;
   display: flex;
   flex-direction: column;
+} */
+
+.profile-top-bar {
+  /* border: 2px grey solid; */
+  padding: 6px;
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
 }
 
-.profile-left-top {
-  border: 2px grey solid;
-  padding: 1px;
-  height: 26px;
-
-  background-image: linear-gradient(rgb(49, 49, 49), rgb(22, 22, 22));
-}
-
-.profile-left-middle {
-  text-align: center;
-  border: 4px grey solid;
-  opacity: 0.97;
-  flex: 2;
-  height: 300px;
-  overflow-y: auto;
-  background-image: linear-gradient(rgb(49, 49, 49), rgb(39, 39, 39));
-}
-
-.profile-left-bottom {
-  border: 4px grey solid;
-  opacity: 0.97;
-  flex: 4;
-  height: 320px;
-  background-image: linear-gradient(rgb(49, 49, 49), rgb(39, 39, 39));
-}
-
-.profile-right {
-  border: 1px white solid;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-image: linear-gradient(rgb(49, 49, 49), rgb(22, 22, 22));
-}
-
-.profile-right-top {
-  border: 4px grey solid;
-  flex: 1;
+.profile-user-icon {
+  border-bottom: 4px grey solid;
+  width: 100%;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 10px;
   text-align: center;
 }
 
-.profile-right-bottom {
-  border: 4px grey solid;
-  flex: 3;
-  overflow-y: auto;
+.profile-player-info {
+  margin: auto;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-parties-joined {
+  text-align: center;
+  /* /* border: 4px grey solid; */
+  border-top: 3px grey solid;
+  border-bottom: 3px grey solid;
+  opacity: 0.9;
+  min-height: 300px;
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+  /* background-color: rgb(54, 29, 61); */
+}
+
+.profile-parties-created {
+  text-align: center;
+  opacity: 0.9;
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
 }
 
 .parties-created-container {
+  margin-top: 24px;
   display: flex;
-  overflow-y: auto;
-  overflow-x: auto;
   flex-wrap: wrap;
-  height: 390px;
+  min-height: 390px;
   justify-content: space-evenly;
-  margin-top: 20px;
+  box-sizing: border-box;
 }
 
 .party-tables-created {
+  box-sizing: border-box;
   text-align: center;
   width: 195px;
   border: 2px solid rgb(75, 75, 75);
@@ -95,40 +128,101 @@
   margin: 22px;
   transition: transform 0.3s;
   height: 220px;
+  background-image: linear-gradient(rgb(87, 87, 87), rgb(58, 58, 58));
 }
 
 .parties-joined-container {
+  box-sizing: border-box;
   display: flex;
-  overflow-y: auto;
   justify-content: center;
   flex-direction: column;
+  width: 200px;
+  margin: auto;
 }
 
 .parties-joined-style {
-  font-size: 26px;
+  box-sizing: border-box;
+  font-size: 29px;
   font-weight: bold;
-  color: #f7efe6;
+  color: #ffffff;
+  background-color: rgb(175, 175, 175);
+  text-shadow: -1px 4px 2px #070707;
+  border: 1px solid rgb(20, 20, 20);
+  border-radius: 4%;
+  display: flex;
+  justify-content: left;
+  box-shadow: 0px 6px 10px rgb(0, 0, 0);
+  background-image: linear-gradient(rgb(68, 68, 68), rgb(37, 37, 37));
+}
+
+.parties-joined-user {
+  box-sizing: border-box;
+  margin-left: 20px;
 }
 
 .parties-joined-margin {
   margin: 10px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
+.user-info-container {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info-container > .left-content > span {
+  text-shadow: -2px 2px 0px #070707;
+  color: #ffffff;
+  font-size: 26px;
+  font-family: 'Anton', Arial, Helvetica, sans-serif;
+}
+
+.left-content {
+  flex: 1;
+}
+
+.right-content {
+  flex: 1;
+  margin: 10px;
+}
+
+.about-me {
+  font-size: 18px;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  color: rgb(255, 255, 255);
+  text-shadow: none;
+  text-align: justify;
+}
+
+.player-info-top-bar {
+  text-align: center;
+}
+
 .player-info-style {
-  font-size: 22px;
+  font-family: 'Anton', Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 26px;
+  text-shadow: -2px 2px 0px #070707;
+}
+
+.bottom-bar {
+  background-image: linear-gradient(rgb(12, 12, 12), rgb(29, 29, 29));
+  height: 49px;
 }
 
 .swords-img {
-  width: 30%;
+  width: 75px;
   margin-top: 25px;
   margin: auto;
 }
 
 .scroll-img {
-  width: 10%;
+  width: 45px;
   margin: 4px;
-  vertical-align: middle;
+  vertical-align: top;
 }
 
 .map-img {
@@ -136,20 +230,22 @@
   margin: 3px;
   margin-right: 5px;
   vertical-align: middle;
+  margin-left: 7px;
 }
 
 .party-tables-created:hover {
   transform: scale(1.1);
 }
 
-.button-wrapper {
+.submit-edit-button-wrapper {
+  bottom: 0;
+  position: fixed;
+  height: 52px;
   text-align: center;
-  padding-left: 5px;
-}
-
-.submit-edit-style {
-  width: 99%;
-  height: 99%;
+  width: 100%;
+  z-index: 50;
+  opacity: 0.97;
+  background-image: linear-gradient(rgb(12, 12, 12), rgb(29, 29, 29));
 }
 
 .view-button {
@@ -179,51 +275,52 @@ a {
   letter-spacing: 2pt;
 }
 
-/* 
 @media all and (min-width: 500px) {
-  .user-profile {
-    border: 1px white solid;
-    width: 80%;
-    height: 650px;
+  .submit-edit-button-wrapper {
+    text-align: center;
+    position: relative;
+    margin: 10px;
+    background-image: none;
+  }
+  .profile-top-bar {
+    width: 800px;
+  }
+
+  .profile-user-icon {
+    width: 800px;
+  }
+
+  .profile-player-info {
+    width: 800px;
+  }
+
+  .profile-parties-joined {
+    width: 100%;
+    border-bottom: 3px grey solid;
+  }
+
+  .profile-parties-created {
+    width: 800px;
+  }
+
+  hr {
+    width: 285px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .center-content {
+    text-align: left;
+    margin-left: 250px;
+  }
+
+  .editButton {
+    box-shadow: -4px 6px 1px 1px #000f12;
+  }
+
+  .user-info-container {
     display: flex;
+    flex-direction: row;
   }
-
-  .profile-left {
-    border: 1px white solid;
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .profile-left-top {
-    border: 4px grey solid;
-    height: 26px;
-  }
-
-  .profile-left-middle {
-    border: 4px grey solid;
-    flex: 6;
-  }
-
-  .profile-left-bottom {
-    border: 4px grey solid;
-    flex: 6;
-  }
-
-  .profile-right {
-    border: 1px white solid;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .profile-right-top {
-    border: 4px grey solid;
-    flex: 1;
-  }
-
-  .profile-right-bottom {
-    border: 4px grey solid;
-    flex: 3;
-  }
-} */
+}

@@ -1,6 +1,45 @@
+.full-party-view {
+  background-color: #272727;
+  background-image: linear-gradient(#2e2e2e, #2f2f2f);
+  box-shadow: rgb(37, 37, 37) 1px 8px 6px 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .party-legend {
   font-size: 18px;
   color: rgb(209, 209, 209);
+  width: 100%;
+  margin: auto;
+  background-image: linear-gradient(rgb(24, 24, 24), #2e2e2e);
+}
+
+.top-row-party {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(rgb(24, 24, 24), #2e2e2e);
+}
+
+.second-row-party {
+  display: flex;
+  flex-direction: column;
+}
+
+.third-row-party {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.fourth-row-party {
+  display: flex;
+  flex-direction: column;
+}
+
+.fifth-row-party {
+  display: flex;
+  flex-direction: column;
 }
 
 .party-about-section {
@@ -9,16 +48,47 @@
   height: 200px;
   overflow-y: auto;
   font-size: 20px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Courgette, 'Times New Roman', Times, serif;
 }
 
-.party-name {
+.party-name-top {
+  border-bottom: 3px rgb(0, 0, 0) solid;
+  width: 100%;
+  margin: auto;
   text-align: center;
   font-family: 'Anton', 'Times New Roman', Times, serif;
   color: white;
   font-size: 40px;
   text-shadow: -2px 2px 0px #070707;
   background-image: linear-gradient(#47226b, #8540c9);
+}
+
+.party-info-section {
+  width: 100%;
+  margin: auto;
+  padding: 35px;
+  box-sizing: border-box;
+  border-bottom: 14px rgb(22, 22, 22) solid;
+}
+
+.party-users-joined {
+  border: 2px rgb(110, 110, 110) solid;
+  width: 100%;
+  margin: auto;
+  padding: 3px;
+  box-shadow: 0 3px 4px 0px #161616;
+  box-sizing: border-box;
+  background-color: rgb(58, 58, 58);
+}
+
+.party-users-requests {
+  border: 2px grey solid;
+  border-top: 0px;
+  width: 100%;
+  margin: auto;
+  padding: 3px;
+  padding-top: 8px;
+  box-sizing: border-box;
 }
 
 .fullview-players-img {
@@ -67,51 +137,28 @@
   color: white;
   font-size: 24px;
   letter-spacing: 1pt;
+  margin-top: 25px;
   text-decoration: underline;
 }
 
 @media all and (min-width: 500px) {
-  .full-party-view {
-    background-color: #272727;
-    background-image: linear-gradient(#2e2e2e, #2f2f2f);
-    box-shadow: rgb(37, 37, 37) 1px 8px 6px 0px;
-    width: 82%;
-    height: 720px;
-    display: flex;
-    margin-top: 30px;
+  .party-name-top {
+    width: 900px;
   }
 
-  .full-party-view-left {
-    border: 1px white solid;
-    flex: 4;
-    display: flex;
-    flex-direction: column;
+  .party-info-section {
+    width: 900px;
   }
 
-  .full-party-view-left-top {
-    border: 4px grey solid;
-    flex: 4;
+  .party-users-joined {
+    width: 900px;
   }
 
-  .full-party-view-left-bottom {
-    border: 4px grey solid;
-    flex: 1;
+  .party-users-requests {
+    width: 900px;
   }
 
-  .full-party-view-right {
-    border: 1px white solid;
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .full-party-view-right-top {
-    border: 4px grey solid;
-    flex: 3;
-  }
-
-  .full-party-view-right-bottom {
-    border: 4px grey solid;
-    flex: 1;
+  .party-legend {
+    width: 900px;
   }
 }

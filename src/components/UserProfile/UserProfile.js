@@ -1,7 +1,7 @@
 import React from 'react';
 import images from '../../Assets/Groups-image/images';
 import ApiHelpers from '../../Helpers/ApiHelpers';
-import UserInfo from './UserInfoForm/UserInfoForm';
+import UserInfoForm from './UserInfoForm/UserInfoForm';
 import Validators from '../../Helpers/Validators';
 import { Link } from 'react-router-dom';
 import './UserProfile.css';
@@ -23,6 +23,7 @@ class UserProfile extends React.Component {
     e.preventDefault();
     const user_id = this.state.user_info[0].user_id;
     const {
+      user_name,
       first_name,
       last_name,
       dnd_experience,
@@ -33,6 +34,7 @@ class UserProfile extends React.Component {
       preferred_classes,
     } = e.target;
     const userInfo = {
+      user_name: user_name.value,
       first_name: first_name.value,
       last_name: last_name.value,
       dnd_experience: dnd_experience.value,
@@ -56,6 +58,7 @@ class UserProfile extends React.Component {
   };
 
   componentDidMount() {
+    console.log('Componentdidmount is happening');
     const { match } = this.props;
     const user_id = match.params.user_id;
     ApiHelpers.getUserProfile(user_id)
@@ -110,7 +113,7 @@ class UserProfile extends React.Component {
                 src={images.map}
                 alt="A treasure map icon"
               />
-              {party.party_name}
+              <span className="parties-joined-user">{party.party_name}</span>
             </div>
             <br />
           </div>
@@ -146,57 +149,50 @@ class UserProfile extends React.Component {
     });
 
     return (
-      <div className="profile-bg-img">
-        <div className="user-profile">
-          <div className="profile-left">
-            <span className="player-info-style profile-left-top username-style-profile">
-              {this.state.user_info[0].user_name}'s Dashboard
+      <div className="user-profile">
+        <div className="top-row-profile">
+          <span className="profile-top-bar username-style-profile">
+            {this.state.user_info[0].user_name}'s Profile
+          </span>
+        </div>
+        <div className="second-row-profile">
+          <div className="profile-user-icon">
+            <span className="player-name-style">
+              {this.state.user_info[0].user_name}
             </span>
-            <div className="profile-left-middle">
-              <div className="player-info-style parties-joined-margin">
-                Parties Joined:
-              </div>
-              <div className="parties-joined-container">{partiesJoined}</div>
-            </div>
-            <div className="profile-left-bottom">
-              <span className="player-info-style">Party Tables Created:</span>
-              <div className="parties-created-container">{partiesCreated}</div>
-            </div>
+            <br />
+            <img
+              className="swords-img"
+              src={images.swords}
+              alt="Icon of crossing swords"
+            />
           </div>
-          <div className="profile-right">
-            <div className="profile-right-top">
-              <span className="player-name-style">
-                {this.state.user_info[0].user_name}
-              </span>
-              <br />
-              <img
-                className="swords-img"
-                src={images.swords}
-                alt="Icon of crossing swords"
-              />
-            </div>
-            <div className="profile-right-bottom">
+        </div>
+        <div className="third-row-profile">
+          <div className="profile-player-info">
+            <div className="player-info-top-bar">
               <img
                 className="scroll-img"
                 src={images.scroll}
                 alt="A cartoon spell scroll"
               />
               <span className="player-info-style">Player Information</span>
-              <br />
-              <UserInfo
-                info={this.state.user_info}
-                editing={this.state.editing}
-                user_email={this.props.user_email}
-                handleSubmitEditProfile={this.handleSubmitEditProfile}
-              />
+              <hr />
             </div>
-            <div className="button-wrapper">
+            <br />
+            <UserInfoForm
+              info={this.state.user_info}
+              editing={this.state.editing}
+              user_email={this.props.user_email}
+              handleSubmitEditProfile={this.handleSubmitEditProfile}
+            />
+            <div className="submit-edit-button-wrapper">
               {this.state.editing && (
                 <button
                   form="edit-profile"
                   type="submit"
                   value="Submit"
-                  className="myButton submit-edit-style"
+                  className="myButton"
                   onSubmit={(e) => this.handleSubmitEditProfile(e)}
                 >
                   Submit
@@ -204,16 +200,28 @@ class UserProfile extends React.Component {
               )}
               {Validators.ifProfileOfUser(profile_user_id) &&
                 !this.state.editing && (
-                  <button
-                    className="myButton submit-edit-style"
-                    onClick={this.handleEditProfile}
-                  >
+                  <button className="myButton" onClick={this.handleEditProfile}>
                     Edit Profile
                   </button>
                 )}
             </div>
           </div>
         </div>
+        <div className="fourth-row-profile">
+          <div className="profile-parties-joined">
+            <div className="player-info-style parties-joined-margin">
+              Parties Joined:
+            </div>
+            <div className="parties-joined-container">{partiesJoined}</div>
+          </div>
+        </div>
+        <div className="fifth-row-profile">
+          <div className="profile-parties-created">
+            <span className="player-info-style">Party Tables Created:</span>
+            <div className="parties-created-container">{partiesCreated}</div>
+          </div>
+        </div>
+        <div className="bottom-bar"></div>
       </div>
     );
   }

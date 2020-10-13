@@ -1,22 +1,28 @@
 import React from 'react';
 
-export default class UserInfo extends React.Component {
+export default class UserInfoForm extends React.Component {
   render() {
     const editing = this.props.editing;
     const userInfo = this.props.info.map((info, idx) => {
       return (
         <div className="user-info-container" key={idx}>
-          <span>Nickname: {info.user_name}</span> <br />
-          <span>Email: {this.props.user_email}</span> <br />
-          <span>First Name: {info.first_name}</span> <br />
-          <span>Last Name: {info.last_name}</span> <br />
-          <span>D&D Experience: {info.dnd_experience}</span> <br />
-          <span>Fluent Languages: {info.languages}</span> <br />
-          <span>Location: {info.location}</span> <br />
-          <span>Preferred Editions: {info.preferred_editions}</span> <br />
-          <span>Preferred Classes: {info.preferred_classes}</span> <br />
-          <span>Additional Contact: {info.contact}</span> <br />
-          <span>About me: {info.about}</span> <br />
+          <div className="left-content">
+            <span>Nickname:</span> {info.user_name} <br />
+            <span>Email:</span> {this.props.user_email} <br />
+            <span>First Name:</span> {info.first_name} <br />
+            <span>Last Name:</span> {info.last_name} <br />
+            <span>D&D Experience:</span> {info.dnd_experience} <br />
+            <span>Fluent Languages:</span> {info.languages} <br />
+            <span>Location:</span> {info.location} <br />
+            <span>Preferred Editions:</span> {info.preferred_editions} <br />
+            <span>Preferred Classes:</span> {info.preferred_classes} <br />
+            <span>Additional Contact:</span> {info.contact} <br />
+          </div>
+          <div className="right-content">
+            <span>About Me:</span>
+            <p className="about-me">{info.about} </p>
+            <br />
+          </div>
         </div>
       );
     });
@@ -27,30 +33,31 @@ export default class UserInfo extends React.Component {
             <label htmlFor="user_name">Nickname: </label>
             <input
               name="user_name"
-              maxlength="30"
+              maxLength="30"
               id="user_name"
               defaultValue={info.user_name}
             ></input>{' '}
             <br />
-            <label htmlFor="user_email">Email: </label>
+            {/* <label htmlFor="user_email">Email: </label>
             <input
               name="user_email"
+              type="email"
               id="user_email"
               defaultValue={this.props.user_email}
             ></input>{' '}
-            <br />
+            <br /> */}
             <label htmlFor="first_name">First Name: </label>
             <input
               name="first_name"
               id="first_name"
-              maxlength="30"
+              maxLength="30"
               defaultValue={info.first_name}
             ></input>{' '}
             <br />
             <label htmlFor="last_name">Last Name: </label>
             <input
               name="last_name"
-              maxlength="30"
+              maxLength="30"
               id="last_name"
               defaultValue={info.last_name}
             ></input>{' '}

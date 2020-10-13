@@ -60,6 +60,8 @@ class FullViewParty extends React.Component {
       });
   }
   render() {
+    const existsJoiners = this.state.current_joined_users.length !== 0;
+    const existsRequests = this.state.current_user_requests.length !== 0;
     const party = this.state.current_party[0];
     const usersRequestList = this.state.current_user_requests.map(
       (user, idx) => {
@@ -103,94 +105,104 @@ class FullViewParty extends React.Component {
     const partyInfo = this.state.current_party.map((party, idx) => {
       return (
         <div className="party-legend" key={idx}>
-          <div className="party-name">{party.party_name}</div>
-          <br />
-          {party.dnd_edition && (
-            <>
-              <span className="party-style-text">
-                Dungeon and Dragons Edition:
-              </span>{' '}
-              {party.dnd_edition}
-              <br />
-            </>
-          )}
-          {party.language && (
-            <>
-              <span className="party-style-text">(Primary) Language:</span>{' '}
-              {party.language}
-              <br />
-            </>
-          )}
-          {party.online_or_not && (
-            <>
-              <span className="party-style-text">Online or In-Person:</span>{' '}
-              {party.online_or_not}
-              <br />
-            </>
-          )}
-          {party.camera_required && (
-            <span className="party-style-text">
-              Camera Required
-              <br />
+          <div className="top-row-party">
+            <div className="party-name-top">{party.party_name}</div>
+          </div>
+          <div className="second-row-party">
+            <span className="party-creator-style">
+              Party Creator: {party.user_name}
             </span>
-          )}
-          {party.time_of_event && (
-            <>
-              <span className="party-style-text">Time Of Game:</span>{' '}
-              {party.time_of_event}
+            <br />
+            <div className="party-info-section">
               <br />
-            </>
-          )}
-          {party.homebrew_rules && (
-            <>
-              <span className="party-style-text">Homebrew Rules:</span>{' '}
-              {party.homebrew_rules}
-              <br />
-            </>
-          )}
-          {party.classes_needed && (
-            <>
-              <span className="party-style-text">Classes Needed:</span>{' '}
-              {party.classes_needed}
-              <br />
-            </>
-          )}
-          {party.capaign_or_custom && (
-            <>
-              <span className="party-style-text">Campaign:</span>{' '}
-              {party.capaign_or_custom}
-              <br />
-            </>
-          )}
-          {party.group_personality && (
-            <>
-              <span className="party-style-text">Group Personality:</span>{' '}
-              {party.group_personality}
-              <br />
-            </>
-          )}
-          {party.dm_needed && (
-            <span className="party-important-text">
-              Dungeon Master Needed
-              <br />
-            </span>
-          )}
-          {Number(party.players_needed) ? (
-            <>
-              <span className="party-important-text">Players Needed:</span>{' '}
-              {party.players_needed}
-              <br />
-            </>
-          ) : (
-            ''
-          )}
-          {party.date_created}{' '}
-          {party.about && (
-            <div className="party-about-section">
-              {party.about}
-              <br />
+              {party.dnd_edition && (
+                <>
+                  <span className="party-style-text">
+                    Dungeon and Dragons Edition:
+                  </span>{' '}
+                  {party.dnd_edition}
+                  <br />
+                </>
+              )}
+              {party.language && (
+                <>
+                  <span className="party-style-text">(Primary) Language:</span>{' '}
+                  {party.language}
+                  <br />
+                </>
+              )}
+              {party.online_or_not && (
+                <>
+                  <span className="party-style-text">Online or In-Person:</span>{' '}
+                  {party.online_or_not}
+                  <br />
+                </>
+              )}
+              {party.camera_required && (
+                <span className="party-style-text">
+                  Camera Required
+                  <br />
+                </span>
+              )}
+              {party.time_of_event && (
+                <>
+                  <span className="party-style-text">Time Of Game:</span>{' '}
+                  {party.time_of_event}
+                  <br />
+                </>
+              )}
+              {party.homebrew_rules && (
+                <>
+                  <span className="party-style-text">Homebrew Rules:</span>{' '}
+                  {party.homebrew_rules}
+                  <br />
+                </>
+              )}
+              {party.classes_needed && (
+                <>
+                  <span className="party-style-text">Classes Needed:</span>{' '}
+                  {party.classes_needed}
+                  <br />
+                </>
+              )}
+              {party.capaign_or_custom && (
+                <>
+                  <span className="party-style-text">Campaign:</span>{' '}
+                  {party.capaign_or_custom}
+                  <br />
+                </>
+              )}
+              {party.group_personality && (
+                <>
+                  <span className="party-style-text">Group Personality:</span>{' '}
+                  {party.group_personality}
+                  <br />
+                </>
+              )}
+              {party.dm_needed && (
+                <span className="party-important-text">
+                  Dungeon Master Needed
+                  <br />
+                </span>
+              )}
+              {Number(party.players_needed) ? (
+                <>
+                  <span className="party-important-text">Players Needed:</span>{' '}
+                  {party.players_needed}
+                  <br />
+                </>
+              ) : (
+                ''
+              )}
+              {party.date_created}{' '}
+              {party.about && (
+                <div className="party-about-section">
+                  {party.about}
+                  <br />
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       );
     });
@@ -208,24 +220,21 @@ class FullViewParty extends React.Component {
     });
     return (
       <div className="full-party-view">
-        <div className="full-party-view-left">
-          <div className="full-party-view-left-top">
-            <div>{partyInfo}</div>
+        {partyInfo}
+        {existsJoiners && (
+          <div className="third-row-party">
+            <div className="party-users-joined">
+              <>{usersJoined}</>
+            </div>
           </div>
-          <div className="full-party-view-left-bottom">{usersRequestList}</div>
-        </div>
-
-        <div className="full-party-view-right">
-          <div className="full-party-view-right-top">
-            <span className="party-creator-style">
-              Party Creator: {party.user_name}
-            </span>
-            <br />
-            <>{usersJoined}</>
+        )}
+        {existsRequests && (
+          <div className="fourth-row-party">
+            <div className="party-users-requests">{usersRequestList}</div>
           </div>
-          <div className="full-party-view-right-bottom">
-            {party.party_complete}
-          </div>
+        )}
+        <div className="fifth-row-party">
+          <div className="party-completed">{party.party_complete}</div>
         </div>
       </div>
     );

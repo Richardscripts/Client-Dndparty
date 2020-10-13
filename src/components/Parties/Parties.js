@@ -40,11 +40,26 @@ class Parties extends React.Component {
       return (
         <div key={idx} className="party-table">
           <div className="party-top-info-bar">
-            <div className="info-party-language">{party.language}</div>
-            <div className="info-party-online">{party.online_or_not}</div>
-            <div className="info-party-id">
-              Party {party.party_id}: {party.party_name}
+            <div className="info-party-edition edition-font">
+              {party.dnd_edition.substring(0, 3)}
+              <img
+                className="book-img"
+                src={images.book}
+                alt="A tiny spellbook"
+              />
             </div>
+            <div className="info-party-online">
+              {party.online_or_not === 'Online' ? (
+                <img
+                  className="online-img"
+                  src={images.online}
+                  alt="A tiny globe icon"
+                />
+              ) : (
+                '-'
+              )}
+            </div>
+            <div className="info-party-id">Party {party.party_id}</div>
             <div className="info-party-players">
               {party.players_needed < 1 ? (
                 '-'
