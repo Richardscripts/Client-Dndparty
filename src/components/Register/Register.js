@@ -38,10 +38,15 @@ class Register extends React.Component {
           <input type="email" name="user_email" required></input>
           <br />
           <label>Nickname or Character Name:</label>
-          <input type="text" name="user_name" required></input>
+          <input maxlength="30" type="text" name="user_name" required></input>
           <br />
           <label>Password:</label>
-          <input type="password" name="password" required></input>
+          <input
+            maxlength="72"
+            type="password"
+            name="password"
+            required
+          ></input>
           <br />
           Password Must be min. 8 characters.
           <br />

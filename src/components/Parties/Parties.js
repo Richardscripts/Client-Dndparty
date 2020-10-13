@@ -24,8 +24,8 @@ class Parties extends React.Component {
       });
   }
 
-  handleJoinParty = (party_id) => {
-    ApiHelpers.joinParty(party_id)
+  handleRequestToJoinParty = (party_id) => {
+    ApiHelpers.requestTojoinParty(party_id)
       .then(() => {
         this.props.history.push(`/Party/${party_id}`);
       })
@@ -76,17 +76,20 @@ class Parties extends React.Component {
               <img src={images.fullparty} alt="a full party " />
             </div>
           </Link>
-          {!Validators.ifCreatorOfParty(party.user_id_creator) &&
-            !partyComplete && (
-              <div className="button-wrapper">
+          <div className="button-wrapper">
+            <Link to={`/Party/${party.party_id}`}>
+              <button className="view-button">View</button>{' '}
+            </Link>
+            {!Validators.ifCreatorOfParty(party.user_id_creator) &&
+              !partyComplete && (
                 <button
-                  onClick={() => this.handleJoinParty(party.party_id)}
+                  onClick={() => this.handleRequestToJoinParty(party.party_id)}
                   className="join-button"
                 >
                   Join
                 </button>
-              </div>
-            )}
+              )}
+          </div>
         </div>
       );
     });

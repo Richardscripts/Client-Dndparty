@@ -14,7 +14,7 @@
 
 .party-name {
   text-align: center;
-  font-family: 'Anton';
+  font-family: 'Anton', 'Times New Roman', Times, serif;
   color: white;
   font-size: 40px;
   text-shadow: -2px 2px 0px #070707;
@@ -36,6 +36,7 @@
   background-size: cover;
   padding: 40px;
 } */
+
 .request-img {
   width: 3%;
 }
@@ -48,20 +49,21 @@
 
 .party-important-text {
   font-weight: bold;
-  color: #0491b4;
+  color: #ff5833;
 }
 
 .username-style {
   text-align: center;
-  font-family: 'Anton';
-  color: white;
-  font-size: 17px;
-  letter-spacing: 1pt;
+  font-family: 'Anton', 'Times New Roman', Times, serif;
+  color: #ff5833;
+  font-weight: 100;
+  font-size: 18px;
+  letter-spacing: 2pt;
 }
 
 .party-creator-style {
   text-align: center;
-  font-family: 'Anton';
+  font-family: 'Anton', 'Times New Roman', Times, serif;
   color: white;
   font-size: 24px;
   letter-spacing: 1pt;

@@ -83,7 +83,7 @@ const ApiHelpers = {
       }
     });
   },
-  joinParty(party_id) {
+  requestTojoinParty(party_id) {
     return fetch(`${config.API_ENDPOINT}/parties/join`, {
       method: 'POST',
       headers: {
@@ -115,9 +115,9 @@ const ApiHelpers = {
       }
     });
   },
-  getUserProfile(id) {
-    return fetch(`${config.API_ENDPOINT}/profile/${id}`, {
-      method: 'POST',
+  getUserProfile(user_id) {
+    return fetch(`${config.API_ENDPOINT}/profile/${user_id}`, {
+      method: 'GET',
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -132,7 +132,7 @@ const ApiHelpers = {
   },
   getUserCreatedParties(id) {
     return fetch(`${config.API_ENDPOINT}/profile/created_parties/${id}`, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
@@ -179,12 +179,11 @@ const ApiHelpers = {
   },
   getUserJoinedParty(user_id) {
     return fetch(`${config.API_ENDPOINT}/parties/joined/${user_id}`, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify({ user_id }),
     }).then((res) => {
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));

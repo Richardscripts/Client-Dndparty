@@ -1,6 +1,7 @@
 import React from 'react';
 import ApiHelpers from '../../../Helpers/ApiHelpers';
 import Validators from '../../../Helpers/Validators';
+import { Link } from 'react-router-dom';
 
 import images from '../../../Assets/Groups-image/images';
 import './FullViewParty.css';
@@ -64,14 +65,15 @@ class FullViewParty extends React.Component {
       (user, idx) => {
         return (
           <div key={idx}>
-            Player:{' '}
             <img
               className="fullview-players-img request-img"
               src={images.players}
               alt=""
             />
-            <span className="username-style">{user.user_name}</span> has
-            requested to join.{' '}
+            <Link to={`/Player_Profile/${user.user_id}`}>
+              <span className="username-style">{user.user_name}</span>
+            </Link>{' '}
+            has requested to join.{' '}
             {Validators.ifCreatorOfParty(party.user_id_creator) && (
               <>
                 <span>Accept request:</span>{' '}
@@ -197,7 +199,10 @@ class FullViewParty extends React.Component {
         <div key={idx}>
           {' '}
           <img className="fullview-players-img" src={images.players} alt="" />
-          <span className="username-style">{user.user_name}</span> has joined.
+          <Link to={`/Player_Profile/${user.user_id}`}>
+            <span className="username-style">{user.user_name}</span>
+          </Link>{' '}
+          has joined party.
         </div>
       );
     });

@@ -1,10 +1,16 @@
 .user-profile {
   margin-top: 25px;
   border: 1px white solid;
+  border-bottom: 4px white solid;
   width: 75%;
   height: 750px;
   display: flex;
-  background-image: linear-gradient(rgb(44, 44, 44), rgb(36, 36, 36));
+  /* background-image: linear-gradient(rgb(44, 44, 44), rgb(36, 36, 36)); */
+}
+
+.profile-bg-img {
+  display: flex;
+  justify-content: center;
 }
 
 .player-name-style {
@@ -12,7 +18,7 @@
   font-family: 'Anton', Arial, Helvetica, sans-serif;
   color: white;
   font-size: 38px;
-  opacity: 0.9;
+  opacity: 0.95;
   margin: auto;
   text-shadow: -2px 2px 0px #070707;
 }
@@ -25,20 +31,29 @@
 }
 
 .profile-left-top {
-  border: 4px grey solid;
+  border: 2px grey solid;
+  padding: 1px;
   height: 26px;
+
+  background-image: linear-gradient(rgb(49, 49, 49), rgb(22, 22, 22));
 }
 
 .profile-left-middle {
+  text-align: center;
   border: 4px grey solid;
-  flex: 1;
+  opacity: 0.97;
+  flex: 2;
   height: 300px;
+  overflow-y: auto;
+  background-image: linear-gradient(rgb(49, 49, 49), rgb(39, 39, 39));
 }
 
 .profile-left-bottom {
   border: 4px grey solid;
-  flex: 1;
-  height: 300px;
+  opacity: 0.97;
+  flex: 4;
+  height: 320px;
+  background-image: linear-gradient(rgb(49, 49, 49), rgb(39, 39, 39));
 }
 
 .profile-right {
@@ -46,6 +61,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  background-image: linear-gradient(rgb(49, 49, 49), rgb(22, 22, 22));
 }
 
 .profile-right-top {
@@ -57,22 +73,110 @@
 .profile-right-bottom {
   border: 4px grey solid;
   flex: 3;
+  overflow-y: auto;
 }
 
 .parties-created-container {
   display: flex;
   overflow-y: auto;
+  overflow-x: auto;
+  flex-wrap: wrap;
+  height: 390px;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.party-tables-created {
+  text-align: center;
+  width: 195px;
+  border: 2px solid rgb(75, 75, 75);
+  border-radius: 2%;
+  padding: 3px;
+  margin: 22px;
+  transition: transform 0.3s;
+  height: 220px;
 }
 
 .parties-joined-container {
   display: flex;
   overflow-y: auto;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.parties-joined-style {
+  font-size: 26px;
+  font-weight: bold;
+  color: #f7efe6;
+}
+
+.parties-joined-margin {
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+.player-info-style {
+  font-size: 22px;
 }
 
 .swords-img {
   width: 30%;
   margin-top: 25px;
   margin: auto;
+}
+
+.scroll-img {
+  width: 10%;
+  margin: 4px;
+  vertical-align: middle;
+}
+
+.map-img {
+  width: 35px;
+  margin: 3px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.party-tables-created:hover {
+  transform: scale(1.1);
+}
+
+.button-wrapper {
+  text-align: center;
+  padding-left: 5px;
+}
+
+.submit-edit-style {
+  width: 99%;
+  height: 99%;
+}
+
+.view-button {
+  width: 100%;
+  padding: 4px;
+  margin: auto;
+  margin-top: 6px;
+  font-weight: bold;
+  color: rgb(85, 85, 85);
+}
+
+.view-button:hover {
+  background-color: rgb(195, 195, 195);
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.username-style-profile {
+  text-align: center;
+  font-family: 'Anton', 'Times New Roman', Times, serif;
+  color: #ffffff;
+  font-weight: 100;
+  font-size: 18px;
+  letter-spacing: 2pt;
 }
 
 /* 

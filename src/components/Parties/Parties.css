@@ -50,14 +50,35 @@
 }
 
 .join-button {
-  width: 60%;
+  margin: 0px;
+  width: 49%;
   padding: 4px;
   text-transform: uppercase;
+  font-weight: 900;
+  border: 2px solid rgb(70, 70, 70);
+  border-radius: 3%;
+}
+
+.join-button:hover {
+  background-color: rgb(163, 163, 163);
+}
+
+.view-button {
+  margin: 0px;
+  width: 49%;
+  color: rgb(27, 27, 27);
+  padding: 4px;
+  color: rgb(53, 53, 53);
+  text-transform: uppercase;
+  font-weight: 900;
+  border: 2px solid rgb(110, 110, 110);
+  border-radius: 3%;
 }
 
 .button-wrapper {
   text-align: center;
   margin: 2px;
+  margin-top: 0px;
 }
 
 @media all and (min-width: 500px) {

@@ -60,10 +60,17 @@ textarea {
   padding: 8px;
 }
 
+.create-party-border {
+  border: 4px rgb(189, 189, 189) solid;
+  border-bottom: 10px rgb(92, 92, 92) solid;
+  margin: 6px;
+  margin-bottom: 10px;
+}
+
 .create-party-form {
   margin-top: 20px;
   font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .party-form-top {
@@ -163,4 +170,13 @@ textarea {
 .myButton:active {
   position: relative;
   top: 1px;
+}
+
+.error-msg {
+  background-color: crimson;
+  text-align: center;
+  font-weight: bold;
+  margin: auto;
+  margin-top: 6px;
+  width: 60%;
 }

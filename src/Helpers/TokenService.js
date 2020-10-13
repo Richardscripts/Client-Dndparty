@@ -24,9 +24,9 @@ const TokenService = {
       );
       return JSON.parse(userInfo);
     } else {
-      return { user_id: 0, user_name: '' };
+      return { user_id: 0, user_name: '', user_email: '' };
     }
-  },  
+  },
 };
 
 export default TokenService;

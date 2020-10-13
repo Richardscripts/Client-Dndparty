@@ -20,6 +20,7 @@ class App extends React.Component {
     tokenExists: TokenService.hasAuthToken(),
     user: 0,
     user_name: '',
+    user_email: '',
   };
 
   loginUpdateToken = () => {
@@ -31,6 +32,7 @@ class App extends React.Component {
     this.setState({
       user: user.user_id,
       user_name: user.user_name,
+      user_email: user.sub,
     });
   };
 
@@ -38,6 +40,7 @@ class App extends React.Component {
     this.setState({
       user: user.user_id,
       user_name: user.user_name,
+      user_email: user.sub,
     });
   };
 
@@ -62,8 +65,8 @@ class App extends React.Component {
             )}
             {ifToken && (
               <span>
-                {' '}
-                | <Link to={`/Player_profile/${this.state.user}`}>Profile</Link>
+                {/* | <Link to={`/Player_Profile/${this.state.user}`}>Profile</Link> */}
+                <a href={`/Player_Profile/${this.state.user}`}> | Profile</a>
               </span>
             )}
             {ifToken && (
@@ -122,7 +125,9 @@ class App extends React.Component {
           />
           <Route
             path="/Player_Profile/:user_id"
-            render={(props) => <UserProfile {...props} />}
+            render={(props) => (
+              <UserProfile {...props} user_email={this.state.user_email} />
+            )}
           />
 
           <Route
