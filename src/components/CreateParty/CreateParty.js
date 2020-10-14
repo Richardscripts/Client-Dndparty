@@ -35,6 +35,7 @@ export default class CreateParty extends React.Component {
       });
       return;
     }
+    console.log(about.value);
     const partyInfo = {
       party_name: party_name.value,
       players_needed: players_needed.value,

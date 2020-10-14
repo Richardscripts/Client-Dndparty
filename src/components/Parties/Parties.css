@@ -23,6 +23,7 @@
 
 .book-img {
   width: 30px;
+  margin-top: 8px;
 }
 
 .info-party-edition,
@@ -38,7 +39,7 @@
   word-break: break-all;
 }
 
-.info-party-edition {
+/* .info-party-edition {
   background-color: rgb(71, 77, 93);
 }
 
@@ -52,10 +53,30 @@
 
 .info-party-dm {
   background-color: rgb(60, 63, 55);
+} */
+
+.info-party-edition {
+  background-color: rgb(76, 88, 122);
+}
+
+.info-party-online {
+  background-color: rgb(119, 91, 119);
+}
+
+.info-party-players {
+  background-color: rgb(131, 90, 90);
+}
+
+.info-party-dm {
+  background-color: rgb(153, 130, 106);
 }
 
 .edition-font {
-  font-size: 14px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-shadow: -1px 1px 1px rgb(0, 0, 0);
+  position: absolute;
+  margin-left: 5px;
 }
 
 .info-party-id {
@@ -70,6 +91,7 @@
 .party-table {
   margin: auto;
   width: 306px;
+  margin-top: 30px;
 }
 
 .party-top-info-bar {
@@ -80,11 +102,12 @@
   width: 306px;
 }
 
-.join-button {
+.join-button,
+.view-button {
   margin: 0px;
   width: 49%;
-  padding: 4px;
-  text-transform: uppercase;
+  padding: 0px;
+  font-size: 24px;
   font-weight: 900;
   border: 2px solid rgb(70, 70, 70);
   border-radius: 3%;
@@ -92,18 +115,6 @@
 
 .join-button:hover {
   background-color: rgb(163, 163, 163);
-}
-
-.view-button {
-  margin: 0px;
-  width: 49%;
-  color: rgb(27, 27, 27);
-  padding: 4px;
-  color: rgb(53, 53, 53);
-  text-transform: uppercase;
-  font-weight: 900;
-  border: 2px solid rgb(110, 110, 110);
-  border-radius: 3%;
 }
 
 .button-wrapper {

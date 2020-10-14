@@ -113,6 +113,12 @@ class FullViewParty extends React.Component {
               Party Creator: {party.user_name}
             </span>
             <br />
+            {party.about && (
+              <div className="party-about-section">
+                {party.about}
+                <br />
+              </div>
+            )}
             <div className="party-info-section">
               <br />
               {party.dnd_edition && (
@@ -195,12 +201,6 @@ class FullViewParty extends React.Component {
                 ''
               )}
               {party.date_created}{' '}
-              {party.about && (
-                <div className="party-about-section">
-                  {party.about}
-                  <br />
-                </div>
-              )}
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import images from '../../Assets/Groups-image/images';
 import ApiHelpers from '../../Helpers/ApiHelpers';
 import UserInfoForm from './UserInfoForm/UserInfoForm';
 import Validators from '../../Helpers/Validators';
+
 import { Link } from 'react-router-dom';
 import './UserProfile.css';
 
@@ -17,6 +18,7 @@ class UserProfile extends React.Component {
 
   handleEditProfile = () => {
     this.setState({ editing: true });
+    window.location.href = '#player-info-top-bar';
   };
 
   handleSubmitEditProfile = (e) => {
@@ -29,7 +31,7 @@ class UserProfile extends React.Component {
       dnd_experience,
       location,
       languages,
-      about,
+      about_me,
       preferred_editions,
       preferred_classes,
     } = e.target;
@@ -40,7 +42,7 @@ class UserProfile extends React.Component {
       dnd_experience: dnd_experience.value,
       location: location.value,
       languages: languages.value,
-      about: about.value,
+      about: about_me.value,
       preferred_editions: preferred_editions.value,
       preferred_classes: preferred_classes.value,
     };
@@ -56,6 +58,10 @@ class UserProfile extends React.Component {
         this.setState({ error: res.error });
       });
   };
+
+  // componentDidUpdate() {
+  //   this.setState({});
+  // }
 
   componentDidMount() {
     console.log('Componentdidmount is happening');
@@ -170,7 +176,7 @@ class UserProfile extends React.Component {
         </div>
         <div className="third-row-profile">
           <div className="profile-player-info">
-            <div className="player-info-top-bar">
+            <div className="player-info-top-bar" id="player-info-top-bar">
               <img
                 className="scroll-img"
                 src={images.scroll}
@@ -186,25 +192,25 @@ class UserProfile extends React.Component {
               user_email={this.props.user_email}
               handleSubmitEditProfile={this.handleSubmitEditProfile}
             />
-            <div className="submit-edit-button-wrapper">
-              {this.state.editing && (
-                <button
-                  form="edit-profile"
-                  type="submit"
-                  value="Submit"
-                  className="myButton"
-                  onSubmit={(e) => this.handleSubmitEditProfile(e)}
-                >
-                  Submit
+          </div>
+          <div className="submit-edit-button-wrapper">
+            {this.state.editing && (
+              <button
+                form="edit-profile"
+                type="submit"
+                value="Submit"
+                className="myButton"
+                onSubmit={(e) => this.handleSubmitEditProfile(e)}
+              >
+                Submit
+              </button>
+            )}
+            {Validators.ifProfileOfUser(profile_user_id) &&
+              !this.state.editing && (
+                <button className="myButton" onClick={this.handleEditProfile}>
+                  Edit Profile
                 </button>
               )}
-              {Validators.ifProfileOfUser(profile_user_id) &&
-                !this.state.editing && (
-                  <button className="myButton" onClick={this.handleEditProfile}>
-                    Edit Profile
-                  </button>
-                )}
-            </div>
           </div>
         </div>
         <div className="fourth-row-profile">

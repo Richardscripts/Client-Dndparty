@@ -40,8 +40,10 @@ class Parties extends React.Component {
       return (
         <div key={idx} className="party-table">
           <div className="party-top-info-bar">
-            <div className="info-party-edition edition-font">
-              {party.dnd_edition.substring(0, 3)}
+            <div className="info-party-edition">
+              <span className="edition-font">
+                {party.dnd_edition.substring(0, 3)}
+              </span>
               <img
                 className="book-img"
                 src={images.book}
@@ -93,13 +95,15 @@ class Parties extends React.Component {
           </Link>
           <div className="button-wrapper">
             <Link to={`/Party/${party.party_id}`}>
-              <button className="view-button">View</button>{' '}
+              <button className="view-button createPartyTableButton">
+                View
+              </button>{' '}
             </Link>
             {!Validators.ifCreatorOfParty(party.user_id_creator) &&
               !partyComplete && (
                 <button
                   onClick={() => this.handleRequestToJoinParty(party.party_id)}
-                  className="join-button"
+                  className="join-button createPartyTableButton"
                 >
                   Join
                 </button>

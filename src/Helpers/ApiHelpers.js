@@ -69,8 +69,8 @@ const ApiHelpers = {
       }
     });
   },
-  getIndividualParty(id) {
-    return fetch(`${config.API_ENDPOINT}/parties/${id}`, {
+  getIndividualParty(party_id) {
+    return fetch(`${config.API_ENDPOINT}/parties/${party_id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',

@@ -20,7 +20,7 @@ export default class UserInfoForm extends React.Component {
           </div>
           <div className="right-content">
             <span>About Me:</span>
-            <p className="about-me">{info.about} </p>
+            <p className="about-me">{info.about_me} </p>
             <br />
           </div>
         </div>
@@ -38,14 +38,6 @@ export default class UserInfoForm extends React.Component {
               defaultValue={info.user_name}
             ></input>{' '}
             <br />
-            {/* <label htmlFor="user_email">Email: </label>
-            <input
-              name="user_email"
-              type="email"
-              id="user_email"
-              defaultValue={this.props.user_email}
-            ></input>{' '}
-            <br /> */}
             <label htmlFor="first_name">First Name: </label>
             <input
               name="first_name"
@@ -104,11 +96,11 @@ export default class UserInfoForm extends React.Component {
               defaultValue={info.contact}
             ></input>{' '}
             <br />
-            <label htmlFor="about">About Me: </label>
+            <label htmlFor="about_me">About Me: </label>
             <textarea
-              name="about"
-              id="about"
-              defaultValue={info.about}
+              name="about_me"
+              id="about_me"
+              defaultValue={info.about_me}
             ></textarea>{' '}
           </form>
         </div>
