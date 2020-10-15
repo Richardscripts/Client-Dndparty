@@ -35,7 +35,6 @@ export default class CreateParty extends React.Component {
       });
       return;
     }
-    console.log(about.value);
     const partyInfo = {
       party_name: party_name.value,
       players_needed: players_needed.value,
@@ -55,8 +54,8 @@ export default class CreateParty extends React.Component {
       error: null,
     });
     ApiHelpers.createPartyTable(partyInfo)
-      .then(() => {
-        this.props.history.push('/');
+      .then((res) => {
+        this.props.history.push(`/Party/${res.party_id}`);
       })
       .catch((res) => {
         this.setState({ error: res.error });
@@ -80,7 +79,12 @@ export default class CreateParty extends React.Component {
             <br />
             <div className="required-inputs">
               <label htmlFor="party_name">Give your Party a Name:</label>
-              <input name="party_name" id="party_name" required></input>
+              <input
+                maxLength={30}
+                name="party_name"
+                id="party_name"
+                required
+              ></input>
               <br />
               <img
                 className="create-icons players-image"
@@ -138,17 +142,22 @@ export default class CreateParty extends React.Component {
                 <DndEdition />
                 <br />
                 <label htmlFor="about">About Section: </label>
-                <textarea name="about" id="about" />
+                <textarea maxLength={400} name="about" id="about" />
                 <br />
               </div>
               <div className="optional-inputs-right">
                 <br />
                 <label htmlFor="campaign_or_custom">Campaign Name:</label>
-                <input name="campaign_or_custom" id="campaign_or_custom" />
+                <input
+                  maxLength={100}
+                  name="campaign_or_custom"
+                  id="campaign_or_custom"
+                />
                 <br />
 
                 <label htmlFor="classes_needed">Classes Needed: </label>
                 <input
+                  maxLength={100}
                   name="classes_needed"
                   id="classes_needed"
                   placeholder="Paladin, Wizard,...etc"
@@ -156,6 +165,7 @@ export default class CreateParty extends React.Component {
                 <br />
                 <label htmlFor="group_personality">Group Personality: </label>
                 <input
+                  maxLength={100}
                   type="group_personality"
                   name="group_personality"
                   id="group_personality"
@@ -164,13 +174,18 @@ export default class CreateParty extends React.Component {
                 <br />
                 <label htmlFor="time_of_event">Time of Game: </label>
                 <textarea
+                  maxLength={250}
                   name="time_of_event"
                   id="time_of_event"
                   placeholder="Wed @ 5:00pm EST,    Sat @ 6:00PM EST"
                 />
                 <br />
                 <label htmlFor="homebrew_rules">Homebrew Rules: </label>
-                <textarea name="homebrew_rules" id="homebrew_rules"></textarea>
+                <textarea
+                  maxLength={450}
+                  name="homebrew_rules"
+                  id="homebrew_rules"
+                ></textarea>
                 <br />
               </div>
             </div>

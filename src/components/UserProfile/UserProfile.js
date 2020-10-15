@@ -14,11 +14,12 @@ class UserProfile extends React.Component {
     created_parties: [{ requesters: [] }],
     joined_parties: [],
     editing: false,
+    refresh: false,
   };
 
   handleEditProfile = () => {
     this.setState({ editing: true });
-    window.location.href = '#player-info-top-bar';
+    this.props.history.push('#player-info-top-bar');
   };
 
   handleSubmitEditProfile = (e) => {
@@ -32,6 +33,7 @@ class UserProfile extends React.Component {
       location,
       languages,
       about_me,
+      contact,
       preferred_editions,
       preferred_classes,
     } = e.target;
@@ -42,7 +44,8 @@ class UserProfile extends React.Component {
       dnd_experience: dnd_experience.value,
       location: location.value,
       languages: languages.value,
-      about: about_me.value,
+      about_me: about_me.value,
+      contact: contact.value,
       preferred_editions: preferred_editions.value,
       preferred_classes: preferred_classes.value,
     };
@@ -59,12 +62,14 @@ class UserProfile extends React.Component {
       });
   };
 
-  // componentDidUpdate() {
-  //   this.setState({});
-  // }
+  componentDidUpdate() {
+    if (this.props.profile_updated === true) {
+      this.profileApiCalls();
+      this.props.handleProfileUpdate();
+    }
+  }
 
-  componentDidMount() {
-    console.log('Componentdidmount is happening');
+  profileApiCalls = () => {
     const { match } = this.props;
     const user_id = match.params.user_id;
     ApiHelpers.getUserProfile(user_id)
@@ -100,11 +105,19 @@ class UserProfile extends React.Component {
       .catch((res) => {
         this.setState({ error: res.error });
       });
-    ApiHelpers.getUserJoinedParty(user_id).then((res) => {
-      this.setState({
-        joined_parties: res,
+    ApiHelpers.getUserJoinedParty(user_id)
+      .then((res) => {
+        this.setState({
+          joined_parties: res,
+        });
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
       });
-    });
+  };
+
+  componentDidMount() {
+    this.profileApiCalls();
   }
 
   render() {
@@ -114,12 +127,15 @@ class UserProfile extends React.Component {
         <Link key={idx} to={`/Party/${party.party_id}`}>
           <div className="parties-joined-container" key={idx}>
             <div className="parties-joined-style">
-              <img
-                className="map-img"
-                src={images.map}
-                alt="A treasure map icon"
-              />
-              <span className="parties-joined-user">{party.party_name}</span>
+              <span className="parties-joined-user">
+                {' '}
+                <img
+                  className="swordsblue-img"
+                  src={images.swordsblue}
+                  alt="Swords crossing icon"
+                />
+                {party.party_name}
+              </span>
             </div>
             <br />
           </div>
@@ -129,10 +145,10 @@ class UserProfile extends React.Component {
 
     const partiesCreated = this.state.created_parties.map((party, idx) => {
       const requesters = party.requesters.map((requesters, idx) => {
-        return requesters.map((requester) => {
+        return requesters.map((requester, idx) => {
           return (
-            <a href={`/Player_Profile/${requester.user_id}`}>
-              <span>{requester.user_name} </span>
+            <a key={idx} href={`/Player_Profile/${requester.user_id}`}>
+              <span className="requester-name">{requester.user_name} </span>
             </a>
           );
         });
@@ -174,6 +190,7 @@ class UserProfile extends React.Component {
             />
           </div>
         </div>
+
         <div className="third-row-profile">
           <div className="profile-player-info">
             <div className="player-info-top-bar" id="player-info-top-bar">
@@ -185,6 +202,10 @@ class UserProfile extends React.Component {
               <span className="player-info-style">Player Information</span>
               <hr />
             </div>
+            <br />
+            {this.state.error && (
+              <div className="error-msg">{this.state.error}</div>
+            )}
             <br />
             <UserInfoForm
               info={this.state.user_info}
@@ -213,9 +234,15 @@ class UserProfile extends React.Component {
               )}
           </div>
         </div>
+
         <div className="fourth-row-profile">
           <div className="profile-parties-joined">
             <div className="player-info-style parties-joined-margin">
+              <img
+                className="chest-img"
+                src={images.chest}
+                alt="A treasure chest icon"
+              />
               Parties Joined:
             </div>
             <div className="parties-joined-container">{partiesJoined}</div>

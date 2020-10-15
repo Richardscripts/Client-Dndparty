@@ -72,14 +72,15 @@
   padding: 35px;
   padding-top: 0px;
   box-sizing: border-box;
-  border-bottom: 14px rgb(22, 22, 22) solid;
+  border-bottom: 14px rgb(75, 75, 75) solid;
 }
 
 .party-users-joined {
   border: 2px rgb(110, 110, 110) solid;
   width: 100%;
   margin: auto;
-  padding: 3px;
+  padding: 13px;
+  font-size: 19px;
   box-shadow: 0 3px 4px 0px #161616;
   box-sizing: border-box;
   background-color: rgb(58, 58, 58);
@@ -89,13 +90,13 @@
   border: 2px grey solid;
   width: 100%;
   margin: auto;
-  padding: 3px;
+  padding: 13px;
   padding-top: 8px;
   box-sizing: border-box;
 }
 
 .fullview-players-img {
-  width: 6%;
+  width: 35px;
   margin: 3px;
   margin-right: 8px;
   margin-bottom: 8px;
@@ -111,7 +112,13 @@
 } */
 
 .request-img {
-  width: 3%;
+  width: 20px;
+}
+
+.clipboard-img {
+  margin-top: 4px;
+  width: 30px;
+  vertical-align: bottom;
 }
 
 .party-style-text,
@@ -130,7 +137,7 @@
   font-family: 'Anton', 'Times New Roman', Times, serif;
   color: #ff5833;
   font-weight: 100;
-  font-size: 18px;
+  font-size: 21px;
   letter-spacing: 2pt;
 }
 
@@ -155,6 +162,7 @@
 
   .party-users-joined {
     width: 900px;
+    padding: 3px;
   }
 
   .party-users-requests {

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import UserProfile from '../UserProfile/UserProfile';
-import FullViewParty from '../Parties/FullViewParty/FullViewParty';
+import FullViewParty from '../FullViewParty/FullViewParty';
 import CreateParty from '../CreateParty/CreateParty';
-import CreatePartyTopBar from '../CreateParty/CreatePartyTopBar';
+import CreatePartyTopBar from '../CreateParty/CreatePartyTopBar/CreatePartyTopBar';
 import CreatePartyButton from '../CreateParty/CreatePartyButton';
-import FullViewPartyTopBar from '../Parties/FullViewParty/FullViewPartyTopBar';
-
+import FullViewPartyTopBar from '../FullViewParty/FullViewPartyTopBar';
+import Header from '../Header/Header';
 import Login from '../Login/Login';
 import Parties from '../Parties/Parties';
 import Register from '../Register/Register';
@@ -21,10 +21,25 @@ class App extends React.Component {
     user: 0,
     user_name: '',
     user_email: '',
+    profile_updated: false,
+    toggleLogin: false,
   };
 
   loginUpdateToken = () => {
     this.setState({ tokenExists: TokenService.hasAuthToken() });
+  };
+
+  handleToggleLogin = () => {
+    this.setState({ toggleLogin: !this.state.toggleLogin });
+  };
+
+  handleProfileLink = () => {
+    this.props.history.push(`/Player_Profile/${this.state.user}`);
+    this.setState({ profile_updated: true });
+  };
+
+  handleProfileUpdate = () => {
+    this.setState({ profile_updated: false });
   };
 
   componentDidMount = () => {
@@ -45,54 +60,26 @@ class App extends React.Component {
   };
 
   render() {
-    const ifToken = this.state.tokenExists;
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>Welcome to DndParty!</h1>
-          <nav className="App-nav">
-            <Link to="/">Home</Link>
-            {!ifToken && (
-              <span>
-                {' '}
-                | <Link to="/Register">Register</Link> |{' '}
-              </span>
-            )}
-            {!ifToken && (
-              <span>
-                <Link to="/Login">Login</Link>
-              </span>
-            )}
-            {ifToken && (
-              <span>
-                | <Link to={`/Player_Profile/${this.state.user}`}>Profile</Link>
-                {/* <a href={`/Player_Profile/${this.state.user}`}> | Profile</a> */}
-              </span>
-            )}
-            {ifToken && (
-              <span>
-                {' '}
-                |{' '}
-                <span
-                  onClick={() => {
-                    TokenService.clearAuthToken();
-                    this.loginUpdateToken();
-                  }}
-                >
-                  Logout
-                </span>
-              </span>
-            )}
-            {ifToken && (
-              <>
-                <br />
-                <span>Logged in as {this.state.user_name}</span>
-              </>
-            )}
-          </nav>
-        </header>
+        <Header
+          ifToken={this.state.tokenExists}
+          handleToggleLogin={this.handleToggleLogin}
+          loginUpdateToken={this.loginUpdateToken}
+          handleProfileLink={this.handleProfileLink}
+          user_name={this.state.user_name}
+        />
         {this.state.tokenExists && (
           <Route exact path="/" component={CreatePartyButton} />
+        )}
+        {this.state.toggleLogin && (
+          <Login
+            loginUpdateToken={this.loginUpdateToken}
+            handleUserInfo={this.handleUserInfo}
+            toggleLogin={this.state.toggleLogin}
+            handleToggleLogin={this.handleToggleLogin}
+            history={this.props.history}
+          />
         )}
         <Route path="/create_party" component={CreatePartyTopBar} />
         <Route path="/Party" component={FullViewPartyTopBar} />
@@ -109,27 +96,20 @@ class App extends React.Component {
           />
           <Route exact path="/" component={Parties} />
           <Route
-            path="/Login"
-            render={(props) => (
-              <Login
-                {...props}
-                loginUpdateToken={this.loginUpdateToken}
-                handleUserInfo={this.handleUserInfo}
-              />
-            )}
-          />
-
-          <Route
             path="/Party/:party_id"
             render={(props) => <FullViewParty {...props} />}
           />
           <Route
             path="/Player_Profile/:user_id"
             render={(props) => (
-              <UserProfile {...props} user_email={this.state.user_email} />
+              <UserProfile
+                {...props}
+                user_email={this.state.user_email}
+                profile_updated={this.state.profile_updated}
+                handleProfileUpdate={this.handleProfileUpdate}
+              />
             )}
           />
-
           <Route
             path="/Create_Party"
             render={(props) => <CreateParty {...props} />}

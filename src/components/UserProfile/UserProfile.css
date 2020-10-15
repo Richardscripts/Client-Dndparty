@@ -1,6 +1,4 @@
 .user-profile {
-  border: 3px white solid;
-  border-bottom: 4px white solid;
   display: flex;
   flex-direction: column;
 }
@@ -33,7 +31,7 @@ hr {
 .fourth-row-profile {
   display: flex;
   flex-direction: column;
-  background-image: url('../../Assets/Groups-image/fantasy5.png');
+  background-image: url('../../Assets/Groups-image/fantasy.png');
 }
 
 .fifth-row-profile {
@@ -49,6 +47,15 @@ hr {
   font-size: 42px;
   margin: auto;
   text-shadow: -2px 2px 0px #070707;
+}
+
+.requester-name {
+  font-size: 18px;
+  text-align: center;
+  font-family: 'Anton', Arial, Helvetica, sans-serif;
+  color: #ff5833;
+  margin: auto;
+  text-shadow: -1px 2px 0px #070707;
 }
 
 .profile-top-bar {
@@ -120,11 +127,13 @@ hr {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 200px;
   margin: auto;
 }
 
 .parties-joined-style {
+  width: 275px;
+  padding: 4px;
+  margin: auto;
   box-sizing: border-box;
   font-size: 29px;
   font-weight: bold;
@@ -133,15 +142,12 @@ hr {
   text-shadow: -1px 4px 2px #070707;
   border: 1px solid rgb(20, 20, 20);
   border-radius: 4%;
-  display: flex;
-  justify-content: left;
   box-shadow: 0px 6px 10px rgb(0, 0, 0);
   background-image: linear-gradient(rgb(68, 68, 68), rgb(37, 37, 37));
 }
 
 .parties-joined-user {
   box-sizing: border-box;
-  margin-left: 20px;
 }
 
 .parties-joined-margin {
@@ -236,7 +242,13 @@ textarea {
   vertical-align: top;
 }
 
-.map-img {
+.swordsblue-img {
+  width: 35px;
+  margin: 3px;
+  vertical-align: middle;
+}
+
+.chest-img {
   width: 35px;
   margin: 3px;
   margin-right: 5px;
@@ -294,15 +306,15 @@ a {
     background-image: none;
   }
   .profile-top-bar {
-    width: 800px;
+    width: 900px;
   }
 
   .profile-user-icon {
-    width: 800px;
+    width: 900px;
   }
 
   .profile-player-info {
-    width: 800px;
+    width: 900px;
   }
 
   .profile-parties-joined {
@@ -310,8 +322,11 @@ a {
     border-bottom: 3px grey solid;
   }
 
+  .parties-joined-style {
+    width: 310px;
+  }
   .profile-parties-created {
-    width: 800px;
+    width: 900px;
   }
 
   hr {

@@ -3,7 +3,7 @@ import TokenService from './TokenService';
 
 const ApiHelpers = {
   registerUser(email, password, user_name) {
-    return fetch(`${config.API_ENDPOINT}/auth/register`, {
+    return fetch(`${config.API_ENDPOINT}/api/auth/register`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -22,7 +22,7 @@ const ApiHelpers = {
     });
   },
   loginUser(email, password) {
-    return fetch(`${config.API_ENDPOINT}/auth/login`, {
+    return fetch(`${config.API_ENDPOINT}/api/auth/login`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -40,7 +40,7 @@ const ApiHelpers = {
     });
   },
   createPartyTable(partyInfo) {
-    return fetch(`${config.API_ENDPOINT}/parties`, {
+    return fetch(`${config.API_ENDPOINT}/api/parties`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -51,12 +51,12 @@ const ApiHelpers = {
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));
       } else {
-        return;
+        return res.json();
       }
     });
   },
   getPartyTables() {
-    return fetch(`${config.API_ENDPOINT}/parties`, {
+    return fetch(`${config.API_ENDPOINT}/api/parties`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -70,7 +70,7 @@ const ApiHelpers = {
     });
   },
   getIndividualParty(party_id) {
-    return fetch(`${config.API_ENDPOINT}/parties/${party_id}`, {
+    return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -84,7 +84,7 @@ const ApiHelpers = {
     });
   },
   requestTojoinParty(party_id) {
-    return fetch(`${config.API_ENDPOINT}/parties/join`, {
+    return fetch(`${config.API_ENDPOINT}/api/parties/join`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -99,14 +99,14 @@ const ApiHelpers = {
       }
     });
   },
-  getUserRequests(id) {
-    return fetch(`${config.API_ENDPOINT}/parties/requests`, {
+  getUserRequests(party_id) {
+    return fetch(`${config.API_ENDPOINT}/api/parties/requests`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify({ party_id: id }),
+      body: JSON.stringify({ party_id }),
     }).then((res) => {
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));
@@ -116,7 +116,7 @@ const ApiHelpers = {
     });
   },
   getUserProfile(user_id) {
-    return fetch(`${config.API_ENDPOINT}/profile/${user_id}`, {
+    return fetch(`${config.API_ENDPOINT}/api/profile/${user_id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -131,7 +131,7 @@ const ApiHelpers = {
     });
   },
   getUserCreatedParties(id) {
-    return fetch(`${config.API_ENDPOINT}/profile/created_parties/${id}`, {
+    return fetch(`${config.API_ENDPOINT}/api/profile/created_parties/${id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -146,7 +146,7 @@ const ApiHelpers = {
     });
   },
   acceptPartyJoinRequest(user_id, party_id, type) {
-    return fetch(`${config.API_ENDPOINT}/parties/accept_request`, {
+    return fetch(`${config.API_ENDPOINT}/api/parties/accept_request`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -162,7 +162,7 @@ const ApiHelpers = {
     });
   },
   getUsersWhoJoinedParty(party_id) {
-    return fetch(`${config.API_ENDPOINT}/parties/joined`, {
+    return fetch(`${config.API_ENDPOINT}/api/parties/joined`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -178,7 +178,7 @@ const ApiHelpers = {
     });
   },
   getUserJoinedParty(user_id) {
-    return fetch(`${config.API_ENDPOINT}/parties/joined/${user_id}`, {
+    return fetch(`${config.API_ENDPOINT}/api/parties/joined/${user_id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -193,7 +193,7 @@ const ApiHelpers = {
     });
   },
   editUserProfile(userInfo, user_id) {
-    return fetch(`${config.API_ENDPOINT}/profile/${user_id}`, {
+    return fetch(`${config.API_ENDPOINT}/api/profile/${user_id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',

@@ -1,10 +1,15 @@
 import React from 'react';
 import ApiHelpers from '../../Helpers/ApiHelpers';
 import TokenService from '../../Helpers/TokenService';
+import './Login.css';
 
 class Login extends React.Component {
   state = {
     error: null,
+  };
+
+  handleCancelButton = () => {
+    this.props.handleToggleLogin();
   };
 
   handleSubmit = (e) => {
@@ -13,6 +18,7 @@ class Login extends React.Component {
     this.setState({
       error: null,
     });
+    this.props.handleToggleLogin();
     ApiHelpers.loginUser(user_email.value, password.value)
       .then((res) => {
         user_email.value = '';
@@ -30,17 +36,29 @@ class Login extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className="login-form">
         {' '}
         <form onSubmit={(e) => this.handleSubmit(e)} action="#">
+          <div className="cancel-button-wrapper">
+            <button
+              type="button"
+              onClick={() => this.handleCancelButton()}
+              className="cancel-button"
+            >
+              X
+            </button>
+          </div>
           <label>Email:</label>
           <input type="email" name="user_email" required></input>
           <br />
           <label>Password:</label>
           <input type="password" name="password" required></input>
           <br />
-          <button type="submit">Submit</button>
+          <button className="PartyTableButton login-submit" type="submit">
+            Submit
+          </button>
           <br />
+
           {this.state.error && <span>{this.state.error}</span>}
         </form>
       </div>

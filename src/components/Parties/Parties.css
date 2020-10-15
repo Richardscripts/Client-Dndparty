@@ -1,7 +1,8 @@
 .group-image {
   width: 300px;
   height: 265px;
-  border: 3px rgb(129, 129, 129) solid;
+  border: 3px rgb(73, 73, 73) solid;
+  border-bottom: 0px;
   border-top: 0px;
 }
 
@@ -9,6 +10,17 @@
   width: 25px;
   vertical-align: middle;
   margin-top: 3px;
+}
+
+.party-name {
+  text-align: center;
+  color: rgb(151, 151, 151);
+  border: 3px rgb(78, 78, 78) solid;
+  border-top: 0px;
+  width: 306px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-image: linear-gradient(rgb(5, 5, 5), rgb(0, 0, 0));
 }
 
 .parties-dm-image {
@@ -39,23 +51,18 @@
   word-break: break-all;
 }
 
+.info-party-id {
+  font-family: 'Anton';
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 5px;
+  background-color: rgb(39, 39, 39);
+  width: 72px;
+  border: 3px rgb(134, 134, 134) solid;
+  border-bottom: 1px rgb(129, 129, 129) solid;
+}
+
 /* .info-party-edition {
-  background-color: rgb(71, 77, 93);
-}
-
-.info-party-online {
-  background-color: rgb(71, 64, 71);
-}
-
-.info-party-players {
-  background-color: rgb(65, 73, 72);
-}
-
-.info-party-dm {
-  background-color: rgb(60, 63, 55);
-} */
-
-.info-party-edition {
   background-color: rgb(76, 88, 122);
 }
 
@@ -69,6 +76,22 @@
 
 .info-party-dm {
   background-color: rgb(153, 130, 106);
+} */
+
+.info-party-edition {
+  background-color: rgb(101, 116, 161);
+}
+
+.info-party-online {
+  background-color: rgb(190, 130, 130);
+}
+
+.info-party-players {
+  background-color: rgb(146, 75, 166);
+}
+
+.info-party-dm {
+  background-color: rgb(204, 175, 143);
 }
 
 .edition-font {
@@ -77,15 +100,6 @@
   text-shadow: -1px 1px 1px rgb(0, 0, 0);
   position: absolute;
   margin-left: 5px;
-}
-
-.info-party-id {
-  text-align: center;
-  padding: 5px;
-  background-color: rgb(32, 32, 32);
-  width: 72px;
-  border: 3px rgb(129, 129, 129) solid;
-  border-bottom: 1px rgb(129, 129, 129) solid;
 }
 
 .party-table {

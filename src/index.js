@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 import App from './Components/App/App';
 import ReactDOM from 'react-dom';
@@ -7,7 +8,7 @@ import './index.css';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <Route path="/" component={App} />
   </BrowserRouter>,
   document.getElementById('root')
 );

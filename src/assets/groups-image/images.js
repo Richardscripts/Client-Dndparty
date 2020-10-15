@@ -5,14 +5,24 @@ import knight from './knight.png';
 import swords from './swords.png';
 import scroll from './scroll.png';
 import table from './table.png';
-import map from './treasure-map.png';
+import swordsblue from './swordsblue.png';
 import online from './internet.png';
 import book from './spellbook.png';
+import chest from './chest.png';
+import complete from './complete.png';
+import incomplete from './incomplete.png';
+import openbook from './openbook.png';
+import barrel from './barrel.png';
 
 const images = {
+  barrel,
+  openbook,
+  complete,
+  incomplete,
+  chest,
   book,
   online,
-  map,
+  swordsblue,
   table,
   scroll,
   fullparty,

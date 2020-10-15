@@ -29,7 +29,11 @@ export default class UserInfoForm extends React.Component {
     const editingInfo = this.props.info.map((info, idx) => {
       return (
         <div className="user-info-container" key={idx}>
-          <form id="edit-profile" onSubmit={this.props.handleSubmitEditProfile}>
+          <form
+            action="#"
+            id="edit-profile"
+            onSubmit={this.props.handleSubmitEditProfile}
+          >
             <label htmlFor="user_name">Nickname: </label>
             <input
               name="user_name"

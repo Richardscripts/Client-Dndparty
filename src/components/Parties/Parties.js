@@ -90,20 +90,22 @@ class Parties extends React.Component {
           </div>
           <Link to={`/Party/${party.party_id}`}>
             <div className="group-image">
-              <img src={images.fullparty} alt="a full party " />
+              <img
+                src={images.fullparty}
+                alt="A full party of players playing a table top game."
+              />
             </div>
           </Link>
+          <div className="party-name">{party.party_name}</div>
           <div className="button-wrapper">
             <Link to={`/Party/${party.party_id}`}>
-              <button className="view-button createPartyTableButton">
-                View
-              </button>{' '}
+              <button className="view-button PartyTableButton">View</button>{' '}
             </Link>
             {!Validators.ifCreatorOfParty(party.user_id_creator) &&
               !partyComplete && (
                 <button
                   onClick={() => this.handleRequestToJoinParty(party.party_id)}
-                  className="join-button createPartyTableButton"
+                  className="join-button PartyTableButton"
                 >
                   Join
                 </button>
