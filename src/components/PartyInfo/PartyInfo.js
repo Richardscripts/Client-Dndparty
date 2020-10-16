@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import images from '../../Assets/Groups-image/images';
 
 export default function PartyInfo(props) {
@@ -11,7 +12,10 @@ export default function PartyInfo(props) {
         <div className="second-row-party">
           <span tabIndex="0" className="party-creator-style">
             {' '}
-            Party Creator: {party.user_name}
+            Party Creator:{' '}
+            <Link to={`/Player_Profile/${party.user_id_creator}`}>
+              {party.user_name}
+            </Link>
           </span>
           <br />
           {party.about && (

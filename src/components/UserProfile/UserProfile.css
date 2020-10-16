@@ -50,7 +50,7 @@ hr {
 }
 
 .requester-name {
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   font-family: 'Anton', Arial, Helvetica, sans-serif;
   color: #ff5833;
@@ -111,7 +111,7 @@ hr {
   align-self: baseline;
   box-sizing: border-box;
   text-align: center;
-  width: 195px;
+  width: 210px;
   border: 2px solid rgb(75, 75, 75);
   border-radius: 2%;
   padding: 3px;

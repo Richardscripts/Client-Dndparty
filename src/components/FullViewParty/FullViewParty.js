@@ -74,6 +74,10 @@ class FullViewParty extends React.Component {
   }
 
   render() {
+    const isRequesterOrJoiner = Validators.ifPartyJoinerOrRequester(
+      this.state.current_joined_users,
+      this.state.current_user_requests
+    );
     const party = this.state.current_party[0];
     const existsJoiners = this.state.current_joined_users.length !== 0;
     const existsRequests = this.state.current_user_requests.length !== 0;
@@ -104,6 +108,7 @@ class FullViewParty extends React.Component {
           <div className="fullview-bottom-bar"></div>
         </div>
         {!Validators.ifCreatorOfParty(party.user_id_creator) &&
+          !isRequesterOrJoiner &&
           !Validators.partyComplete(party.party_complete) && (
             <button
               type="button"
