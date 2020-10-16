@@ -35,6 +35,7 @@ class Parties extends React.Component {
   };
 
   render() {
+    const isLoginedIn = Validators.ifPartyJoinerOrRequester();
     const DndParties = this.state.current_parties.map((party, idx) => {
       const partyComplete = party.party_complete === 'Complete Party!';
       return (
@@ -108,6 +109,7 @@ class Parties extends React.Component {
               </button>{' '}
             </Link>
             {!Validators.ifCreatorOfParty(party.user_id_creator) &&
+              !isLoginedIn &&
               !partyComplete && (
                 <button
                   onClick={() => this.handleRequestToJoinParty(party.party_id)}

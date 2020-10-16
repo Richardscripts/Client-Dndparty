@@ -12,7 +12,7 @@ const Validators = {
       TokenService.getUserInfoFromAuthToken().user_id
     );
   },
-  ifPartyJoinerOrRequester(joiners, requesters) {
+  ifPartyJoinerOrRequester(joiners = [], requesters = []) {
     let isJoinerOrRequester = false;
     if (requesters.length !== 0) {
       for (let i = 0; i < requesters.length; i++) {
@@ -33,6 +33,9 @@ const Validators = {
           isJoinerOrRequester = true;
         }
       }
+    }
+    if (!TokenService.getUserInfoFromAuthToken().user_id) {
+      return true;
     }
     return isJoinerOrRequester;
   },

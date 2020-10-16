@@ -107,6 +107,7 @@ class FullViewParty extends React.Component {
           )}
           <div className="fullview-bottom-bar"></div>
         </div>
+
         {!Validators.ifCreatorOfParty(party.user_id_creator) &&
           !isRequesterOrJoiner &&
           !Validators.partyComplete(party.party_complete) && (
