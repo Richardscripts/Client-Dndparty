@@ -14,11 +14,10 @@ class UserProfile extends React.Component {
     created_parties: [{ requesters: [] }],
     joined_parties: [],
     editing: false,
-    refresh: false,
   };
 
   handleEditProfile = () => {
-    this.setState({ editing: true });
+    this.setState({ editing: !this.state.editing, error: null });
     this.props.history.push('#player-info-top-bar');
   };
 
@@ -53,9 +52,9 @@ class UserProfile extends React.Component {
       error: null,
     });
     ApiHelpers.editUserProfile(userInfo, user_id)
-      .then((userInfo) => {
-        this.setState({ user_info: [userInfo] });
-        window.location.reload();
+      .then(() => {
+        this.setState({ editing: !this.state.editing });
+        this.profileApiCalls();
       })
       .catch((res) => {
         this.setState({ error: res.error });
@@ -144,7 +143,7 @@ class UserProfile extends React.Component {
     });
 
     const partiesCreated = this.state.created_parties.map((party, idx) => {
-      const requesters = party.requesters.map((requesters, idx) => {
+      const requesters = party.requesters.map((requesters) => {
         return requesters.map((requester, idx) => {
           return (
             <a key={idx} href={`/Player_Profile/${requester.user_id}`}>
@@ -162,9 +161,13 @@ class UserProfile extends React.Component {
           </Link>
           <br />
           {requesters.length === 0 ? '' : <>Party Requests: {requesters}</>}
-          <br /> Created: {party.date_created} <br />
+          <br />{' '}
+          <span className="created-text-style">
+            Created: {party.date_created}{' '}
+          </span>
+          <br />
           <Link to={`/Party/${party.party_id}`}>
-            <button className="view-button">View</button>{' '}
+            <button className="view-button PartyTableButton">View</button>{' '}
           </Link>
         </div>
       );
@@ -173,7 +176,7 @@ class UserProfile extends React.Component {
     return (
       <div className="user-profile">
         <div className="top-row-profile">
-          <span className="profile-top-bar username-style-profile">
+          <span tabIndex="0" className="profile-top-bar username-style-profile">
             {this.state.user_info[0].user_name}'s Profile
           </span>
         </div>
@@ -199,12 +202,16 @@ class UserProfile extends React.Component {
                 src={images.scroll}
                 alt="A cartoon spell scroll"
               />
-              <span className="player-info-style">Player Information</span>
+              <span tabIndex="0" className="player-info-style">
+                Player Information
+              </span>
               <hr />
             </div>
             <br />
             {this.state.error && (
-              <div className="error-msg">{this.state.error}</div>
+              <div className="error-msg" id="error-msg">
+                {this.state.error}
+              </div>
             )}
             <br />
             <UserInfoForm
@@ -225,6 +232,15 @@ class UserProfile extends React.Component {
               >
                 Submit
               </button>
+            )}{' '}
+            {this.state.editing && (
+              <button
+                type="button"
+                className="myButton"
+                onClick={this.handleEditProfile}
+              >
+                Cancel
+              </button>
             )}
             {Validators.ifProfileOfUser(profile_user_id) &&
               !this.state.editing && (
@@ -237,7 +253,10 @@ class UserProfile extends React.Component {
 
         <div className="fourth-row-profile">
           <div className="profile-parties-joined">
-            <div className="player-info-style parties-joined-margin">
+            <div
+              tabIndex="0"
+              className="player-info-style parties-joined-margin"
+            >
               <img
                 className="chest-img"
                 src={images.chest}
@@ -250,7 +269,9 @@ class UserProfile extends React.Component {
         </div>
         <div className="fifth-row-profile">
           <div className="profile-parties-created">
-            <span className="player-info-style">Party Tables Created:</span>
+            <span tabIndex="0" className="player-info-style">
+              Party Tables Created:
+            </span>
             <div className="parties-created-container">{partiesCreated}</div>
           </div>
         </div>

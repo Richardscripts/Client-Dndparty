@@ -12,6 +12,9 @@ const Validators = {
       TokenService.getUserInfoFromAuthToken().user_id
     );
   },
+  partyComplete(isParty) {
+    return isParty === 'Complete Party!';
+  },
 };
 
 export default Validators;

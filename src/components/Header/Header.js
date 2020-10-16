@@ -17,14 +17,22 @@ export default function Header(props) {
           </span>
         )}
         {!ifToken && (
-          <span className="App-links" onClick={() => props.handleToggleLogin()}>
+          <span
+            tabIndex="0"
+            className="App-links"
+            onClick={() => props.handleToggleLogin()}
+          >
             Login
           </span>
         )}
         {ifToken && (
           <span>
             |{' '}
-            <span className="App-links" onClick={props.handleProfileLink}>
+            <span
+              tabIndex="0"
+              className="App-links"
+              onClick={props.handleProfileLink}
+            >
               Profile
             </span>
           </span>
@@ -34,6 +42,7 @@ export default function Header(props) {
             {' '}
             |{' '}
             <span
+              tabIndex="0"
               className="App-links"
               onClick={() => {
                 TokenService.clearAuthToken();

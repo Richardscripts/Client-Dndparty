@@ -11,12 +11,14 @@ import book from './spellbook.png';
 import chest from './chest.png';
 import complete from './complete.png';
 import incomplete from './incomplete.png';
-import openbook from './openbook.png';
-import barrel from './barrel.png';
+import crossedswords from './crossedswords.png';
+import axes from './axes.png';
+import arrows from './arrows.png';
 
 const images = {
-  barrel,
-  openbook,
+  crossedswords,
+  axes,
+  arrows,
   complete,
   incomplete,
   chest,

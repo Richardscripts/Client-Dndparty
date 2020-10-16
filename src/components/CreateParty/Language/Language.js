@@ -4,7 +4,12 @@ export default function Language() {
   return (
     <>
       <label htmlFor="language">(Primary) Language:</label>
-      <select id="language" name="language">
+      <select
+        id="language"
+        name="language"
+        aria-invalid="true"
+        aria-describedby="error-msg"
+      >
         <option>Catalan</option>
         <option>Chinese Simplified & Traditional</option>
         <option>Czech</option>

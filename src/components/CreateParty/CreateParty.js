@@ -74,7 +74,9 @@ export default class CreateParty extends React.Component {
               <h2 className="center create-party-h2">Let's Get Started!</h2>
             </div>
             {this.state.error && (
-              <div className="error-msg">{this.state.error}</div>
+              <div className="error-msg" id="error-msg">
+                {this.state.error}
+              </div>
             )}
             <br />
             <div className="required-inputs">
@@ -83,6 +85,9 @@ export default class CreateParty extends React.Component {
                 maxLength={30}
                 name="party_name"
                 id="party_name"
+                aria-required="true"
+                aria-invalid="true"
+                aria-describedby="error-msg"
                 required
               ></input>
               <br />
@@ -98,6 +103,8 @@ export default class CreateParty extends React.Component {
                 name="players_needed"
                 id="players_needed"
                 placeholder={0}
+                aria-invalid="true"
+                aria-describedby="error-msg"
               ></input>
               <br />
               <img
@@ -113,6 +120,8 @@ export default class CreateParty extends React.Component {
                 onChange={() =>
                   this.setState({ dm_checked: !this.state.dm_checked })
                 }
+                aria-invalid="true"
+                aria-describedby="error-msg"
               />
             </div>
             <br />
@@ -122,7 +131,6 @@ export default class CreateParty extends React.Component {
             <div className="optional-inputs">
               <div className="optional-inputs-left">
                 <br />
-
                 <Language />
                 <br />
                 <OnlineOrNot />
@@ -137,12 +145,20 @@ export default class CreateParty extends React.Component {
                       camera_checked: !this.state.camera_checked,
                     })
                   }
+                  aria-invalid="true"
+                  aria-describedby="error-msg"
                 />
                 <br />
                 <DndEdition />
                 <br />
                 <label htmlFor="about">About Section: </label>
-                <textarea maxLength={400} name="about" id="about" />
+                <textarea
+                  maxLength={400}
+                  name="about"
+                  id="about"
+                  aria-invalid="true"
+                  aria-describedby="error-msg"
+                />
                 <br />
               </div>
               <div className="optional-inputs-right">
@@ -152,6 +168,8 @@ export default class CreateParty extends React.Component {
                   maxLength={100}
                   name="campaign_or_custom"
                   id="campaign_or_custom"
+                  aria-invalid="true"
+                  aria-describedby="error-msg"
                 />
                 <br />
 
@@ -161,6 +179,8 @@ export default class CreateParty extends React.Component {
                   name="classes_needed"
                   id="classes_needed"
                   placeholder="Paladin, Wizard,...etc"
+                  aria-invalid="true"
+                  aria-describedby="error-msg"
                 />
                 <br />
                 <label htmlFor="group_personality">Group Personality: </label>
@@ -170,6 +190,8 @@ export default class CreateParty extends React.Component {
                   name="group_personality"
                   id="group_personality"
                   placeholder="Laidback or Serious, etc"
+                  aria-invalid="true"
+                  aria-describedby="error-msg"
                 />
                 <br />
                 <label htmlFor="time_of_event">Time of Game: </label>
@@ -178,6 +200,8 @@ export default class CreateParty extends React.Component {
                   name="time_of_event"
                   id="time_of_event"
                   placeholder="Wed @ 5:00pm EST,    Sat @ 6:00PM EST"
+                  aria-invalid="true"
+                  aria-describedby="error-msg"
                 />
                 <br />
                 <label htmlFor="homebrew_rules">Homebrew Rules: </label>
@@ -185,11 +209,12 @@ export default class CreateParty extends React.Component {
                   maxLength={450}
                   name="homebrew_rules"
                   id="homebrew_rules"
+                  aria-invalid="true"
+                  aria-describedby="error-msg"
                 ></textarea>
                 <br />
               </div>
             </div>
-
             <div className="button-wrapper">
               <button className="myButton" type="submit">
                 Submit Party

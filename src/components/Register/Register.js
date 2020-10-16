@@ -1,6 +1,8 @@
 import React from 'react';
 import ApiHelpers from '../../Helpers/ApiHelpers';
 import TokenService from '../../Helpers/TokenService';
+import images from '../../Assets/Groups-image/images';
+
 import './Register.css';
 
 class Register extends React.Component {
@@ -34,24 +36,41 @@ class Register extends React.Component {
     return (
       <div className="register-view">
         <div className="welcome-message-style">
-          <h2>Welcome to D&D Party!</h2>
+          <h2>Welcome to D&amp;D Party!</h2>
         </div>
         <p>Connect with fellow Dnders to Play with!</p>
         <div className="register-form">
           <form onSubmit={(e) => this.handleSubmit(e)} action="#">
             <div className="register-style"> Register</div>
             <br />
-            <label>Email:</label>
-            <input type="email" name="user_email" required></input>
-            <br />
-            <label>Nickname or Character Name:</label>
-            <input maxLength="30" type="text" name="user_name" required></input>
-            <br />
-            <label>Password:</label>
+            <label htmlFor="user_email">Email:</label>
             <input
+              id="user_email"
+              type="email"
+              name="user_email"
+              aria-required="true"
+              required
+            ></input>
+            <br />
+            <label htmlFor="user_name">Nickname or Character Name:</label>
+            <input
+              id="user_name"
+              maxLength="30"
+              type="text"
+              name="user_name"
+              aria-required="true"
+              required
+            ></input>
+            <br />
+            <label htmlFor="password">Password:</label>
+            <input
+              id="password"
               maxLength="72"
               type="password"
               name="password"
+              aria-required="true"
+              aria-invalid="true"
+              aria-describedby="register-error"
               required
             ></input>
             <br />
@@ -70,7 +89,9 @@ class Register extends React.Component {
             </div>
             <br />
             {this.state.error && (
-              <div className="register-error">{this.state.error}</div>
+              <div className="register-error" id="register-error">
+                {this.state.error}
+              </div>
             )}
           </form>
         </div>
@@ -81,10 +102,20 @@ class Register extends React.Component {
         <div className="instructions-row">
           <div className="col">
             <h3>Register</h3>
+            <img
+              className="register-icons"
+              src={images.axes}
+              alt="Tiny icon of Crossed Axes"
+            />
             <p>Sign up and flesh out your profile!</p>
           </div>
           <div className="col">
             <h3>Create Parties</h3>
+            <img
+              className="register-icons"
+              src={images.arrows}
+              alt="Tiny icon of Crossed Axes"
+            />
             <p>
               You can Create a Party Table for users to view and join with tons
               of information to find the right roleplayer for your group.
@@ -92,6 +123,11 @@ class Register extends React.Component {
           </div>
           <div className="col">
             <h3>Join Parties</h3>
+            <img
+              className="register-icons"
+              src={images.crossedswords}
+              alt="Tiny icon of Crossed Axes"
+            />
             <p>
               Join Parties created by other users and be invited to play the
               greatest roleplaying game of all time! That's it.

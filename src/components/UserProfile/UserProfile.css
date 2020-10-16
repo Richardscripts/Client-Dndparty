@@ -66,7 +66,6 @@ hr {
 }
 
 .profile-user-icon {
-  border-bottom: 4px grey solid;
   width: 100%;
   box-sizing: border-box;
   margin: auto;
@@ -83,8 +82,7 @@ hr {
 
 .profile-parties-joined {
   text-align: center;
-  border-top: 3px grey solid;
-  border-bottom: 3px grey solid;
+
   opacity: 0.9;
   min-height: 300px;
   width: 100%;
@@ -170,6 +168,11 @@ hr {
   font-family: 'Anton', Arial, Helvetica, sans-serif;
 }
 
+.left-content > p {
+  margin: 5px;
+  display: inline;
+}
+
 .user-info-container > form > input,
 textarea {
   width: 100%;
@@ -203,7 +206,8 @@ textarea {
 
 .right-content {
   flex: 1;
-  margin: 10px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .about-me {
@@ -212,6 +216,7 @@ textarea {
   color: rgb(255, 255, 255);
   text-shadow: none;
   text-align: justify;
+  width: 100%;
 }
 
 .player-info-top-bar {
@@ -298,7 +303,16 @@ a {
   letter-spacing: 2pt;
 }
 
-@media all and (min-width: 500px) {
+.created-text-style {
+  font-size: 12px;
+  color: rgb(153, 152, 152);
+}
+
+@media all and (min-width: 900px) {
+  .user-profile {
+    width: 100%;
+  }
+
   .submit-edit-button-wrapper {
     text-align: center;
     position: relative;
@@ -319,7 +333,6 @@ a {
 
   .profile-parties-joined {
     width: 100%;
-    border-bottom: 3px grey solid;
   }
 
   .parties-joined-style {
@@ -362,5 +375,10 @@ a {
     color: #ffffff;
     font-size: 26px;
     font-family: 'Anton', Arial, Helvetica, sans-serif;
+  }
+
+  .right-content {
+    margin-top: 0px;
+    margin: 10px;
   }
 }

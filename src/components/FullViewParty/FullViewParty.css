@@ -24,6 +24,7 @@
 .second-row-party {
   display: flex;
   flex-direction: column;
+  border-bottom: 14px rgb(75, 75, 75) solid;
 }
 
 .third-row-party {
@@ -72,16 +73,15 @@
   padding: 35px;
   padding-top: 0px;
   box-sizing: border-box;
-  border-bottom: 14px rgb(75, 75, 75) solid;
 }
 
 .party-users-joined {
-  border: 2px rgb(110, 110, 110) solid;
+  border: 2px rgb(131, 131, 131) solid;
   width: 100%;
   margin: auto;
   padding: 13px;
   font-size: 19px;
-  box-shadow: 0 3px 4px 0px #161616;
+  box-shadow: 0px 4px 0px #161616;
   box-sizing: border-box;
   background-color: rgb(58, 58, 58);
 }
@@ -93,6 +93,7 @@
   padding: 13px;
   padding-top: 8px;
   box-sizing: border-box;
+  font-size: 18px;
 }
 
 .fullview-players-img {
@@ -137,7 +138,7 @@
   font-family: 'Anton', 'Times New Roman', Times, serif;
   color: #ff5833;
   font-weight: 100;
-  font-size: 21px;
+  font-size: 23px;
   letter-spacing: 2pt;
 }
 
@@ -151,9 +152,69 @@
   text-decoration: underline;
 }
 
-@media all and (min-width: 500px) {
+.PartyTableJoinButton {
+  background: linear-gradient(to bottom, #f9f9f9 5%, #cacaca 100%);
+  background-color: #f9f9f9;
+  display: inline-block;
+  cursor: pointer;
+  color: #d45f45;
+  font-family: 'Anton';
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-shadow: -1px 4px 1px rgb(14, 14, 14);
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.PartyTableJoinButton:hover {
+  background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+  background-color: #e9e9e9;
+}
+
+.PartyTableJoinButton:active {
+  background-color: grey;
+}
+
+.fullview-bottom-bar {
+  padding: 30px;
+}
+
+.request-style {
+  font-size: 22px;
+  font-weight: 500;
+  color: rgb(233, 233, 233);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.request-list-style {
+  text-align: center;
+  width: 300px;
+  margin: auto;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: rgb(36, 36, 36);
+}
+
+@media all and (min-width: 900px) {
+  /* .request-list-style {
+    text-align: left;
+  }
+
+  .request-style {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(233, 233, 233);
+    display: flex;
+    flex-direction: column;
+  } */
+
   .party-name-top {
-    width: 900px;
+    width: 100%;
   }
 
   .party-info-section {
@@ -161,19 +222,29 @@
   }
 
   .party-users-joined {
-    width: 900px;
+    width: 450px;
     padding: 3px;
   }
 
   .party-users-requests {
-    width: 900px;
+    width: 520px;
+    border: 2px rgb(83, 83, 83) solid;
+    margin-top: 8px;
+    padding: 1px;
   }
 
   .party-legend {
-    width: 900px;
+    width: 100%;
   }
 
   .party-about-section {
     width: 550px;
+  }
+
+  .PartyTableJoinButton {
+    position: relative;
+    width: 250px;
+    margin: auto;
+    margin-top: 40px;
   }
 }

@@ -78,6 +78,8 @@ textarea {
   border: 4px rgb(189, 189, 189) solid;
   border-bottom: 10px rgb(92, 92, 92) solid;
   margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .create-party-form {
@@ -108,12 +110,16 @@ textarea {
 
 .optional-inputs-left,
 .optional-inputs-right {
-  width: 250px;
   margin-left: 20px;
   margin-right: 10px;
   margin-top: 16px;
+
+  margin: auto;
+  width: 250px;
+
   padding: 20px;
 }
+
 .optional-inputs-right {
   padding-top: 0px;
   margin-top: 0px;
@@ -214,12 +220,12 @@ textarea {
   cursor: pointer;
   color: #d45f45;
   font-family: 'Anton';
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 600;
   padding: 18px 25px;
   letter-spacing: 1px;
   text-decoration: none;
-  /* text-shadow: -1px 4px 1px rgb(0, 0, 0); */
+  text-shadow: -1px 4px 1px rgb(14, 14, 14);
 }
 .PartyTableButton:hover {
   background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
@@ -230,9 +236,9 @@ textarea {
   top: 1px;
 }
 
-@media all and (min-width: 500px) {
+@media all and (min-width: 683px) {
   .create-party-form-wrapper {
-    width: 650px;
+    width: 100%;
   }
 
   .required-inputs {
@@ -256,5 +262,22 @@ textarea {
     border-radius: 8%;
     margin-top: 16px;
     padding-top: 10px;
+  }
+
+  .PartyTableButton {
+    font-size: 32px;
+  }
+
+  .create-party-border {
+    width: 685px;
+  }
+
+  .optional-inputs-left,
+  .optional-inputs-right {
+    width: 250px;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: 16px;
+    padding: 20px;
   }
 }

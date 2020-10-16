@@ -9,17 +9,18 @@ export default function PartyInfo(props) {
           <div className="party-name-top">{party.party_name}</div>
         </div>
         <div className="second-row-party">
-          <span className="party-creator-style">
+          <span tabIndex="0" className="party-creator-style">
+            {' '}
             Party Creator: {party.user_name}
           </span>
           <br />
           {party.about && (
-            <div className="party-about-section">
+            <div tabIndex="0" className="party-about-section">
               {party.about}
               <br />
             </div>
           )}
-          <div className="party-info-section">
+          <div tabIndex="0" className="party-info-section">
             <br />
             {party.dnd_edition && (
               <>

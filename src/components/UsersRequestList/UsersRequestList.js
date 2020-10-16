@@ -4,6 +4,7 @@ import Validators from '../../Helpers/Validators';
 import { Link } from 'react-router-dom';
 
 export default function UsersRequestList(props) {
+  const party = props.party;
   const usersRequestList = props.current_user_requests.map((user, idx) => {
     return (
       <div key={idx}>
@@ -13,26 +14,46 @@ export default function UsersRequestList(props) {
           alt=""
         />
         <Link to={`/Player_Profile/${user.user_id}`}>
-          <span className="username-style">{user.user_name}</span>
+          <span className="username-style">
+            {user.user_name}
+            <span className="visuallyhidden">Requests to Join Party</span>
+          </span>
         </Link>{' '}
         has requested to join.{' '}
-        {Validators.ifCreatorOfParty(props.party.user_id_creator) && (
-          <>
-            <span>Accept request:</span>{' '}
-            {props.party.players_needed && (
-              <>
-                <u onClick={() => this.acceptRequester(user.user_id, 'player')}>
-                  (Player)
-                </u>
-              </>
-            )}
-            {props.party.dm_needed && (
-              <u onClick={() => this.acceptRequester(user.user_id, 'dm')}>
-                (Dungeon Master)
-              </u>
-            )}
-          </>
-        )}
+        {Validators.ifCreatorOfParty(party.user_id_creator) &&
+          !Validators.partyComplete(party.party_complete) && (
+            <div className="request-list-style">
+              <span className="request-style">Accept request as:</span>{' '}
+              {props.party.players_needed && (
+                <>
+                  <img
+                    className="fullview-players-img request-img"
+                    src={images.players}
+                    alt="Player Icon"
+                  />
+                  <u
+                    onClick={() =>
+                      props.acceptRequester(user.user_id, 'player')
+                    }
+                  >
+                    (Player)
+                  </u>
+                </>
+              )}
+              {props.party.dm_needed && (
+                <>
+                  <img
+                    className="fullview-players-img request-img"
+                    src={images.dm}
+                    alt="Player Icon"
+                  />
+                  <u onClick={() => props.acceptRequester(user.user_id, 'dm')}>
+                    (Dungeon Master)
+                  </u>
+                </>
+              )}
+            </div>
+          )}
         <br />
       </div>
     );

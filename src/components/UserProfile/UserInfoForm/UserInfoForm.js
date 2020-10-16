@@ -5,22 +5,34 @@ export default class UserInfoForm extends React.Component {
     const editing = this.props.editing;
     const userInfo = this.props.info.map((info, idx) => {
       return (
-        <div className="user-info-container" key={idx}>
+        <div tabIndex="0" className="user-info-container" key={idx}>
           <div className="left-content">
-            <span>Nickname:</span> {info.user_name} <br />
-            <span>Email:</span> {this.props.user_email} <br />
-            <span>First Name:</span> {info.first_name} <br />
-            <span>Last Name:</span> {info.last_name} <br />
-            <span>D&D Experience:</span> {info.dnd_experience} <br />
-            <span>Fluent Languages:</span> {info.languages} <br />
-            <span>Location:</span> {info.location} <br />
-            <span>Preferred Editions:</span> {info.preferred_editions} <br />
-            <span>Preferred Classes:</span> {info.preferred_classes} <br />
-            <span>Additional Contact:</span> {info.contact} <br />
+            <span tabIndex="0">Nickname:</span>
+            <p tabIndex="0">{info.user_name}</p> <br />
+            <span tabIndex="0">Email:</span>{' '}
+            <p tabIndex="0">{this.props.user_email}</p> <br />
+            <span tabIndex="0">First Name:</span>{' '}
+            <p tabIndex="0">{info.first_name}</p> <br />
+            <span tabIndex="0">Last Name:</span>{' '}
+            <p tabIndex="0">{info.last_name}</p> <br />
+            <span tabIndex="0">D&amp;D Experience:</span>{' '}
+            <p tabIndex="0">{info.dnd_experience}</p> <br />
+            <span tabIndex="0">Fluent Languages:</span>{' '}
+            <p tabIndex="0">{info.languages}</p> <br />
+            <span tabIndex="0">Location:</span>{' '}
+            <p tabIndex="0">{info.location}</p> <br />
+            <span tabIndex="0">Preferred Editions:</span>{' '}
+            <p tabIndex="0">{info.preferred_editions}</p> <br />
+            <span tabIndex="0">Preferred Classes:</span>{' '}
+            <p tabIndex="0">{info.preferred_classes}</p> <br />
+            <span tabIndex="0">Additional Contact:</span>{' '}
+            <p tabIndex="0">{info.contact}</p> <br />
           </div>
           <div className="right-content">
-            <span>About Me:</span>
-            <p className="about-me">{info.about_me} </p>
+            <span tabIndex="0">About Me:</span>
+            <p tabIndex="0" className="about-me">
+              {info.about_me}{' '}
+            </p>
             <br />
           </div>
         </div>
@@ -33,6 +45,8 @@ export default class UserInfoForm extends React.Component {
             action="#"
             id="edit-profile"
             onSubmit={this.props.handleSubmitEditProfile}
+            aria-invalid="true"
+            aria-describedby="error-msg"
           >
             <label htmlFor="user_name">Nickname: </label>
             <input
@@ -40,6 +54,8 @@ export default class UserInfoForm extends React.Component {
               maxLength="30"
               id="user_name"
               defaultValue={info.user_name}
+              aria-invalid="true"
+              aria-describedby="error-msg"
             ></input>{' '}
             <br />
             <label htmlFor="first_name">First Name: </label>
@@ -48,6 +64,8 @@ export default class UserInfoForm extends React.Component {
               id="first_name"
               maxLength="30"
               defaultValue={info.first_name}
+              aria-invalid="true"
+              aria-describedby="error-msg"
             ></input>{' '}
             <br />
             <label htmlFor="last_name">Last Name: </label>
@@ -56,13 +74,17 @@ export default class UserInfoForm extends React.Component {
               maxLength="30"
               id="last_name"
               defaultValue={info.last_name}
+              aria-invalid="true"
+              aria-describedby="error-msg"
             ></input>{' '}
             <br />
-            <label htmlFor="dnd_experience">D&D Experience: </label>
+            <label htmlFor="dnd_experience">D&amp;D Experience: </label>
             <input
               name="dnd_experience"
               id="dnd_experience"
               defaultValue={info.dnd_experience}
+              aria-invalid="true"
+              aria-describedby="error-msg"
             ></input>{' '}
             <br />
             <label htmlFor="languages">Fluent Languages: </label>
@@ -70,6 +92,8 @@ export default class UserInfoForm extends React.Component {
               name="languages"
               id="languages"
               defaultValue={info.languages}
+              aria-invalid="true"
+              aria-describedby="error-msg"
             ></input>{' '}
             <br />
             <label htmlFor="location">Location: </label>
@@ -77,13 +101,19 @@ export default class UserInfoForm extends React.Component {
               name="location"
               id="location"
               defaultValue={info.location}
+              aria-invalid="true"
+              aria-describedby="error-msg"
             ></input>{' '}
             <br />
-            <label htmlFor="preferred_editions">Preferred D&D Editions: </label>
+            <label htmlFor="preferred_editions">
+              Preferred D&amp;D Editions:{' '}
+            </label>
             <input
               name="preferred_editions"
               id="preferred_editions"
               defaultValue={info.preferred_editions}
+              aria-invalid="true"
+              aria-describedby="error-msg"
             ></input>{' '}
             <br />
             <label htmlFor="preferred_classes">Preferred Classes: </label>
@@ -91,6 +121,8 @@ export default class UserInfoForm extends React.Component {
               name="preferred_classes"
               id="preferred_classes"
               defaultValue={info.preferred_classes}
+              aria-invalid="true"
+              aria-describedby="error-msg"
             ></input>{' '}
             <br />
             <label htmlFor="contact">Additional Contact: </label>
@@ -98,6 +130,8 @@ export default class UserInfoForm extends React.Component {
               name="contact"
               id="contact"
               defaultValue={info.contact}
+              aria-invalid="true"
+              aria-describedby="error-msg"
             ></input>{' '}
             <br />
             <label htmlFor="about_me">About Me: </label>
@@ -105,6 +139,8 @@ export default class UserInfoForm extends React.Component {
               name="about_me"
               id="about_me"
               defaultValue={info.about_me}
+              aria-invalid="true"
+              aria-describedby="error-msg"
             ></textarea>{' '}
           </form>
         </div>

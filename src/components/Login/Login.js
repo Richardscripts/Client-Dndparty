@@ -18,7 +18,6 @@ class Login extends React.Component {
     this.setState({
       error: null,
     });
-    this.props.handleToggleLogin();
     ApiHelpers.loginUser(user_email.value, password.value)
       .then((res) => {
         user_email.value = '';
@@ -28,6 +27,7 @@ class Login extends React.Component {
         this.props.loginUpdateToken();
         const user = TokenService.getUserInfoFromAuthToken();
         this.props.handleUserInfo(user);
+        this.props.handleToggleLogin();
         this.props.history.push(`/Player_Profile/${user.user_id}`);
       })
       .catch((res) => {
@@ -48,18 +48,37 @@ class Login extends React.Component {
               X
             </button>
           </div>
-          <label>Email:</label>
-          <input type="email" name="user_email" required></input>
+          <label htmlFor="user_email">Email:</label>
+          <input
+            id="user_email"
+            aria-required="true"
+            type="email"
+            name="user_email"
+            aria-invalid="true"
+            aria-describedby="register-error"
+            required
+          ></input>
           <br />
-          <label>Password:</label>
-          <input type="password" name="password" required></input>
+          <label htmlFor="password">Password:</label>
+          <input
+            id="password"
+            aria-required="true"
+            type="password"
+            name="password"
+            required
+            aria-invalid="true"
+            aria-describedby="register-error"
+          ></input>
           <br />
           <button className="PartyTableButton login-submit" type="submit">
             Submit
           </button>
           <br />
-
-          {this.state.error && <span>{this.state.error}</span>}
+          {this.state.error && (
+            <span className="register-error" id="register-error">
+              {this.state.error}
+            </span>
+          )}
         </form>
       </div>
     );

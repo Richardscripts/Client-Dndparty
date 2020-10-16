@@ -1,5 +1,8 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+
+import NoMatch from '../NoMatch/NoMatch';
+
+import { Route, Switch } from 'react-router-dom';
 
 import UserProfile from '../UserProfile/UserProfile';
 import FullViewParty from '../FullViewParty/FullViewParty';
@@ -11,6 +14,7 @@ import Header from '../Header/Header';
 import Login from '../Login/Login';
 import Parties from '../Parties/Parties';
 import Register from '../Register/Register';
+
 import './App.css';
 
 import TokenService from '../../Helpers/TokenService';
@@ -84,36 +88,46 @@ class App extends React.Component {
         <Route path="/create_party" component={CreatePartyTopBar} />
         <Route path="/Party" component={FullViewPartyTopBar} />
         <main>
-          <Route
-            path="/Register"
-            render={(props) => (
-              <Register
-                {...props}
-                handleUserInfo={this.handleUserInfo}
-                loginUpdateToken={this.loginUpdateToken}
-              />
-            )}
-          />
-          <Route exact path="/" component={Parties} />
-          <Route
-            path="/Party/:party_id"
-            render={(props) => <FullViewParty {...props} />}
-          />
-          <Route
-            path="/Player_Profile/:user_id"
-            render={(props) => (
-              <UserProfile
-                {...props}
-                user_email={this.state.user_email}
-                profile_updated={this.state.profile_updated}
-                handleProfileUpdate={this.handleProfileUpdate}
-              />
-            )}
-          />
-          <Route
-            path="/Create_Party"
-            render={(props) => <CreateParty {...props} />}
-          />
+          <Switch>
+            <Route
+              path="/Register"
+              render={(props) => (
+                <Register
+                  {...props}
+                  handleUserInfo={this.handleUserInfo}
+                  loginUpdateToken={this.loginUpdateToken}
+                />
+              )}
+            />
+            <Route exact path="/" render={(props) => <Parties {...props} />} />
+            <Route
+              path="/Party/:party_id"
+              render={(props) => (
+                <FullViewParty
+                  {...props}
+                  handleRequestToJoinParty={this.handleRequestToJoinParty}
+                />
+              )}
+            />
+            <Route
+              path="/Player_Profile/:user_id"
+              render={(props) => (
+                <UserProfile
+                  {...props}
+                  user_email={this.state.user_email}
+                  profile_updated={this.state.profile_updated}
+                  handleProfileUpdate={this.handleProfileUpdate}
+                />
+              )}
+            />
+            <Route
+              path="/Create_Party"
+              render={(props) => <CreateParty {...props} />}
+            />
+            <Route>
+              <NoMatch />
+            </Route>
+          </Switch>
         </main>
       </div>
     );

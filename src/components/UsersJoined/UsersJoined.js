@@ -10,7 +10,10 @@ export default function UsersJoined(props) {
         {' '}
         <img className="fullview-players-img" src={images.players} alt="" />
         <Link to={`/Player_Profile/${user.user_id}`}>
-          <span className="username-style">{user.user_name}</span>
+          <span className="username-style">
+            {user.user_name}
+            <span className="visuallyhidden">has Joined Party</span>
+          </span>
         </Link>{' '}
         has joined party.
       </div>
