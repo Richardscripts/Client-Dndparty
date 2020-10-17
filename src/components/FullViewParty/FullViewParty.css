@@ -105,13 +105,6 @@
   vertical-align: middle;
 }
 
-/* .fullviewparty-topbar {
-  background-image: url('../../../Assets/Groups-image/fantasy.jpg');
-  background-position-y: 55%;
-  background-size: cover;
-  padding: 40px;
-} */
-
 .request-img {
   width: 20px;
 }
@@ -200,29 +193,7 @@
   background-color: rgb(36, 36, 36);
 }
 
-/* .join-delete-button-wrapper {
-  bottom: 0;
-  position: fixed;
-  text-align: center;
-  width: 100%;
-  z-index: 50;
-  opacity: 0.97;
-  background-image: linear-gradient(rgb(12, 12, 12), rgb(29, 29, 29));
-} */
-
 @media all and (min-width: 900px) {
-  /* .request-list-style {
-    text-align: left;
-  }
-
-  .request-style {
-    font-size: 20px;
-    font-weight: 500;
-    color: rgb(233, 233, 233);
-    display: flex;
-    flex-direction: column;
-  } */
-
   .party-name-top {
     width: 100%;
   }
