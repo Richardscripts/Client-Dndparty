@@ -23,7 +23,9 @@ export default function UsersRequestList(props) {
         {Validators.ifCreatorOfParty(party.user_id_creator) &&
           !Validators.partyComplete(party.party_complete) && (
             <div className="request-list-style">
-              <span className="request-style">Accept request as:</span>{' '}
+              <span tabIndex="0" className="request-style">
+                Accept request as:
+              </span>{' '}
               {props.party.players_needed && (
                 <>
                   <img
@@ -32,6 +34,7 @@ export default function UsersRequestList(props) {
                     alt="Player Icon"
                   />
                   <u
+                    tabIndex="0"
                     onClick={() =>
                       props.acceptRequester(user.user_id, 'player')
                     }
@@ -47,7 +50,10 @@ export default function UsersRequestList(props) {
                     src={images.dm}
                     alt="Player Icon"
                   />
-                  <u onClick={() => props.acceptRequester(user.user_id, 'dm')}>
+                  <u
+                    tabIndex="0"
+                    onClick={() => props.acceptRequester(user.user_id, 'dm')}
+                  >
                     (Dungeon Master)
                   </u>
                 </>
