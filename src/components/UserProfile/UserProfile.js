@@ -83,6 +83,7 @@ class UserProfile extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        this.props.handleLoading();
       });
     this.props.handleLoading();
     ApiHelpers.getUserCreatedParties(user_id)
@@ -109,6 +110,7 @@ class UserProfile extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        this.props.handleLoading();
       });
     this.props.handleLoading();
     ApiHelpers.getUserJoinedParty(user_id)
@@ -120,6 +122,7 @@ class UserProfile extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        this.props.handleLoading();
       });
   };
 

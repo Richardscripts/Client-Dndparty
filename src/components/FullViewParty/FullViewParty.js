@@ -26,6 +26,7 @@ class FullViewParty extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        this.props.handleLoading();
       });
   };
 
@@ -38,6 +39,7 @@ class FullViewParty extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        this.props.handleLoading();
       });
   };
 
@@ -54,6 +56,7 @@ class FullViewParty extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        this.props.handleLoading();
       });
     this.props.handleLoading();
     ApiHelpers.getUserRequests(party_id)
@@ -65,6 +68,7 @@ class FullViewParty extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        this.props.handleLoading();
       });
     this.props.handleLoading();
     ApiHelpers.getUsersWhoJoinedParty(party_id)
@@ -76,6 +80,7 @@ class FullViewParty extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        this.props.handleLoading();
       });
   };
 

@@ -23,6 +23,7 @@ class Parties extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        this.props.handleLoading();
       });
   }
 
@@ -35,6 +36,7 @@ class Parties extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        this.props.handleLoading();
       });
   };
 
