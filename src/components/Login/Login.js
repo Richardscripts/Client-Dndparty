@@ -18,6 +18,7 @@ class Login extends React.Component {
     this.setState({
       error: null,
     });
+    this.props.handleLoading();
     ApiHelpers.loginUser(user_email.value, password.value)
       .then((res) => {
         user_email.value = '';
@@ -29,6 +30,7 @@ class Login extends React.Component {
         this.props.handleUserInfo(user);
         this.props.handleToggleLogin();
         this.props.history.push(`/Player_Profile/${user.user_id}`);
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
@@ -39,7 +41,7 @@ class Login extends React.Component {
       <div className="login-form">
         {' '}
         <form onSubmit={(e) => this.handleSubmit(e)} action="#">
-          <div className="cancel-button-wrapper">
+          <div className=" cancel-button-wrapper">
             <button
               type="button"
               onClick={() => this.handleCancelButton()}

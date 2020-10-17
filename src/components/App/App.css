@@ -16,20 +16,20 @@ body {
   border: 0;
 }
 
-.App-header {
+.App-header,
+.dndparty-logo {
   background-color: rgb(32, 32, 32);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  color: #d45f45;
+  color: #e05b3d;
   width: 100%;
   box-sizing: border-box;
   font-weight: bold;
   padding-bottom: 10px;
 }
 
-.App-header > h1 {
-  color: #d45f45;
+.dndparty-logo {
   font-family: 'UnifrakturCook';
   font-size: 54px;
   margin: 0px;
@@ -84,11 +84,12 @@ footer {
     margin: 5px;
     margin-right: 20px;
   }
-  .App-header {
+  .App-header,
+  .dndparty-logo {
     justify-content: space-between;
     padding-bottom: 0px;
   }
-  .App-header > h1 {
+  .dndparty-logo {
     font-size: 52px;
     margin-left: 20px;
   }

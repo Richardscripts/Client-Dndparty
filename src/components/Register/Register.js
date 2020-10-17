@@ -16,6 +16,7 @@ class Register extends React.Component {
     this.setState({
       error: null,
     });
+    this.props.handleLoading();
     ApiHelpers.registerUser(user_email.value, password.value, user_name.value)
       .then((res) => {
         user_email.value = '';
@@ -27,6 +28,7 @@ class Register extends React.Component {
         const user = TokenService.getUserInfoFromAuthToken();
         this.props.handleUserInfo(user);
         this.props.history.push(`/Player_Profile/${user.user_id}`);
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
@@ -36,7 +38,7 @@ class Register extends React.Component {
     return (
       <div className="register-view">
         <div className="welcome-message-style">
-          <h2>Welcome to D&amp;D Party!</h2>
+          <h2>Welcome to DnD Party!</h2>
         </div>
         <p>Connect with fellow Dnders to Play with!</p>
         <div className="register-form">

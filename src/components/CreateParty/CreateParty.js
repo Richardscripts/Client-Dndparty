@@ -16,6 +16,7 @@ export default class CreateParty extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.props.handleLoading();
     const {
       party_name,
       players_needed,
@@ -56,6 +57,7 @@ export default class CreateParty extends React.Component {
     ApiHelpers.createPartyTable(partyInfo)
       .then((res) => {
         this.props.history.push(`/Party/${res.party_id}`);
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });

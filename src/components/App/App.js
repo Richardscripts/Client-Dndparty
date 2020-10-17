@@ -1,7 +1,4 @@
 import React from 'react';
-
-import NoMatch from '../NoMatch/NoMatch';
-
 import { Route, Switch } from 'react-router-dom';
 
 import UserProfile from '../UserProfile/UserProfile';
@@ -14,10 +11,11 @@ import Header from '../Header/Header';
 import Login from '../Login/Login';
 import Parties from '../Parties/Parties';
 import Register from '../Register/Register';
+import Loading from '../Loading/Loading';
+import NoMatch from '../NoMatch/NoMatch';
+import TokenService from '../../Helpers/TokenService';
 
 import './App.css';
-
-import TokenService from '../../Helpers/TokenService';
 
 class App extends React.Component {
   state = {
@@ -27,6 +25,7 @@ class App extends React.Component {
     user_email: '',
     profile_updated: false,
     toggleLogin: false,
+    loading: false,
   };
 
   loginUpdateToken = () => {
@@ -46,8 +45,7 @@ class App extends React.Component {
     this.setState({ profile_updated: false });
   };
 
-  componentDidMount = () => {
-    const user = TokenService.getUserInfoFromAuthToken();
+  handleUserInfo = (user) => {
     this.setState({
       user: user.user_id,
       user_name: user.user_name,
@@ -55,7 +53,12 @@ class App extends React.Component {
     });
   };
 
-  handleUserInfo = (user) => {
+  handleLoading = () => {
+    this.setState({ loading: !this.state.loading });
+  };
+
+  componentDidMount = () => {
+    const user = TokenService.getUserInfoFromAuthToken();
     this.setState({
       user: user.user_id,
       user_name: user.user_name,
@@ -88,6 +91,7 @@ class App extends React.Component {
         <Route path="/create_party" component={CreatePartyTopBar} />
         <Route path="/Party" component={FullViewPartyTopBar} />
         <main>
+          {this.state.loading && <Loading />}
           <Switch>
             <Route
               path="/Register"
@@ -99,13 +103,20 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route exact path="/" render={(props) => <Parties {...props} />} />
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <Parties {...props} handleLoading={this.handleLoading} />
+              )}
+            />
             <Route
               path="/Party/:party_id"
               render={(props) => (
                 <FullViewParty
                   {...props}
                   handleRequestToJoinParty={this.handleRequestToJoinParty}
+                  handleLoading={this.handleLoading}
                 />
               )}
             />
@@ -117,6 +128,7 @@ class App extends React.Component {
                   user_email={this.state.user_email}
                   profile_updated={this.state.profile_updated}
                   handleProfileUpdate={this.handleProfileUpdate}
+                  handleLoading={this.handleLoading}
                 />
               )}
             />

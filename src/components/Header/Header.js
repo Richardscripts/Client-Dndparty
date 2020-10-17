@@ -7,7 +7,9 @@ export default function Header(props) {
   const ifToken = props.ifToken;
   return (
     <header className="App-header">
-      <h1>DndParty</h1>
+      <Link to="/">
+        <h1 className="dndparty-logo">DndParty</h1>
+      </Link>
       <nav className="App-nav">
         <Link to="/">Home </Link>
         {!ifToken && (
