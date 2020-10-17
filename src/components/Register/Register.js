@@ -38,7 +38,7 @@ class Register extends React.Component {
     return (
       <div className="register-view">
         <div className="welcome-message-style">
-          <h2>Welcome to D&amp;D Party!</h2>
+          <h2>Welcome to DnD Party!</h2>
         </div>
         <p>Connect with fellow Dnders to Play with!</p>
         <div className="register-form">

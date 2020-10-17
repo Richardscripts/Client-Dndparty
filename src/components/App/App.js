@@ -58,14 +58,12 @@ class App extends React.Component {
   };
 
   componentDidMount = () => {
-    this.handleLoading();
     const user = TokenService.getUserInfoFromAuthToken();
     this.setState({
       user: user.user_id,
       user_name: user.user_name,
       user_email: user.sub,
     });
-    this.handleLoading();
   };
 
   render() {
