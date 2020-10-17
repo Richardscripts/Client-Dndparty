@@ -101,6 +101,7 @@ class App extends React.Component {
                   {...props}
                   handleUserInfo={this.handleUserInfo}
                   loginUpdateToken={this.loginUpdateToken}
+                  handleLoading={this.handleLoading}
                 />
               )}
             />
