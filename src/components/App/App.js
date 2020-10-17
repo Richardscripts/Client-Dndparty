@@ -86,6 +86,7 @@ class App extends React.Component {
             toggleLogin={this.state.toggleLogin}
             handleToggleLogin={this.handleToggleLogin}
             history={this.props.history}
+            handleLoading={this.handleLoading}
           />
         )}
         <Route path="/create_party" component={CreatePartyTopBar} />
