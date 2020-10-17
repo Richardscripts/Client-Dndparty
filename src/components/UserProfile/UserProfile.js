@@ -51,9 +51,11 @@ class UserProfile extends React.Component {
     this.setState({
       error: null,
     });
+    this.props.handleLoading();
     ApiHelpers.editUserProfile(userInfo, user_id)
       .then(() => {
         this.setState({ editing: !this.state.editing });
+        this.props.handleLoading();
         this.profileApiCalls();
       })
       .catch((res) => {
@@ -71,15 +73,18 @@ class UserProfile extends React.Component {
   profileApiCalls = () => {
     const { match } = this.props;
     const user_id = match.params.user_id;
+    this.props.handleLoading();
     ApiHelpers.getUserProfile(user_id)
       .then((res) => {
         this.setState({
           user_info: [res],
         });
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
       });
+    this.props.handleLoading();
     ApiHelpers.getUserCreatedParties(user_id)
       .then((res) => {
         res.forEach((party) => {
@@ -100,15 +105,18 @@ class UserProfile extends React.Component {
         this.setState({
           created_parties: res,
         });
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
       });
+    this.props.handleLoading();
     ApiHelpers.getUserJoinedParty(user_id)
       .then((res) => {
         this.setState({
           joined_parties: res,
         });
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
@@ -174,7 +182,7 @@ class UserProfile extends React.Component {
     });
 
     return (
-      <div className="user-profile">
+      <div className="user-profile animate__animated animate__fadeIn">
         <div className="top-row-profile">
           <span tabIndex="0" className="profile-top-bar username-style-profile">
             {this.state.user_info[0].user_name}'s Profile

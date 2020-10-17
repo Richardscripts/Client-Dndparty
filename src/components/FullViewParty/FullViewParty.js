@@ -17,9 +17,11 @@ class FullViewParty extends React.Component {
   };
 
   acceptRequester = (user_id, type) => {
+    this.props.handleLoading();
     const party_id = this.state.current_party[0].party_id;
     ApiHelpers.acceptPartyJoinRequest(user_id, party_id, type)
       .then(() => {
+        this.props.handleLoading();
         window.location.reload();
       })
       .catch((res) => {
@@ -28,8 +30,10 @@ class FullViewParty extends React.Component {
   };
 
   handleRequestToJoinParty = (party_id) => {
+    this.props.handleLoading();
     ApiHelpers.requestTojoinParty(party_id)
       .then(() => {
+        this.props.handleLoading();
         this.fullviewPartyApiCalls();
       })
       .catch((res) => {
@@ -40,29 +44,35 @@ class FullViewParty extends React.Component {
   fullviewPartyApiCalls = () => {
     const { match } = this.props;
     const party_id = match.params.party_id;
+    this.props.handleLoading();
     ApiHelpers.getIndividualParty(party_id)
       .then((res) => {
         this.setState({
           current_party: [...res],
         });
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
       });
+    this.props.handleLoading();
     ApiHelpers.getUserRequests(party_id)
       .then((res) => {
         this.setState({
           current_user_requests: [...res],
         });
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
       });
+    this.props.handleLoading();
     ApiHelpers.getUsersWhoJoinedParty(party_id)
       .then((res) => {
         this.setState({
           current_joined_users: [...res],
         });
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
@@ -83,7 +93,7 @@ class FullViewParty extends React.Component {
     const existsRequests = this.state.current_user_requests.length !== 0;
     return (
       <>
-        <div className="full-party-view">
+        <div className="full-party-view animate__animated animate__fadeIn">
           <PartyInfo current_party={this.state.current_party} />
           {existsJoiners && (
             <div className="third-row-party">

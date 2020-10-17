@@ -14,8 +14,10 @@ import incomplete from './incomplete.png';
 import crossedswords from './crossedswords.png';
 import axes from './axes.png';
 import arrows from './arrows.png';
+import loading from './loading.gif';
 
 const images = {
+  loading,
   crossedswords,
   axes,
   arrows,

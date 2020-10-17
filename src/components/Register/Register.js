@@ -16,6 +16,7 @@ class Register extends React.Component {
     this.setState({
       error: null,
     });
+    this.props.handleLoading();
     ApiHelpers.registerUser(user_email.value, password.value, user_name.value)
       .then((res) => {
         user_email.value = '';
@@ -27,6 +28,7 @@ class Register extends React.Component {
         const user = TokenService.getUserInfoFromAuthToken();
         this.props.handleUserInfo(user);
         this.props.history.push(`/Player_Profile/${user.user_id}`);
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });

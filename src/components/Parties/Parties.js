@@ -13,11 +13,13 @@ class Parties extends React.Component {
   };
 
   componentDidMount() {
+    this.props.handleLoading();
     ApiHelpers.getPartyTables()
       .then((res) => {
         this.setState({
           current_parties: [...res],
         });
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
@@ -25,9 +27,11 @@ class Parties extends React.Component {
   }
 
   handleRequestToJoinParty = (party_id) => {
+    this.props.handleLoading();
     ApiHelpers.requestTojoinParty(party_id)
       .then(() => {
         this.props.history.push(`/Party/${party_id}`);
+        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
@@ -39,7 +43,10 @@ class Parties extends React.Component {
     const DndParties = this.state.current_parties.map((party, idx) => {
       const partyComplete = party.party_complete === 'Complete Party!';
       return (
-        <div key={idx} className="party-table">
+        <div
+          key={idx}
+          className="party-table animate__animated animate__fadeIn"
+        >
           <div className="party-top-info-bar">
             <div className="info-party-edition">
               <span className="edition-font">
