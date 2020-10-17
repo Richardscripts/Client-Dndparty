@@ -136,7 +136,9 @@ class App extends React.Component {
             />
             <Route
               path="/Create_Party"
-              render={(props) => <CreateParty {...props} />}
+              render={(props) => (
+                <CreateParty {...props} handleLoading={this.handleLoading} />
+              )}
             />
             <Route>
               <NoMatch />
