@@ -15,6 +15,8 @@ import Loading from '../Loading/Loading';
 import NoMatch from '../NoMatch/NoMatch';
 import TokenService from '../../Helpers/TokenService';
 import PrivateRoute from '../../Helpers/PrivateRoute';
+import partiesApi from '../../Helpers/ApiHelpers/parties';
+import Validators from '../../Helpers/Validators';
 
 import './App.css';
 
@@ -27,6 +29,8 @@ class App extends React.Component {
     profile_updated: false,
     toggleLogin: false,
     loading: false,
+    current_parties: [],
+    filtered_parties: [],
   };
 
   loginUpdateToken = () => {
@@ -58,6 +62,35 @@ class App extends React.Component {
     this.setState({ loading: !this.state.loading });
   };
 
+  handlePartyFilters = (
+    party_complete,
+    language,
+    dnd_edition,
+    dm_needed,
+    players_needed
+  ) => {
+    const filters = [
+      party_complete,
+      language,
+      dnd_edition,
+      dm_needed,
+      players_needed,
+    ];
+    let filteredParties = [];
+    let party = this.state.current_parties;
+    for (let i = 0; i < this.state.current_parties.length; i++) {
+      for (let n = 0; n < filters.length; n++) {
+        if (
+          party[i][Object.keys(filters[n])] ===
+          filters[n][Object.keys(filters[n])]
+        ) {
+          console.log('this', filteredParties);
+        }
+      }
+    }
+    this.setState({ filtered_parties: filteredParties });
+  };
+
   componentDidMount = () => {
     const user = TokenService.getUserInfoFromAuthToken();
     this.setState({
@@ -65,9 +98,25 @@ class App extends React.Component {
       user_name: user.user_name,
       user_email: user.sub,
     });
+    this.handleLoading();
+    partiesApi
+      .getPartyTables()
+      .then((res) => {
+        this.setState({
+          current_parties: [...res],
+          filtered_parties: [...res],
+        });
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      })
+      .finally(() => {
+        this.handleLoading();
+      });
   };
 
   render() {
+    // console.log(this.state.filtered_parties);
     return (
       <div className="App">
         <Header
@@ -78,7 +127,16 @@ class App extends React.Component {
           user_name={this.state.user_name}
         />
         {this.state.tokenExists && (
-          <Route exact path="/" component={CreatePartyButton} />
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <CreatePartyButton
+                {...props}
+                handlePartyFilters={this.handlePartyFilters}
+              />
+            )}
+          />
         )}
         {this.state.toggleLogin && (
           <Login
@@ -110,7 +168,11 @@ class App extends React.Component {
               exact
               path="/"
               render={(props) => (
-                <Parties {...props} handleLoading={this.handleLoading} />
+                <Parties
+                  {...props}
+                  handleLoading={this.handleLoading}
+                  filtered_parties={this.state.filtered_parties}
+                />
               )}
             />
             <Route

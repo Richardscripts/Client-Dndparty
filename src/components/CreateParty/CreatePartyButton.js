@@ -8,7 +8,7 @@ export default function CreatePartyButton(props) {
       <Link to="/Create_Party">
         <button className="PartyTableButton">Create Party Table</button>
       </Link>
-      <PartiesFilter />
+      <PartiesFilter handlePartyFilters={props.handlePartyFilters} />
     </div>
   );
 }

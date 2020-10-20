@@ -1,25 +1,66 @@
 import React from 'react';
 
+import images from '../../Assets/Groups-image/images';
+import './PartiesFilter.css';
+
 export default class PartiesFilter extends React.Component {
-  handleSelect = (e) => {
-    const { parties_filter } = e.target;
-    console.log(parties_filter);
+  state = {
+    parties_filter: '',
+    language: '',
+    dnd_edition: '',
+    dm_checked: false,
+    players_needed: 0,
+    filterTouched: false,
   };
+
+  gatherPartySelections = () => {
+    const state = this.state;
+    this.props.handlePartyFilters(
+      { party_complete: state.parties_filter },
+      { language: state.language },
+      { dnd_edition: state.dnd_edition },
+      { dm_needed: state.dm_checked.toString() },
+      { players_needed: state.players_needed.toString() }
+    );
+    this.setState({ filterTouched: false });
+  };
+
+  componentDidUpdate = () => {
+    if (this.state.filterTouched === true) {
+      this.gatherPartySelections();
+    }
+  };
+
   render() {
     return (
       <div className="PartiesFilter">
         <label htmlFor="parties_filter">Filter Parties: </label>
         <select
-          onChange={this.handleSelect}
+          onChange={(e) => {
+            this.setState({
+              parties_filter: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
           id="parties_filter"
           name="parties_filter"
         >
-          <option>All</option>
-          <option>Incomplete Parties</option>
-          <option>Completed Parties</option>
+          <option value="">All</option>
+          <option value="Party Incomplete!">Incomplete Parties</option>
+          <option value="Complete Party!">Completed Parties</option>
+          <option value="Joined">My Joined Parties</option>
         </select>
         <label htmlFor="filter_language">Language: </label>
-        <select id="filter_language" name="filter_language">
+        <select
+          onChange={(e) => {
+            this.setState({
+              language: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          id="filter_language"
+          name="filter_language"
+        >
           <option>All</option>
           <option>Catalan</option>
           <option>Chinese Simplified & Traditional</option>
@@ -48,7 +89,16 @@ export default class PartiesFilter extends React.Component {
           <option>Turkish</option>
         </select>
         <label htmlFor="filter_edition">D&amp;D Edition: </label>
-        <select id="filter_edition" name="filter_edition">
+        <select
+          onChange={(e) => {
+            this.setState({
+              dnd_edition: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          id="filter_edition"
+          name="filter_edition"
+        >
           <option>All</option>
           <option>5th Edition</option>
           <option>4th Edition</option>
@@ -56,6 +106,40 @@ export default class PartiesFilter extends React.Component {
           <option>2nd Edition</option>
           <option>1st Edition</option>
         </select>
+        <br />
+        <img
+          className="create-icons dm-image"
+          src={images.dm}
+          alt="an icon of 3 people"
+        />
+        <label htmlFor="dm_needed">DM:</label>
+        <input
+          type="checkbox"
+          name="dm_needed"
+          id="dm_needed"
+          onChange={(e) => {
+            this.setState({
+              dm_checked: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          aria-invalid="true"
+          aria-describedby="error-msg"
+        />
+        <label htmlFor="players_needed">Player(s) Needed:</label>
+        <input
+          onChange={(e) => {
+            this.setState({
+              players_needed: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          min={0}
+          type="number"
+          name="players_needed"
+          id="players_needed"
+          placeholder={0}
+        ></input>
       </div>
     );
   }
