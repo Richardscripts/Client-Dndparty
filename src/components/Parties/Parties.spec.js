@@ -7,9 +7,11 @@ import Parties from './Parties';
 it('renders without crashing', () => {
   const div = document.createElement('div');
 
+  function handleLoading() {}
+
   ReactDOM.render(
     <BrowserRouter>
-      <Parties />
+      <Parties handleLoading={handleLoading} />
     </BrowserRouter>,
     div
   );

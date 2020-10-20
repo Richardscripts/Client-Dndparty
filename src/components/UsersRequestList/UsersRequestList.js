@@ -34,6 +34,7 @@ export default function UsersRequestList(props) {
                     alt="Player Icon"
                   />
                   <u
+                    tabIndex="0"
                     onClick={() =>
                       props.acceptRequester(user.user_id, 'player')
                     }
@@ -49,7 +50,10 @@ export default function UsersRequestList(props) {
                     src={images.dm}
                     alt="Player Icon"
                   />
-                  <u onClick={() => props.acceptRequester(user.user_id, 'dm')}>
+                  <u
+                    tabIndex="0"
+                    onClick={() => props.acceptRequester(user.user_id, 'dm')}
+                  >
                     (Dungeon Master)
                   </u>
                 </>

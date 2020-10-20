@@ -7,9 +7,14 @@ import FullViewParty from './FullViewParty';
 it('renders without crashing', () => {
   const div = document.createElement('div');
 
+  function handleLoading() {}
+
   ReactDOM.render(
     <BrowserRouter>
-      <FullViewParty match={{ params: { pary_id: 1 } }} />
+      <FullViewParty
+        match={{ params: { pary_id: 1 } }}
+        handleLoading={handleLoading}
+      />
     </BrowserRouter>,
     div
   );

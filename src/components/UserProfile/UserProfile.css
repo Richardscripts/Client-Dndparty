@@ -217,6 +217,7 @@ textarea {
   text-shadow: none;
   text-align: justify;
   width: 100%;
+  word-break: break-word;
 }
 
 .player-info-top-bar {

@@ -14,6 +14,7 @@ import Register from '../Register/Register';
 import Loading from '../Loading/Loading';
 import NoMatch from '../NoMatch/NoMatch';
 import TokenService from '../../Helpers/TokenService';
+import PrivateRoute from '../../Helpers/PrivateRoute';
 
 import './App.css';
 
@@ -122,18 +123,15 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route
+            <PrivateRoute
               path="/Player_Profile/:user_id"
-              render={(props) => (
-                <UserProfile
-                  {...props}
-                  user_email={this.state.user_email}
-                  profile_updated={this.state.profile_updated}
-                  handleProfileUpdate={this.handleProfileUpdate}
-                  handleLoading={this.handleLoading}
-                />
-              )}
+              component={UserProfile}
+              user_email={this.state.user_email}
+              profile_updated={this.state.profile_updated}
+              handleProfileUpdate={this.handleProfileUpdate}
+              handleLoading={this.handleLoading}
             />
+
             <Route
               path="/Create_Party"
               render={(props) => (

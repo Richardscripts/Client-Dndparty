@@ -2,8 +2,8 @@ import React from 'react';
 import Language from './Language/Language';
 import DndEdition from './DndEdition/DndEdition';
 import OnlineOrNot from './OnlineOrNot/OnlineOrNot';
-import ApiHelpers from '../../Helpers/ApiHelpers';
 import images from '../../Assets/Groups-image/images';
+import partiesApi from '../../Helpers/ApiHelpers/parties';
 
 import './CreateParty.css';
 
@@ -54,13 +54,15 @@ export default class CreateParty extends React.Component {
     this.setState({
       error: null,
     });
-    ApiHelpers.createPartyTable(partyInfo)
+    partiesApi
+      .createPartyTable(partyInfo)
       .then((res) => {
         this.props.history.push(`/Party/${res.party_id}`);
-        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
+      })
+      .finally(() => {
         this.props.handleLoading();
       });
   };

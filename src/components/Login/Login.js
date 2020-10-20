@@ -1,6 +1,7 @@
 import React from 'react';
-import ApiHelpers from '../../Helpers/ApiHelpers';
 import TokenService from '../../Helpers/TokenService';
+import authApi from '../../Helpers/ApiHelpers/auth';
+
 import './Login.css';
 
 class Login extends React.Component {
@@ -19,7 +20,8 @@ class Login extends React.Component {
       error: null,
     });
     this.props.handleLoading();
-    ApiHelpers.loginUser(user_email.value, password.value)
+    authApi
+      .loginUser(user_email.value, password.value)
       .then((res) => {
         user_email.value = '';
         password.value = '';
@@ -30,10 +32,11 @@ class Login extends React.Component {
         this.props.handleUserInfo(user);
         this.props.handleToggleLogin();
         this.props.history.push(`/Player_Profile/${user.user_id}`);
-        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
+      })
+      .finally(() => {
         this.props.handleLoading();
       });
   };

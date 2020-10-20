@@ -8,7 +8,7 @@ DndParty is a website for users to create and join parties to experience the gre
 
 **Server-side:**  `NODEJS EXPRESS KNEX`
 
-**Backend: **`POSTGRESQL`
+**Backend:**`POSTGRESQL`
 
 **Testing:** `JEST MOCHA CHAI SUPERTEST`
 
