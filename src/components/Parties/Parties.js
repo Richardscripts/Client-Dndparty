@@ -12,7 +12,7 @@ class Parties extends React.Component {
     current_parties: [],
   };
 
-  componentDidMount() {
+  handleRequestToJoinParty = (party_id) => {
     this.props.handleLoading();
     partiesApi
       .getPartyTables()
@@ -27,10 +27,16 @@ class Parties extends React.Component {
       .finally(() => {
         this.props.handleLoading();
       });
-  }
+  };
 
-  handleRequestToJoinParty = (party_id) => {
+  handlePartyFilters = (e) => {
+    //take value from target
+    //filter current_parties based on value
+  };
+
+  componentDidMount() {
     this.props.handleLoading();
+
     partiesApi
       .requestTojoinParty(party_id)
       .then(() => {
@@ -42,7 +48,7 @@ class Parties extends React.Component {
       .finally(() => {
         this.props.handleLoading();
       });
-  };
+  }
 
   render() {
     const isLoginedIn = Validators.ifPartyJoinerOrRequester();
