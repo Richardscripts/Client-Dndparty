@@ -5,12 +5,13 @@ export default function PartiesFilter(props) {
     <div className="PartiesFilter">
       <label htmlFor="parties_filter">Filter Parties: </label>
       <select id="parties_filter" name="parties_filter">
-        <option>View All</option>
+        <option>All</option>
         <option>Incomplete Parties</option>
         <option>Completed Parties</option>
       </select>
       <label htmlFor="filter_language">Language: </label>
       <select id="filter_language" name="filter_language">
+        <option>All</option>
         <option>Catalan</option>
         <option>Chinese Simplified & Traditional</option>
         <option>Czech</option>
@@ -39,6 +40,7 @@ export default function PartiesFilter(props) {
       </select>
       <label htmlFor="filter_edition">D&amp;D Edition: </label>
       <select id="filter_edition" name="filter_edition">
+        <option>All</option>
         <option>5th Edition</option>
         <option>4th Edition</option>
         <option>3rd Edition</option>
