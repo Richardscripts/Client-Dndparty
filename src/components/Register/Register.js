@@ -1,7 +1,8 @@
 import React from 'react';
-import ApiHelpers from '../../Helpers/ApiHelpers';
+
 import TokenService from '../../Helpers/TokenService';
 import images from '../../Assets/Groups-image/images';
+import authApi from '../../Helpers/ApiHelpers/auth';
 
 import './Register.css';
 
@@ -17,7 +18,8 @@ class Register extends React.Component {
       error: null,
     });
     this.props.handleLoading();
-    ApiHelpers.registerUser(user_email.value, password.value, user_name.value)
+    authApi
+      .registerUser(user_email.value, password.value, user_name.value)
       .then((res) => {
         user_email.value = '';
         password.value = '';
@@ -28,10 +30,11 @@ class Register extends React.Component {
         const user = TokenService.getUserInfoFromAuthToken();
         this.props.handleUserInfo(user);
         this.props.history.push(`/Player_Profile/${user.user_id}`);
-        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
+      })
+      .finally(() => {
         this.props.handleLoading();
       });
   };

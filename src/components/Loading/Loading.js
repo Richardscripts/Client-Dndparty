@@ -4,7 +4,7 @@ import './Loading.css';
 
 export default function Loading(props) {
   return (
-    <div className="loading-img-wrapper animate__animated animate__fadeIn animate__delay-2s">
+    <div className="loading-img-wrapper animate__animated animate__fadeIn animate__delay-1s">
       <img
         className="loading-img"
         src={images.loading}

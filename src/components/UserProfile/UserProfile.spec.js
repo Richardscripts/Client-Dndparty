@@ -7,9 +7,14 @@ import UserProfile from './UserProfile';
 it('renders without crashing', () => {
   const div = document.createElement('div');
 
+  function handleLoading() {}
+
   ReactDOM.render(
     <BrowserRouter>
-      <UserProfile match={{ params: { pary_id: 1 } }} />
+      <UserProfile
+        match={{ params: { pary_id: 1 } }}
+        handleLoading={handleLoading}
+      />
     </BrowserRouter>,
     div
   );

@@ -1,10 +1,12 @@
 import React from 'react';
 import images from '../../Assets/Groups-image/images';
-import ApiHelpers from '../../Helpers/ApiHelpers';
+
 import UserInfoForm from './UserInfoForm/UserInfoForm';
 import Validators from '../../Helpers/Validators';
 
 import { Link } from 'react-router-dom';
+import profileApi from '../../Helpers/ApiHelpers/profile';
+import partiesApi from '../../Helpers/ApiHelpers/parties';
 import './UserProfile.css';
 
 class UserProfile extends React.Component {
@@ -52,14 +54,17 @@ class UserProfile extends React.Component {
       error: null,
     });
     this.props.handleLoading();
-    ApiHelpers.editUserProfile(userInfo, user_id)
+    profileApi
+      .editUserProfile(userInfo, user_id)
       .then(() => {
         this.setState({ editing: !this.state.editing });
-        this.props.handleLoading();
+
         this.profileApiCalls();
       })
       .catch((res) => {
         this.setState({ error: res.error });
+      })
+      .finally(() => {
         this.props.handleLoading();
       });
   };
@@ -75,23 +80,26 @@ class UserProfile extends React.Component {
     const { match } = this.props;
     const user_id = match.params.user_id;
     this.props.handleLoading();
-    ApiHelpers.getUserProfile(user_id)
+    profileApi
+      .getUserProfile(user_id)
       .then((res) => {
         this.setState({
           user_info: [res],
         });
-        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
+      })
+      .finally(() => {
         this.props.handleLoading();
       });
     this.props.handleLoading();
-    ApiHelpers.getUserCreatedParties(user_id)
+    profileApi
+      .getUserCreatedParties(user_id)
       .then((res) => {
         res.forEach((party) => {
           party.requesters = [];
-          ApiHelpers.getUserRequests(party.party_id).then((result) => {
+          partiesApi.getUserRequests(party.party_id).then((result) => {
             for (let i = 0; i < result.length; i++) {
               this.setState(() =>
                 party.requesters.push([
@@ -107,22 +115,25 @@ class UserProfile extends React.Component {
         this.setState({
           created_parties: res,
         });
-        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
+      })
+      .finally(() => {
         this.props.handleLoading();
       });
     this.props.handleLoading();
-    ApiHelpers.getUserJoinedParty(user_id)
+    partiesApi
+      .getUserJoinedParty(user_id)
       .then((res) => {
         this.setState({
           joined_parties: res,
         });
-        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
+      })
+      .finally(() => {
         this.props.handleLoading();
       });
   };

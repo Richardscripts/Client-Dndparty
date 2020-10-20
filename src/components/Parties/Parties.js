@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import images from '../../Assets/Groups-image/images';
-import ApiHelpers from '../../Helpers/ApiHelpers';
+import partiesApi from '../../Helpers/ApiHelpers/parties';
 import Validators from '../../Helpers/Validators';
 
 import './Parties.css';
@@ -14,28 +14,32 @@ class Parties extends React.Component {
 
   componentDidMount() {
     this.props.handleLoading();
-    ApiHelpers.getPartyTables()
+    partiesApi
+      .getPartyTables()
       .then((res) => {
         this.setState({
           current_parties: [...res],
         });
-        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
+      })
+      .finally(() => {
         this.props.handleLoading();
       });
   }
 
   handleRequestToJoinParty = (party_id) => {
     this.props.handleLoading();
-    ApiHelpers.requestTojoinParty(party_id)
+    partiesApi
+      .requestTojoinParty(party_id)
       .then(() => {
         this.props.history.push(`/Party/${party_id}`);
-        this.props.handleLoading();
       })
       .catch((res) => {
         this.setState({ error: res.error });
+      })
+      .finally(() => {
         this.props.handleLoading();
       });
   };
