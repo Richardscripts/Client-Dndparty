@@ -9,7 +9,11 @@ export default class PartiesFilter extends React.Component {
     return (
       <div className="PartiesFilter">
         <label htmlFor="parties_filter">Filter Parties: </label>
-        <select id="parties_filter" name="parties_filter">
+        <select
+          onChange={this.handleSelect}
+          id="parties_filter"
+          name="parties_filter"
+        >
           <option>All</option>
           <option>Incomplete Parties</option>
           <option>Completed Parties</option>

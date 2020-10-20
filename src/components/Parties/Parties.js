@@ -36,7 +36,6 @@ class Parties extends React.Component {
 
   componentDidMount() {
     this.props.handleLoading();
-
     partiesApi
       .requestTojoinParty(party_id)
       .then(() => {
