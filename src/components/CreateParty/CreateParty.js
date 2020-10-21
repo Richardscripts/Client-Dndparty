@@ -16,7 +16,7 @@ export default class CreateParty extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     const {
       party_name,
       players_needed,
@@ -63,7 +63,7 @@ export default class CreateParty extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
   };
   render() {

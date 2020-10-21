@@ -53,7 +53,7 @@ class UserProfile extends React.Component {
     this.setState({
       error: null,
     });
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     profileApi
       .editUserProfile(userInfo, user_id)
       .then(() => {
@@ -65,7 +65,7 @@ class UserProfile extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
   };
 
@@ -79,7 +79,7 @@ class UserProfile extends React.Component {
   profileApiCalls = () => {
     const { match } = this.props;
     const user_id = match.params.user_id;
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     profileApi
       .getUserProfile(user_id)
       .then((res) => {
@@ -91,9 +91,9 @@ class UserProfile extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     profileApi
       .getUserCreatedParties(user_id)
       .then((res) => {
@@ -120,9 +120,9 @@ class UserProfile extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     partiesApi
       .getUserJoinedParty(user_id)
       .then((res) => {
@@ -134,7 +134,7 @@ class UserProfile extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
   };
 

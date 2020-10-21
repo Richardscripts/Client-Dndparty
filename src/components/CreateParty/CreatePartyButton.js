@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import PartiesFilter from '../PartiesFilter/PartiesFilter';
+import PartiesFilter from '../PartiesFilter/PartiesFilter';
 
 export default function CreatePartyButton(props) {
   return (
@@ -8,7 +8,7 @@ export default function CreatePartyButton(props) {
       <Link to="/Create_Party">
         <div className="PartyTableButton">Create Party Table</div>
       </Link>
-      {/* <PartiesFilter /> Stretch Goal */}
+      <PartiesFilter handlePartyFilters={props.handlePartyFilters} />
     </div>
   );
 }

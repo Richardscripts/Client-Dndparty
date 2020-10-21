@@ -19,7 +19,7 @@ class Login extends React.Component {
     this.setState({
       error: null,
     });
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     authApi
       .loginUser(user_email.value, password.value)
       .then((res) => {
@@ -37,7 +37,7 @@ class Login extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
   };
   render() {
