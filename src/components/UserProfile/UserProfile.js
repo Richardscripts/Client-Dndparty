@@ -190,7 +190,7 @@ class UserProfile extends React.Component {
           </span>
           <br />
           <Link to={`/Party/${party.party_id}`}>
-            <button className="view-button PartyTableButton">View</button>{' '}
+            <div className="view-button PartyTableButton">View</div>{' '}
           </Link>
         </div>
       );

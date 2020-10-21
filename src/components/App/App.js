@@ -15,6 +15,7 @@ import Loading from '../Loading/Loading';
 import NoMatch from '../NoMatch/NoMatch';
 import TokenService from '../../Helpers/TokenService';
 import PrivateRoute from '../../Helpers/PrivateRoute';
+import images from '../../Assets/Groups-image/images';
 
 import './App.css';
 

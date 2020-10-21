@@ -6,7 +6,7 @@ export default function CreatePartyButton(props) {
   return (
     <div className="create-party-bar">
       <Link to="/Create_Party">
-        <button className="PartyTableButton">Create Party Table</button>
+        <div className="PartyTableButton">Create Party Table</div>
       </Link>
       {/* <PartiesFilter /> Stretch Goal */}
     </div>

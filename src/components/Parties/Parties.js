@@ -113,13 +113,13 @@ class Parties extends React.Component {
           <div className="party-name">{party.party_name}</div>
           <div className="button-wrapper">
             <Link to={`/Party/${party.party_id}`}>
-              <button className="view-button PartyTableButton">
+              <div className="view-button PartyTableButton">
                 View
                 <span className="visuallyhidden">
                   {`, Party ${party.party_id}, Party Name: ${party.party_name}, ${party.dnd_edition}, Players Needed: ${party.players_needed}, DM needed`}
                   {party.dm_needed ? 'Yes,' : 'No,'}
                 </span>
-              </button>{' '}
+              </div>{' '}
             </Link>
             {!Validators.ifCreatorOfParty(party.user_id_creator) &&
               !isLoginedIn &&
