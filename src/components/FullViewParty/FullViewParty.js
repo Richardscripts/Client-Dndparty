@@ -17,7 +17,7 @@ class FullViewParty extends React.Component {
   };
 
   acceptRequester = (user_id, type) => {
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     const party_id = this.state.current_party[0].party_id;
     partiesApi
       .acceptPartyJoinRequest(user_id, party_id, type)
@@ -25,15 +25,13 @@ class FullViewParty extends React.Component {
         window.location.reload();
       })
       .catch((res) => {
+        this.props.handleEndLoading();
         this.setState({ error: res.error });
-      })
-      .finally(() => {
-        this.props.handleLoading();
       });
   };
 
   handleRequestToJoinParty = (party_id) => {
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     partiesApi
       .requestTojoinParty(party_id)
       .then(() => {
@@ -43,14 +41,14 @@ class FullViewParty extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
   };
 
   fullviewPartyApiCalls = () => {
     const { match } = this.props;
     const party_id = match.params.party_id;
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     partiesApi
       .getIndividualParty(party_id)
       .then((res) => {
@@ -62,9 +60,9 @@ class FullViewParty extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     partiesApi
       .getUserRequests(party_id)
       .then((res) => {
@@ -76,9 +74,9 @@ class FullViewParty extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     partiesApi
       .getUsersWhoJoinedParty(party_id)
       .then((res) => {
@@ -90,7 +88,7 @@ class FullViewParty extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
   };
 

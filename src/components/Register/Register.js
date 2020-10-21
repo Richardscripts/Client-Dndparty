@@ -17,7 +17,7 @@ class Register extends React.Component {
     this.setState({
       error: null,
     });
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     authApi
       .registerUser(user_email.value, password.value, user_name.value)
       .then((res) => {
@@ -35,7 +35,7 @@ class Register extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
   };
   render() {

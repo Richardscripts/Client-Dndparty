@@ -9,28 +9,10 @@ import './Parties.css';
 class Parties extends React.Component {
   state = {
     error: null,
-    current_parties: [],
   };
 
-  componentDidMount() {
-    this.props.handleLoading();
-    partiesApi
-      .getPartyTables()
-      .then((res) => {
-        this.setState({
-          current_parties: [...res],
-        });
-      })
-      .catch((res) => {
-        this.setState({ error: res.error });
-      })
-      .finally(() => {
-        this.props.handleLoading();
-      });
-  }
-
   handleRequestToJoinParty = (party_id) => {
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     partiesApi
       .requestTojoinParty(party_id)
       .then(() => {
@@ -40,13 +22,13 @@ class Parties extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
   };
 
   render() {
     const isLoginedIn = Validators.ifPartyJoinerOrRequester();
-    const DndParties = this.state.current_parties.map((party, idx) => {
+    const DndParties = this.props.filtered_parties.map((party, idx) => {
       const partyComplete = party.party_complete === 'Complete Party!';
       return (
         <div

@@ -15,6 +15,7 @@ import Loading from '../Loading/Loading';
 import NoMatch from '../NoMatch/NoMatch';
 import TokenService from '../../Helpers/TokenService';
 import PrivateRoute from '../../Helpers/PrivateRoute';
+import partiesApi from '../../Helpers/ApiHelpers/parties';
 
 import './App.css';
 
@@ -27,6 +28,8 @@ class App extends React.Component {
     profile_updated: false,
     toggleLogin: false,
     loading: false,
+    current_parties: [],
+    filtered_parties: [],
   };
 
   loginUpdateToken = () => {
@@ -54,8 +57,43 @@ class App extends React.Component {
     });
   };
 
-  handleLoading = () => {
-    this.setState({ loading: !this.state.loading });
+  handleStartLoading = () => {
+    this.setState({ loading: true });
+  };
+
+  handleEndLoading = () => {
+    this.setState({ loading: false });
+  };
+
+  handlePartyFilters = (
+    party_complete,
+    language,
+    dnd_edition,
+    dm_needed,
+    players_needed
+  ) => {
+    const filters = [
+      party_complete,
+      language,
+      dnd_edition,
+      dm_needed,
+      players_needed,
+    ];
+    if (filters[4].players_needed === '0') {
+      filters[4].players_needed = false;
+    }
+    let filteredParties = this.state.current_parties;
+    for (let i = 0; i < filters.length; i++) {
+      if (filters[i][Object.keys(filters[i])]) {
+        filteredParties = filteredParties.filter((party) => {
+          return (
+            party[Object.keys(filters[i])] ===
+            filters[i][Object.keys(filters[i])].toString()
+          );
+        });
+      }
+    }
+    this.setState({ filtered_parties: filteredParties });
   };
 
   componentDidMount = () => {
@@ -64,7 +102,22 @@ class App extends React.Component {
       user: user.user_id,
       user_name: user.user_name,
       user_email: user.sub,
+      loading: true,
     });
+    partiesApi
+      .getPartyTables()
+      .then((res) => {
+        this.setState({
+          current_parties: [...res],
+          filtered_parties: [...res],
+        });
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      })
+      .finally(() => {
+        this.handleEndLoading();
+      });
   };
 
   render() {
@@ -78,7 +131,16 @@ class App extends React.Component {
           user_name={this.state.user_name}
         />
         {this.state.tokenExists && (
-          <Route exact path="/" component={CreatePartyButton} />
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <CreatePartyButton
+                {...props}
+                handlePartyFilters={this.handlePartyFilters}
+              />
+            )}
+          />
         )}
         {this.state.toggleLogin && (
           <Login
@@ -87,7 +149,8 @@ class App extends React.Component {
             toggleLogin={this.state.toggleLogin}
             handleToggleLogin={this.handleToggleLogin}
             history={this.props.history}
-            handleLoading={this.handleLoading}
+            handleStartLoading={this.handleStartLoading}
+            handleEndLoading={this.handleEndLoading}
           />
         )}
         <Route path="/create_party" component={CreatePartyTopBar} />
@@ -102,7 +165,8 @@ class App extends React.Component {
                   {...props}
                   handleUserInfo={this.handleUserInfo}
                   loginUpdateToken={this.loginUpdateToken}
-                  handleLoading={this.handleLoading}
+                  handleStartLoading={this.handleStartLoading}
+                  handleEndLoading={this.handleEndLoading}
                 />
               )}
             />
@@ -110,7 +174,12 @@ class App extends React.Component {
               exact
               path="/"
               render={(props) => (
-                <Parties {...props} handleLoading={this.handleLoading} />
+                <Parties
+                  {...props}
+                  handleStartLoading={this.handleStartLoading}
+                  handleEndLoading={this.handleEndLoading}
+                  filtered_parties={this.state.filtered_parties}
+                />
               )}
             />
             <Route
@@ -118,8 +187,9 @@ class App extends React.Component {
               render={(props) => (
                 <FullViewParty
                   {...props}
-                  handleRequestToJoinParty={this.handleRequestToJoinParty}
-                  handleLoading={this.handleLoading}
+                  handleStartLoading={this.handleStartLoading}
+                  handleEndLoading={this.handleEndLoading}
+                  loading={this.state.loading}
                 />
               )}
             />
@@ -129,13 +199,18 @@ class App extends React.Component {
               user_email={this.state.user_email}
               profile_updated={this.state.profile_updated}
               handleProfileUpdate={this.handleProfileUpdate}
-              handleLoading={this.handleLoading}
+              handleStartLoading={this.handleStartLoading}
+              handleEndLoading={this.handleEndLoading}
             />
 
             <Route
               path="/Create_Party"
               render={(props) => (
-                <CreateParty {...props} handleLoading={this.handleLoading} />
+                <CreateParty
+                  {...props}
+                  handleStartLoading={this.handleStartLoading}
+                  handleEndLoading={this.handleEndLoading}
+                />
               )}
             />
             <Route>
