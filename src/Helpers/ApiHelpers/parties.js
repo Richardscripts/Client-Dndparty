@@ -90,7 +90,7 @@ const partiesApi = {
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));
       } else {
-        return res.json();
+        return;
       }
     });
   },

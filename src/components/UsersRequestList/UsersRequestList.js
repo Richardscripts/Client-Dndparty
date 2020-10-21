@@ -26,7 +26,7 @@ export default function UsersRequestList(props) {
               <span tabIndex="0" className="request-style">
                 Accept request as:
               </span>{' '}
-              {props.party.players_needed && (
+              {props.party.players_needed !== '0' && (
                 <>
                   <img
                     className="fullview-players-img request-img"
