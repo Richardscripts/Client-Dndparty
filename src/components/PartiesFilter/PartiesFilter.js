@@ -9,18 +9,19 @@ export default class PartiesFilter extends React.Component {
     language: '',
     dnd_edition: '',
     dm_checked: false,
-    players_needed: 0,
+    players_needed: '',
     filterTouched: false,
   };
 
   gatherPartySelections = () => {
     const state = this.state;
+    console.log(state.players_needed);
     this.props.handlePartyFilters(
       { party_complete: state.parties_filter },
       { language: state.language },
       { dnd_edition: state.dnd_edition },
-      { dm_needed: state.dm_checked.toString() },
-      { players_needed: state.players_needed.toString() }
+      { dm_needed: state.dm_checked },
+      { players_needed: state.players_needed }
     );
     this.setState({ filterTouched: false });
   };
@@ -61,7 +62,7 @@ export default class PartiesFilter extends React.Component {
           id="filter_language"
           name="filter_language"
         >
-          <option>All</option>
+          <option value="">All</option>
           <option>Catalan</option>
           <option>Chinese Simplified & Traditional</option>
           <option>Czech</option>
@@ -99,7 +100,7 @@ export default class PartiesFilter extends React.Component {
           id="filter_edition"
           name="filter_edition"
         >
-          <option>All</option>
+          <option value="">All</option>
           <option>5th Edition</option>
           <option>4th Edition</option>
           <option>3rd Edition</option>
@@ -119,7 +120,7 @@ export default class PartiesFilter extends React.Component {
           id="dm_needed"
           onChange={(e) => {
             this.setState({
-              dm_checked: e.target.value,
+              dm_checked: !this.state.dm_checked,
               filterTouched: !this.state.filterTouched,
             });
           }}

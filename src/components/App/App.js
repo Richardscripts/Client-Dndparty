@@ -16,7 +16,6 @@ import NoMatch from '../NoMatch/NoMatch';
 import TokenService from '../../Helpers/TokenService';
 import PrivateRoute from '../../Helpers/PrivateRoute';
 import partiesApi from '../../Helpers/ApiHelpers/parties';
-import Validators from '../../Helpers/Validators';
 
 import './App.css';
 
@@ -76,16 +75,18 @@ class App extends React.Component {
       dm_needed,
       players_needed,
     ];
-    let filteredParties = [];
-    let party = this.state.current_parties;
-    for (let i = 0; i < this.state.current_parties.length; i++) {
-      for (let n = 0; n < filters.length; n++) {
-        if (
-          party[i][Object.keys(filters[n])] ===
-          filters[n][Object.keys(filters[n])]
-        ) {
-          console.log('this', filteredParties);
-        }
+    if (filters[4].players_needed === '0') {
+      filters[4].players_needed = false;
+    }
+    let filteredParties = this.state.current_parties;
+    for (let i = 0; i < filters.length; i++) {
+      if (filters[i][Object.keys(filters[i])]) {
+        filteredParties = filteredParties.filter((party) => {
+          return (
+            party[Object.keys(filters[i])] ===
+            filters[i][Object.keys(filters[i])].toString()
+          );
+        });
       }
     }
     this.setState({ filtered_parties: filteredParties });
@@ -116,7 +117,6 @@ class App extends React.Component {
   };
 
   render() {
-    // console.log(this.state.filtered_parties);
     return (
       <div className="App">
         <Header
