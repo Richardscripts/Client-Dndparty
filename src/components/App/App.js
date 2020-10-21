@@ -57,8 +57,12 @@ class App extends React.Component {
     });
   };
 
-  handleLoading = () => {
-    this.setState({ loading: !this.state.loading });
+  handleStartLoading = () => {
+    this.setState({ loading: true });
+  };
+
+  handleEndLoading = () => {
+    this.setState({ loading: false });
   };
 
   handlePartyFilters = (
@@ -98,8 +102,8 @@ class App extends React.Component {
       user: user.user_id,
       user_name: user.user_name,
       user_email: user.sub,
+      loading: true,
     });
-    this.handleLoading();
     partiesApi
       .getPartyTables()
       .then((res) => {
@@ -112,7 +116,7 @@ class App extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.handleLoading();
+        this.handleEndLoading();
       });
   };
 
@@ -145,7 +149,8 @@ class App extends React.Component {
             toggleLogin={this.state.toggleLogin}
             handleToggleLogin={this.handleToggleLogin}
             history={this.props.history}
-            handleLoading={this.handleLoading}
+            handleStartLoading={this.handleStartLoading}
+            handleEndLoading={this.handleEndLoading}
           />
         )}
         <Route path="/create_party" component={CreatePartyTopBar} />
@@ -160,7 +165,8 @@ class App extends React.Component {
                   {...props}
                   handleUserInfo={this.handleUserInfo}
                   loginUpdateToken={this.loginUpdateToken}
-                  handleLoading={this.handleLoading}
+                  handleStartLoading={this.handleStartLoading}
+                  handleEndLoading={this.handleEndLoading}
                 />
               )}
             />
@@ -170,7 +176,8 @@ class App extends React.Component {
               render={(props) => (
                 <Parties
                   {...props}
-                  handleLoading={this.handleLoading}
+                  handleStartLoading={this.handleStartLoading}
+                  handleEndLoading={this.handleEndLoading}
                   filtered_parties={this.state.filtered_parties}
                 />
               )}
@@ -180,8 +187,9 @@ class App extends React.Component {
               render={(props) => (
                 <FullViewParty
                   {...props}
-                  handleRequestToJoinParty={this.handleRequestToJoinParty}
-                  handleLoading={this.handleLoading}
+                  handleStartLoading={this.handleStartLoading}
+                  handleEndLoading={this.handleEndLoading}
+                  loading={this.state.loading}
                 />
               )}
             />
@@ -191,13 +199,18 @@ class App extends React.Component {
               user_email={this.state.user_email}
               profile_updated={this.state.profile_updated}
               handleProfileUpdate={this.handleProfileUpdate}
-              handleLoading={this.handleLoading}
+              handleStartLoading={this.handleStartLoading}
+              handleEndLoading={this.handleEndLoading}
             />
 
             <Route
               path="/Create_Party"
               render={(props) => (
-                <CreateParty {...props} handleLoading={this.handleLoading} />
+                <CreateParty
+                  {...props}
+                  handleStartLoading={this.handleStartLoading}
+                  handleEndLoading={this.handleEndLoading}
+                />
               )}
             />
             <Route>

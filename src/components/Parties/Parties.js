@@ -12,7 +12,7 @@ class Parties extends React.Component {
   };
 
   handleRequestToJoinParty = (party_id) => {
-    this.props.handleLoading();
+    this.props.handleStartLoading();
     partiesApi
       .requestTojoinParty(party_id)
       .then(() => {
@@ -22,7 +22,7 @@ class Parties extends React.Component {
         this.setState({ error: res.error });
       })
       .finally(() => {
-        this.props.handleLoading();
+        this.props.handleEndLoading();
       });
   };
 
