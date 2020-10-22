@@ -70,6 +70,50 @@ footer {
   border: 1px rgb(78, 78, 78) solid;
 }
 
+.register-icons {
+  width: 60px;
+}
+
+.instructions-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: 45px;
+  text-align: center;
+  background-image: linear-gradient(rgb(34, 34, 34), rgb(14, 14, 14));
+}
+
+.col {
+  border: 1px white solid;
+  width: 200px;
+  min-height: 250px;
+  margin: auto;
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: rgb(47, 47, 47);
+  color: #ffe3db;
+}
+
+.App > p {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #ffe3db;
+}
+
+.party-tables-bar {
+  text-align: center;
+  font-size: 18px;
+  background-color: rgb(12, 12, 12);
+  font-family: 'UnifrakturCook';
+  padding: 20px;
+  font-size: 54px;
+  color: #e05b3d;
+}
+
 @media all and (min-width: 500px) {
   main {
     flex-direction: row;
@@ -92,5 +136,20 @@ footer {
   .dndparty-logo {
     font-size: 52px;
     margin-left: 20px;
+  }
+  .instructions-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .col {
+    border: 1px white solid;
+    padding: 25px;
+    width: 200px;
+    margin: 25px;
+    margin-bottom: 100px;
+  }
+  .App > p {
+    font-size: 34px;
   }
 }

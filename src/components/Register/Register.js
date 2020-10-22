@@ -1,7 +1,6 @@
 import React from 'react';
 
 import TokenService from '../../Helpers/TokenService';
-import images from '../../Assets/Groups-image/images';
 import authApi from '../../Helpers/ApiHelpers/auth';
 
 import './Register.css';
@@ -100,45 +99,6 @@ class Register extends React.Component {
               </div>
             )}
           </form>
-        </div>
-        <p>
-          It's Easy. Register. Create Parties or Join them and Connect with
-          Fellow Dnders!
-        </p>
-        <div className="instructions-row">
-          <div className="col">
-            <h3>Register</h3>
-            <img
-              className="register-icons"
-              src={images.axes}
-              alt="Tiny icon of Crossed Axes"
-            />
-            <p>Sign up and flesh out your profile!</p>
-          </div>
-          <div className="col">
-            <h3>Create Parties</h3>
-            <img
-              className="register-icons"
-              src={images.arrows}
-              alt="Tiny icon of Crossed Axes"
-            />
-            <p>
-              You can Create a Party Table for users to view and join with tons
-              of information to find the right roleplayer for your group.
-            </p>
-          </div>
-          <div className="col">
-            <h3>Join Parties</h3>
-            <img
-              className="register-icons"
-              src={images.crossedswords}
-              alt="Tiny icon of Crossed Axes"
-            />
-            <p>
-              Join Parties created by other users and be invited to play the
-              greatest roleplaying game of all time! That's it.
-            </p>
-          </div>
         </div>
       </div>
     );

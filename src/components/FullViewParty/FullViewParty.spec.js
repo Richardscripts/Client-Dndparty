@@ -7,13 +7,15 @@ import FullViewParty from './FullViewParty';
 it('renders without crashing', () => {
   const div = document.createElement('div');
 
-  function handleLoading() {}
+  function handleStartLoading() {}
+  function handleEndLoading() {}
 
   ReactDOM.render(
     <BrowserRouter>
       <FullViewParty
         match={{ params: { pary_id: 1 } }}
-        handleLoading={handleLoading}
+        handleStartLoading={handleStartLoading}
+        handleEndLoading={handleEndLoading}
       />
     </BrowserRouter>,
     div

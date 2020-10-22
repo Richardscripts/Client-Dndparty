@@ -19,6 +19,8 @@ import PrivateRoute from '../../Helpers/PrivateRoute';
 import partiesApi from '../../Helpers/ApiHelpers/parties';
 
 import './App.css';
+import LandingPage from '../LandingPage/LandingPage';
+import PartiesTablesBar from '../Parties/Parties-tables-bar/PartiesTablesBar';
 
 class App extends React.Component {
   state = {
@@ -147,7 +149,6 @@ class App extends React.Component {
           <Login
             loginUpdateToken={this.loginUpdateToken}
             handleUserInfo={this.handleUserInfo}
-            toggleLogin={this.state.toggleLogin}
             handleToggleLogin={this.handleToggleLogin}
             history={this.props.history}
             handleStartLoading={this.handleStartLoading}
@@ -156,6 +157,10 @@ class App extends React.Component {
         )}
         <Route path="/create_party" component={CreatePartyTopBar} />
         <Route path="/Party" component={FullViewPartyTopBar} />
+        {!this.state.tokenExists && (
+          <Route exact path="/" component={LandingPage} />
+        )}
+        <Route exact path="/" component={PartiesTablesBar} />
         <main>
           {this.state.loading && <Loading />}
           <Switch>

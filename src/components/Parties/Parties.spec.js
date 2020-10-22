@@ -6,12 +6,18 @@ import Parties from './Parties';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
+  const filtered_parties = [];
 
-  function handleLoading() {}
+  function handleStartLoading() {}
+  function handleEndLoading() {}
 
   ReactDOM.render(
     <BrowserRouter>
-      <Parties handleLoading={handleLoading} />
+      <Parties
+        handleStartLoading={handleStartLoading}
+        handleEndLoading={handleEndLoading}
+        filtered_parties={filtered_parties}
+      />
     </BrowserRouter>,
     div
   );
