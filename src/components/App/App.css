@@ -22,7 +22,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  color: #e05b3d;
+  color: #e45738;
   width: 100%;
   box-sizing: border-box;
   font-weight: bold;
@@ -91,7 +91,11 @@ footer {
   margin-bottom: 30px;
   padding: 15px;
   background-color: rgb(47, 47, 47);
-  color: #ffe3db;
+  color: #fbfbfb;
+}
+
+.col > h3 {
+  color: #e05b3d;
 }
 
 .App > p {
@@ -101,7 +105,7 @@ footer {
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  color: #ffe3db;
+  color: white;
 }
 
 .party-tables-bar {

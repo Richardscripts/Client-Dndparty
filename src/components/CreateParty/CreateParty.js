@@ -57,6 +57,7 @@ export default class CreateParty extends React.Component {
     partiesApi
       .createPartyTable(partyInfo)
       .then((res) => {
+        this.props.getPartiesApi();
         this.props.history.push(`/Party/${res.party_id}`);
       })
       .catch((res) => {

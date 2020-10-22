@@ -99,7 +99,7 @@ class App extends React.Component {
     this.setState({ filtered_parties: filteredParties });
   };
 
-  componentDidMount = () => {
+  getPartiesApi = () => {
     const user = TokenService.getUserInfoFromAuthToken();
     this.setState({
       user: user.user_id,
@@ -121,6 +121,10 @@ class App extends React.Component {
       .finally(() => {
         this.handleEndLoading();
       });
+  };
+
+  componentDidMount = () => {
+    this.getPartiesApi();
   };
 
   render() {
@@ -216,6 +220,7 @@ class App extends React.Component {
                   {...props}
                   handleStartLoading={this.handleStartLoading}
                   handleEndLoading={this.handleEndLoading}
+                  getPartiesApi={this.getPartiesApi}
                 />
               )}
             />
