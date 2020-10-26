@@ -63,6 +63,7 @@ class UserProfile extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        Validators.refreshLoginToken(res.error);
       })
       .finally(() => {
         this.props.handleEndLoading();
@@ -89,6 +90,7 @@ class UserProfile extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        Validators.refreshLoginToken(res.error);
       })
       .finally(() => {
         this.props.handleEndLoading();

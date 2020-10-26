@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import images from '../../Assets/Groups-image/images';
 import partiesApi from '../../Helpers/ApiHelpers/parties';
 import Validators from '../../Helpers/Validators';
+import DynamicPartiesImage from './DynamicPartiesImage/DynamicPartiesImage';
 
 import './Parties.css';
 
@@ -29,6 +30,7 @@ class Parties extends React.Component {
   render() {
     const isLoginedIn = Validators.ifPartyJoinerOrRequester();
     const DndParties = this.props.filtered_parties.map((party, idx) => {
+      console.log(party);
       const partyComplete = party.party_complete === 'Complete Party!';
       return (
         <div
@@ -85,12 +87,11 @@ class Parties extends React.Component {
             </div>
           </div>
           <Link to={`/Party/${party.party_id}`}>
-            <div className="group-image">
-              <img
-                src={images.fullparty}
-                alt="A full party of players playing a table top game."
-              />
-            </div>
+            <DynamicPartiesImage
+              players_needed={party.players_needed}
+              dm_needed={party.dm_needed}
+              party_complete={party.party_complete}
+            />
           </Link>
           <div className="party-name">{party.party_name}</div>
           <div className="button-wrapper">

@@ -4,6 +4,7 @@ import DndEdition from './DndEdition/DndEdition';
 import OnlineOrNot from './OnlineOrNot/OnlineOrNot';
 import images from '../../Assets/Groups-image/images';
 import partiesApi from '../../Helpers/ApiHelpers/parties';
+import Validators from '../../Helpers/Validators';
 
 import './CreateParty.css';
 
@@ -62,6 +63,7 @@ export default class CreateParty extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
+        Validators.refreshLoginToken(res.error);
       })
       .finally(() => {
         this.props.handleEndLoading();
@@ -108,6 +110,7 @@ export default class CreateParty extends React.Component {
                 type="number"
                 name="players_needed"
                 id="players_needed"
+                maxLength={99}
                 placeholder={0}
                 aria-invalid="true"
                 aria-describedby="error-msg"
