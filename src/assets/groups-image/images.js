@@ -21,6 +21,7 @@ import fullparty3 from './fullparty3.png';
 import fullparty4 from './fullparty4.png';
 import fullparty5 from './fullparty5.png';
 import fullparty6 from './fullparty6.png';
+import dmfullparty from './dmfullparty.png';
 import dmfullparty1 from './dmfullparty1.png';
 import dmfullparty2 from './dmfullparty2.png';
 import dmfullparty3 from './dmfullparty3.png';
@@ -37,6 +38,7 @@ const images = {
   fullparty4,
   fullparty5,
   fullparty6,
+  dmfullparty,
   dmfullparty1,
   dmfullparty2,
   dmfullparty3,

@@ -125,6 +125,37 @@ const partiesApi = {
       }
     });
   },
+  submitChatboxMessage(message, party_id) {
+    return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}/chat`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify({ message }),
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((e) => Promise.reject(e));
+      } else {
+        return res.json();
+      }
+    });
+  },
+  getChatboxMessages(party_id) {
+    return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}/chat`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((e) => Promise.reject(e));
+      } else {
+        return res.json();
+      }
+    });
+  },
 };
 
 export default partiesApi;

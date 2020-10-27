@@ -3,6 +3,7 @@ import UsersJoined from '../UsersJoined/UsersJoined';
 import PartyInfo from '../PartyInfo/PartyInfo';
 import UserRequestList from '../UsersRequestList/UsersRequestList';
 import Validators from '../../Helpers/Validators';
+import Chatbox from '../Chatbox/Chatbox';
 
 import './FullViewParty.css';
 import partiesApi from '../../Helpers/ApiHelpers/parties';
@@ -129,14 +130,12 @@ class FullViewParty extends React.Component {
             </div>
           )}
           <div className="fullview-bottom-bar"></div>
-          <div className="chatbox">
-            <div className="chatbox-messages">
-              Username (Time Stamp): HellO!
-            </div>
-            <label htmlFor="chat_msg">Message:</label>
-            <input maxLength={100} name="chat_msg" id="chat_msg"></input>
-            <button type="submit">Submit</button>
-          </div>
+          <Chatbox
+            party_id={this.state.current_party[0].party_id}
+            match={this.props.match}
+            handleEndLoading={this.props.handleEndLoading}
+            handleStartLoading={this.props.handleStartLoading}
+          />
         </div>
         {!Validators.ifCreatorOfParty(party.user_id_creator) &&
           !isRequesterOrJoiner &&
