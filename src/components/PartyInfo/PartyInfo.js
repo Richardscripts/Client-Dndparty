@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import images from '../../Assets/Groups-image/images';
+import Validators from '../../Helpers/Validators';
 
 export default function PartyInfo(props) {
   const partyInfo = props.current_party.map((party, idx) => {
@@ -105,7 +106,7 @@ export default function PartyInfo(props) {
             ) : (
               ''
             )}
-            {party.date_created}{' '}
+            Created: {Validators.newDate(party.date_created)}{' '}
             <div className="party-completed">
               {party.party_complete === 'Complete Party!' ? (
                 <img

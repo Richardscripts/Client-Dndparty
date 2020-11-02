@@ -156,21 +156,48 @@ hr {
 
 .user-info-container {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 22px;
   display: flex;
   flex-direction: column;
 }
 
-.user-info-container > .left-content > span {
+.left-content > span {
   text-shadow: -2px 2px 0px #070707;
   color: #ffffff;
   font-size: 26px;
   font-family: 'Anton', Arial, Helvetica, sans-serif;
+  vertical-align: middle;
+}
+
+.right-content > span {
+  text-shadow: -2px 2px 0px #070707;
+  color: #ffffff;
+  font-size: 26px;
+  font-family: 'Anton', Arial, Helvetica, sans-serif;
+  vertical-align: middle;
 }
 
 .left-content > p {
-  margin: 5px;
+  padding: 2px;
+  margin-left: 5px;
   display: inline;
+  color: rgb(255, 222, 179);
+}
+
+.left-content {
+  flex: 1;
+}
+
+.right-content {
+  flex: 1;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.right-content > p {
+  padding: 2px;
+  margin-left: 5px;
+  color: rgb(189, 189, 189);
 }
 
 .user-info-container > form > input,
@@ -198,16 +225,6 @@ textarea {
   color: #ffffff;
   font-size: 18px;
   font-family: 'Anton', Arial, Helvetica, sans-serif;
-}
-
-.left-content {
-  flex: 1;
-}
-
-.right-content {
-  flex: 1;
-  margin-top: 20px;
-  width: 100%;
 }
 
 .about-me {
@@ -320,6 +337,7 @@ a {
     margin: 10px;
     background-image: none;
   }
+
   .profile-top-bar {
     width: 900px;
   }
@@ -339,6 +357,7 @@ a {
   .parties-joined-style {
     width: 310px;
   }
+
   .profile-parties-created {
     width: 900px;
   }
@@ -381,5 +400,11 @@ a {
   .right-content {
     margin-top: 0px;
     margin: 10px;
+  }
+}
+
+@media all and (min-width: 500px) {
+  .user-profile {
+    width: 100%;
   }
 }

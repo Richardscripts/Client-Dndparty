@@ -30,7 +30,6 @@ class Parties extends React.Component {
   render() {
     const isLoginedIn = Validators.ifPartyJoinerOrRequester();
     const DndParties = this.props.filtered_parties.map((party, idx) => {
-      console.log(party);
       const partyComplete = party.party_complete === 'Complete Party!';
       return (
         <div

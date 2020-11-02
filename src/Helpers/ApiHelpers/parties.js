@@ -134,6 +134,9 @@ const partiesApi = {
       },
       body: JSON.stringify({ message }),
     }).then((res) => {
+      if (res.statusText === 'Too Many Requests') {
+        return Promise.reject({ error: "You're doing that too much!" });
+      }
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));
       } else {
@@ -153,6 +156,21 @@ const partiesApi = {
         return res.json().then((e) => Promise.reject(e));
       } else {
         return res.json();
+      }
+    });
+  },
+  deleteParty(party_id) {
+    return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((e) => Promise.reject(e));
+      } else {
+        return;
       }
     });
   },

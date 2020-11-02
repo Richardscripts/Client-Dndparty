@@ -164,7 +164,9 @@ class App extends React.Component {
         {!this.state.tokenExists && (
           <Route exact path="/" component={LandingPage} />
         )}
-        <Route exact path="/" component={PartiesTablesBar} />
+        {this.state.current_parties.length !== 0 && (
+          <Route exact path="/" component={PartiesTablesBar} />
+        )}
         <main>
           {this.state.loading && <Loading />}
           <Switch>
@@ -199,6 +201,7 @@ class App extends React.Component {
                   {...props}
                   handleStartLoading={this.handleStartLoading}
                   handleEndLoading={this.handleEndLoading}
+                  getPartiesApi={this.getPartiesApi}
                   loading={this.state.loading}
                 />
               )}

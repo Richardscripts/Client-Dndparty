@@ -13,6 +13,9 @@ const authApi = {
         user_name,
       }),
     }).then((res) => {
+      if (res.statusText === 'Too Many Requests') {
+        return Promise.reject({ error: "You're doing that too much!" });
+      }
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));
       } else {
@@ -31,6 +34,9 @@ const authApi = {
         password,
       }),
     }).then((res) => {
+      if (res.statusText === 'Too Many Requests') {
+        return Promise.reject({ error: "You're doing that too much!" });
+      }
       if (!res.ok) {
         return res.json().then((e) => Promise.reject(e));
       } else {

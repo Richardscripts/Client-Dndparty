@@ -1,6 +1,6 @@
 import React from 'react';
 import images from '../../Assets/Groups-image/images';
-
+import { animateScroll } from 'react-scroll';
 import UserInfoForm from './UserInfoForm/UserInfoForm';
 import Validators from '../../Helpers/Validators';
 
@@ -20,7 +20,7 @@ class UserProfile extends React.Component {
 
   handleEditProfile = () => {
     this.setState({ editing: !this.state.editing, error: null });
-    this.props.history.push('#player-info-top-bar');
+    document.getElementById('second-row-profile').scrollIntoView();
   };
 
   handleSubmitEditProfile = (e) => {
@@ -28,8 +28,7 @@ class UserProfile extends React.Component {
     const user_id = this.state.user_info[0].user_id;
     const {
       user_name,
-      first_name,
-      last_name,
+      name,
       dnd_experience,
       location,
       languages,
@@ -40,8 +39,7 @@ class UserProfile extends React.Component {
     } = e.target;
     const userInfo = {
       user_name: user_name.value,
-      first_name: first_name.value,
-      last_name: last_name.value,
+      name: name.value,
       dnd_experience: dnd_experience.value,
       location: location.value,
       languages: languages.value,
@@ -58,7 +56,6 @@ class UserProfile extends React.Component {
       .editUserProfile(userInfo, user_id)
       .then(() => {
         this.setState({ editing: !this.state.editing });
-
         this.profileApiCalls();
       })
       .catch((res) => {
@@ -67,6 +64,7 @@ class UserProfile extends React.Component {
       })
       .finally(() => {
         this.props.handleEndLoading();
+        document.getElementById('second-row-profile').scrollIntoView();
       });
   };
 
@@ -188,7 +186,7 @@ class UserProfile extends React.Component {
           {requesters.length === 0 ? '' : <>Party Requests: {requesters}</>}
           <br />{' '}
           <span className="created-text-style">
-            Created: {party.date_created}{' '}
+            Created: {Validators.newDate(party.date_created)}{' '}
           </span>
           <br />
           <Link to={`/Party/${party.party_id}`}>
@@ -205,7 +203,7 @@ class UserProfile extends React.Component {
             {this.state.user_info[0].user_name}'s Profile
           </span>
         </div>
-        <div className="second-row-profile">
+        <div id="second-row-profile" className="second-row-profile">
           <div className="profile-user-icon">
             <span className="player-name-style">
               {this.state.user_info[0].user_name}
@@ -220,7 +218,7 @@ class UserProfile extends React.Component {
         </div>
 
         <div className="third-row-profile">
-          <div className="profile-player-info">
+          <div id="profile-player-info" className="profile-player-info">
             <div className="player-info-top-bar" id="player-info-top-bar">
               <img
                 className="scroll-img"

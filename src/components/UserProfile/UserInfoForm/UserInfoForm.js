@@ -8,30 +8,26 @@ export default class UserInfoForm extends React.Component {
         <div tabIndex="0" className="user-info-container" key={idx}>
           <div className="left-content">
             <span tabIndex="0">Nickname:</span>
-            <p tabIndex="0">{info.user_name}</p> <br />
-            <span tabIndex="0">Email:</span>{' '}
-            <p tabIndex="0">{this.props.user_email}</p> <br />
-            <span tabIndex="0">First Name:</span>{' '}
-            <p tabIndex="0">{info.first_name}</p> <br />
-            <span tabIndex="0">Last Name:</span>{' '}
-            <p tabIndex="0">{info.last_name}</p> <br />
+            <p tabIndex="0">{info.user_name || '�'}</p> <br />
+            <span tabIndex="0"> Name:</span>{' '}
+            <p tabIndex="0">{info.name || '�'}</p> <br />
             <span tabIndex="0">D&amp;D Experience:</span>{' '}
-            <p tabIndex="0">{info.dnd_experience}</p> <br />
+            <p tabIndex="0">{info.dnd_experience || '�'}</p> <br />
             <span tabIndex="0">Fluent Languages:</span>{' '}
-            <p tabIndex="0">{info.languages}</p> <br />
+            <p tabIndex="0">{info.languages || '�'}</p> <br />
             <span tabIndex="0">Location:</span>{' '}
-            <p tabIndex="0">{info.location}</p> <br />
+            <p tabIndex="0">{info.location || '�'}</p> <br />
             <span tabIndex="0">Preferred Editions:</span>{' '}
-            <p tabIndex="0">{info.preferred_editions}</p> <br />
+            <p tabIndex="0">{info.preferred_editions || '�'}</p> <br />
             <span tabIndex="0">Preferred Classes:</span>{' '}
-            <p tabIndex="0">{info.preferred_classes}</p> <br />
+            <p tabIndex="0">{info.preferred_classes || '�'}</p> <br />
             <span tabIndex="0">Additional Contact:</span>{' '}
-            <p tabIndex="0">{info.contact}</p> <br />
+            <p tabIndex="0">{info.contact || '�'}</p> <br />
           </div>
           <div className="right-content">
             <span tabIndex="0">About Me:</span>
             <p tabIndex="0" className="about-me">
-              {info.about_me}{' '}
+              {info.about_me || '�'}{' '}
             </p>
             <br />
           </div>
@@ -58,22 +54,12 @@ export default class UserInfoForm extends React.Component {
               aria-describedby="error-msg"
             ></input>{' '}
             <br />
-            <label htmlFor="first_name">First Name: </label>
+            <label htmlFor="name">Name: </label>
             <input
-              name="first_name"
-              id="first_name"
+              name="name"
+              id="name"
               maxLength="30"
-              defaultValue={info.first_name}
-              aria-invalid="true"
-              aria-describedby="error-msg"
-            ></input>{' '}
-            <br />
-            <label htmlFor="last_name">Last Name: </label>
-            <input
-              name="last_name"
-              maxLength="30"
-              id="last_name"
-              defaultValue={info.last_name}
+              defaultValue={info.name}
               aria-invalid="true"
               aria-describedby="error-msg"
             ></input>{' '}

@@ -1,0 +1,99 @@
+.chatbox {
+  margin: auto;
+  padding-bottom: 55px;
+}
+
+.chatbox-button-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+.chatbox-button-wrapper > input {
+  height: 40px;
+  vertical-align: middle;
+}
+
+.chatbox-window {
+  height: 400px;
+  overflow-y: auto;
+  border-bottom: 4px solid rgb(63, 63, 63);
+}
+
+.chatbox-user_name {
+  color: #a16ad8;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+.chatbox-message {
+  font-weight: lighter;
+  word-break: break-all;
+}
+
+.chatbox-time {
+  color: rgb(105, 105, 105);
+  font-size: small;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #c3c3c3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#chatbox-submit {
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #2e2e2e;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 9px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+  margin-bottom: 8px;
+}
+#chatbox-submit:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color: #f6f6f6;
+}
+#chatbox-submit:active {
+  position: relative;
+  top: 1px;
+}
+
+#chatbox-submit:disabled {
+  color: rgb(170, 170, 170);
+}
+
+@media all and (min-width: 900px) {
+  .chatbox-button-wrapper {
+    text-align: center;
+  }
+  .chatbox-button-wrapper > input {
+    width: 500px;
+  }
+  #chatbox-submit {
+    margin-bottom: 0px;
+  }
+  .chatbox-window {
+    height: 400px;
+    width: 800px;
+    overflow-y: auto;
+  }
+}

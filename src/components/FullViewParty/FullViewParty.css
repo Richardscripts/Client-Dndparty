@@ -24,7 +24,7 @@
 .second-row-party {
   display: flex;
   flex-direction: column;
-  border-bottom: 14px rgb(75, 75, 75) solid;
+  border-bottom: 14px rgb(56, 56, 56) solid;
 }
 
 .third-row-party {
@@ -42,6 +42,11 @@
   display: flex;
   flex-direction: column;
 }
+
+/* .sixth-row-party {
+  padding: 40px;
+  background-color: rgb(36, 36, 36);
+} */
 
 .party-about-section {
   box-sizing: border-box;
@@ -173,7 +178,7 @@
 }
 
 .fullview-bottom-bar {
-  padding: 30px;
+  padding: 15px;
 }
 
 .request-style {
@@ -227,6 +232,7 @@
     position: relative;
     width: 250px;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 15px;
+    margin-bottom: 6px;
   }
 }

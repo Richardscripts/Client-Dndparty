@@ -39,7 +39,7 @@ export default class CreateParty extends React.Component {
     }
     const partyInfo = {
       party_name: party_name.value,
-      players_needed: players_needed.value,
+      players_needed: parseInt(players_needed.value),
       dm_needed: this.state.dm_checked,
       dnd_edition: dnd_edition.value,
       about: about.value,

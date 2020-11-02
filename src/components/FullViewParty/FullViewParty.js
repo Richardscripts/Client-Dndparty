@@ -46,6 +46,22 @@ class FullViewParty extends React.Component {
       });
   };
 
+  handleDeleteParty = (party_id) => {
+    this.props.handleStartLoading();
+    partiesApi
+      .deleteParty(party_id)
+      .then(() => {
+        this.props.getPartiesApi();
+        this.props.history.push('/');
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      })
+      .finally(() => {
+        this.props.handleEndLoading();
+      });
+  };
+
   fullviewPartyApiCalls = () => {
     const { match } = this.props;
     const party_id = match.params.party_id;
@@ -145,9 +161,18 @@ class FullViewParty extends React.Component {
               onClick={() => this.handleRequestToJoinParty(party.party_id)}
               className="PartyTableJoinButton "
             >
-              Join
+              Join Party
             </button>
           )}
+        {Validators.ifCreatorOfParty(party.user_id_creator) && (
+          <button
+            type="button"
+            onClick={() => this.handleDeleteParty(party.party_id)}
+            className="PartyTableJoinButton "
+          >
+            Delete Party
+          </button>
+        )}
       </>
     );
   }

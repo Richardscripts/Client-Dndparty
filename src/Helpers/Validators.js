@@ -48,6 +48,17 @@ const Validators = {
       window.location.reload();
     }
   },
+  newDate(date) {
+    const event = new Date(date).toString().split(' ');
+    const newEvent = `${event[0]} ${event[1]} ${event[2]} ${event[3]} ${event[4]}`;
+    return newEvent;
+  },
+  sortMessagesByDate(dates) {
+    dates.sort(function (a, b) {
+      return a.date_created.localeCompare(b.date_created);
+    });
+    return dates;
+  },
 };
 
 export default Validators;
