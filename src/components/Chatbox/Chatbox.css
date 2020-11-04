@@ -1,5 +1,4 @@
 .chatbox {
-  margin: auto;
   padding-bottom: 55px;
 }
 
@@ -22,12 +21,14 @@
 .chatbox-user_name {
   color: #a16ad8;
   font-weight: bold;
+  font-size: 19px;
   margin-left: 4px;
 }
 
 .chatbox-message {
   font-weight: lighter;
   word-break: break-all;
+  font-size: 17px;
 }
 
 .chatbox-time {
@@ -95,5 +96,8 @@
     height: 400px;
     width: 800px;
     overflow-y: auto;
+  }
+  .chatbox {
+    margin: auto;
   }
 }

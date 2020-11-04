@@ -92,30 +92,27 @@ export default class Chatbox extends React.Component {
           onSubmit={(e) => this.handleSubmitChatMessage(e)}
           action="#"
         >
-          <div className="chatbox-button-wrapper">
-            {this.state.error && (
-              <span className="register-error" id="register-error">
-                {this.state.error}
-                <br />
-              </span>
-            )}
-            <input
-              aria-label="Chatbox message"
-              maxLength={100}
-              name="chat_msg"
-              id="chat_msg"
-              placeholder="Message"
-            ></input>
+          {TokenService.hasAuthToken() && (
+            <div className="chatbox-button-wrapper">
+              {this.state.error && (
+                <span className="register-error" id="register-error">
+                  {this.state.error}
+                  <br />
+                </span>
+              )}
+              <input
+                aria-label="Chatbox message"
+                maxLength={100}
+                name="chat_msg"
+                id="chat_msg"
+                placeholder="Message"
+              ></input>
 
-            <button
-              type="submit"
-              value="Submit"
-              id="chatbox-submit"
-              disabled={!TokenService.hasAuthToken()}
-            >
-              Submit
-            </button>
-          </div>
+              <button type="submit" value="Submit" id="chatbox-submit">
+                Submit
+              </button>
+            </div>
+          )}
         </form>
       </div>
     );

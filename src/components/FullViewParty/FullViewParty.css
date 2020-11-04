@@ -83,7 +83,7 @@
 
 .party-users-joined {
   border: 2px rgb(131, 131, 131) solid;
-  width: 100%;
+  width: 98%;
   margin: auto;
   padding: 13px;
   font-size: 19px;
@@ -94,7 +94,7 @@
 
 .party-users-requests {
   border: 2px grey solid;
-  width: 100%;
+  width: 98%;
   margin: auto;
   padding: 13px;
   padding-top: 8px;

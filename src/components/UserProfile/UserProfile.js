@@ -1,9 +1,7 @@
 import React from 'react';
 import images from '../../Assets/Groups-image/images';
-import { animateScroll } from 'react-scroll';
 import UserInfoForm from './UserInfoForm/UserInfoForm';
 import Validators from '../../Helpers/Validators';
-
 import { Link } from 'react-router-dom';
 import profileApi from '../../Helpers/ApiHelpers/profile';
 import partiesApi from '../../Helpers/ApiHelpers/parties';

@@ -118,7 +118,10 @@ class FullViewParty extends React.Component {
       this.state.current_joined_users,
       this.state.current_user_requests
     );
+
     const party = this.state.current_party[0];
+    const party_user_id_exists = party.user_id_creator === true;
+    const CreatorOfParty = Validators.ifCreatorOfParty(party.user_id_creator);
     const existsJoiners = this.state.current_joined_users.length !== 0;
     const existsRequests = this.state.current_user_requests.length !== 0;
     return (
@@ -153,8 +156,19 @@ class FullViewParty extends React.Component {
             handleStartLoading={this.props.handleStartLoading}
           />
         </div>
-        {!Validators.ifCreatorOfParty(party.user_id_creator) &&
+        {party_user_id_exists &&
+          Validators.ifCreatorOfParty(party.user_id_creator) && (
+            <button
+              type="button"
+              onClick={() => this.handleDeleteParty(party.party_id)}
+              className="PartyTableJoinButton "
+            >
+              Delete Party
+            </button>
+          )}
+        {party_user_id_exists &&
           !isRequesterOrJoiner &&
+          !CreatorOfParty &&
           !Validators.partyComplete(party.party_complete) && (
             <button
               type="button"
@@ -164,15 +178,6 @@ class FullViewParty extends React.Component {
               Join Party
             </button>
           )}
-        {Validators.ifCreatorOfParty(party.user_id_creator) && (
-          <button
-            type="button"
-            onClick={() => this.handleDeleteParty(party.party_id)}
-            className="PartyTableJoinButton "
-          >
-            Delete Party
-          </button>
-        )}
       </>
     );
   }

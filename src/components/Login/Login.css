@@ -1,6 +1,3 @@
-
-
-
 .login-form {
   width: 100%;
   display: flex;
@@ -17,7 +14,7 @@
   box-sizing: border-box;
   opacity: 0.97;
   flex-direction: column;
-  bottom: 20%;
+  bottom: 8%;
   width: 100%;
   position: absolute;
   z-index: 50;
