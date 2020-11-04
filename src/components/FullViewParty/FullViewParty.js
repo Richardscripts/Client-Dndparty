@@ -23,7 +23,7 @@ class FullViewParty extends React.Component {
     partiesApi
       .acceptPartyJoinRequest(user_id, party_id, type)
       .then(() => {
-        window.location.reload();
+        this.fullviewPartyApiCalls();
       })
       .catch((res) => {
         this.props.handleEndLoading();

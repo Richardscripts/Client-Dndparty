@@ -94,8 +94,9 @@
 
 .party-users-requests {
   border: 2px grey solid;
-  width: 98%;
+  width: 95%;
   margin: auto;
+  margin-top: 2px;
   padding: 13px;
   padding-top: 8px;
   box-sizing: border-box;
