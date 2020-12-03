@@ -129,7 +129,8 @@ textarea {
   text-shadow: 2px 2px 0 #000000, 2px 2px 0 #000000;
 }
 
-#players_needed {
+#players_needed,
+#total_players {
   width: 40px;
   padding-left: 9px;
   padding-right: 1px;

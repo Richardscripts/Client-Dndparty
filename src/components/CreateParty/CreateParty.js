@@ -5,6 +5,7 @@ import OnlineOrNot from './OnlineOrNot/OnlineOrNot';
 import images from '../../Assets/Groups-image/images';
 import partiesApi from '../../Helpers/ApiHelpers/parties';
 import Validators from '../../Helpers/Validators';
+import FormDatePicker from './FormDatePicker/FormDatePicker';
 
 import './CreateParty.css';
 
@@ -203,15 +204,7 @@ export default class CreateParty extends React.Component {
                   aria-describedby="error-msg"
                 />
                 <br />
-                <label htmlFor="time_of_event">Time of Game: </label>
-                <textarea
-                  maxLength={250}
-                  name="time_of_event"
-                  id="time_of_event"
-                  placeholder="Wed @ 5:00pm EST,    Sat @ 6:00PM EST"
-                  aria-invalid="true"
-                  aria-describedby="error-msg"
-                />
+                <FormDatePicker />
                 <br />
                 <label htmlFor="homebrew_rules">Homebrew Rules: </label>
                 <textarea

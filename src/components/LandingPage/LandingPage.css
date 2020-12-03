@@ -1,0 +1,15 @@
+.legend {
+  display: flex;
+  flex-direction: row;
+  margin-left: 0%;
+  padding-bottom: 35px;
+}
+
+.legend-icons > img {
+  vertical-align: middle;
+}
+
+.legend-icons {
+  margin: 10px;
+  margin-left: 20px;
+}
