@@ -204,7 +204,7 @@ export default class CreateParty extends React.Component {
                   aria-describedby="error-msg"
                 />
                 <br />
-                <FormDatePicker />
+                {/* <FormDatePicker /> */}
                 <br />
                 <label htmlFor="homebrew_rules">Homebrew Rules: </label>
                 <textarea
