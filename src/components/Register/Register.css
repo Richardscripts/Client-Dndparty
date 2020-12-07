@@ -63,6 +63,17 @@
   color: #d45f45;
 }
 
+.privacy-policy {
+  margin: auto;
+  padding-top: 25px;
+  width: 500px;
+}
+
+#privacy_policy {
+  width: 40px;
+  vertical-align: middle;
+}
+
 @media all and (min-width: 900px) {
   .register-form > form {
     width: 500px;

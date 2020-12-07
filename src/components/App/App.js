@@ -150,14 +150,17 @@ class App extends React.Component {
           />
         )}
         {this.state.toggleLogin && (
-          <Login
-            loginUpdateToken={this.loginUpdateToken}
-            handleUserInfo={this.handleUserInfo}
-            handleToggleLogin={this.handleToggleLogin}
-            history={this.props.history}
-            handleStartLoading={this.handleStartLoading}
-            handleEndLoading={this.handleEndLoading}
-          />
+          <>
+            <div className="fadeBackground"></div>
+            <Login
+              loginUpdateToken={this.loginUpdateToken}
+              handleUserInfo={this.handleUserInfo}
+              handleToggleLogin={this.handleToggleLogin}
+              history={this.props.history}
+              handleStartLoading={this.handleStartLoading}
+              handleEndLoading={this.handleEndLoading}
+            />
+          </>
         )}
         <Route path="/create_party" component={CreatePartyTopBar} />
         <Route path="/Party" component={FullViewPartyTopBar} />

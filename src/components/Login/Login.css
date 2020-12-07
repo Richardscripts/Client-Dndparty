@@ -50,6 +50,6 @@
 @media all and (min-width: 500px) {
   .login-form > form {
     width: 500px;
-    bottom: 39%;
+    bottom: 10%;
   }
 }

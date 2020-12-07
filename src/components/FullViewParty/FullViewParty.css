@@ -199,6 +199,46 @@
   background-color: rgb(36, 36, 36);
 }
 
+.deleteWarningModal {
+  padding: 40px;
+  background-color: #272727;
+  opacity: 0.9;
+  z-index: 50;
+  position: absolute;
+  bottom: -10%;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #d45f45;
+  border-radius: 6px;
+  border: 2px rgb(63, 63, 63) solid;
+}
+
+.defaultButton {
+  box-shadow: inset 0px 1px 0px 0px #ffffff;
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  cursor: pointer;
+  color: #2e2e2e;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffffff;
+}
+.defaultButton:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color: #f6f6f6;
+}
+.defaultButton:active {
+  position: relative;
+  top: 1px;
+}
+
 @media all and (min-width: 900px) {
   .party-name-top {
     width: 100%;

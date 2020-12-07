@@ -15,6 +15,7 @@ class FullViewParty extends React.Component {
     current_user_requests: [],
     current_joined_users: [],
     party_updated: false,
+    toggleDeleteWarning: false,
   };
 
   acceptRequester = (user_id, type) => {
@@ -120,7 +121,7 @@ class FullViewParty extends React.Component {
     );
 
     const party = this.state.current_party[0];
-    const party_user_id_exists = party.user_id_creator === true;
+    // const party_user_id_exists = party.user_id_creator === true;
     const CreatorOfParty = Validators.ifCreatorOfParty(party.user_id_creator);
     const existsJoiners = this.state.current_joined_users.length !== 0;
     const existsRequests = this.state.current_user_requests.length !== 0;
@@ -156,18 +157,35 @@ class FullViewParty extends React.Component {
             handleStartLoading={this.props.handleStartLoading}
           />
         </div>
-        {party_user_id_exists &&
-          Validators.ifCreatorOfParty(party.user_id_creator) && (
+        {this.state.toggleDeleteWarning && (
+          <div className="deleteWarningModal">
+            Are you sure you want to delete this Party?
+            <br />
+            <br />
             <button
-              type="button"
-              onClick={() => this.handleDeleteParty(party.party_id)}
-              className="PartyTableJoinButton "
+              className="defaultButton"
+              onClick={() => this.setState({ toggleDeleteWarning: false })}
             >
-              Delete Party
+              Cancel
+            </button>{' '}
+            <button
+              className="defaultButton"
+              onClick={() => this.handleDeleteParty(party.party_id)}
+            >
+              Delete
             </button>
-          )}
-        {party_user_id_exists &&
-          !isRequesterOrJoiner &&
+          </div>
+        )}
+        {Validators.ifCreatorOfParty(party.user_id_creator) && (
+          <button
+            type="button"
+            onClick={() => this.setState({ toggleDeleteWarning: true })}
+            className="PartyTableJoinButton "
+          >
+            Delete Party
+          </button>
+        )}
+        {!isRequesterOrJoiner &&
           !CreatorOfParty &&
           !Validators.partyComplete(party.party_complete) && (
             <button
