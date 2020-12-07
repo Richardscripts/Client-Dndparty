@@ -1,7 +1,7 @@
 import config from '../../config';
 
 const authApi = {
-  registerUser(email, password, user_name) {
+  registerUser(email, password, user_name, policyChecked) {
     return fetch(`${config.API_ENDPOINT}/api/auth/register`, {
       method: 'POST',
       headers: {
@@ -11,6 +11,7 @@ const authApi = {
         user_email: email,
         password,
         user_name,
+        policy_checked: policyChecked,
       }),
     }).then((res) => {
       if (res.statusText === 'Too Many Requests') {

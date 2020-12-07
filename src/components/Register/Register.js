@@ -13,17 +13,24 @@ class Register extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { user_email, password, user_name } = e.target;
+    const { user_email, password, user_name, privacy_policy } = e.target;
     this.setState({
       error: null,
     });
     this.props.handleStartLoading();
     authApi
-      .registerUser(user_email.value, password.value, user_name.value)
+      .registerUser(
+        user_email.value,
+        password.value,
+        user_name.value,
+        this.state.policyChecked
+      )
       .then((res) => {
         user_email.value = '';
         password.value = '';
         user_name.value = '';
+        privacy_policy.checked = false;
+        this.setState({ policyChecked: false });
         TokenService.clearAuthToken();
         TokenService.saveAuthToken(res.authToken);
         this.props.loginUpdateToken();

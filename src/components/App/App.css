@@ -94,7 +94,7 @@ footer {
   color: #fbfbfb;
 }
 
-.col > h3 {
+.col > a > h3 {
   color: #e7502e;
 }
 
@@ -157,8 +157,8 @@ footer {
   }
   .col {
     border: 1px white solid;
-    padding: 25px;
-    width: 200px;
+    padding: 20px;
+    width: 250px;
     margin: 25px;
     margin-bottom: 100px;
   }

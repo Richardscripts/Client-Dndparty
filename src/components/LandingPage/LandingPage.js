@@ -13,37 +13,43 @@ export default function LandingPage(props) {
       </p>
       <div className="instructions-row">
         <div className="col">
-          <h3>Register</h3>
-          <img
-            className="register-icons"
-            src={images.axes}
-            alt="Tiny icon of Crossed Axes"
-          />
-          <p>Sign up and flesh out your profile!</p>
+          <Link to="/Register">
+            <h3>Register</h3>
+            <img
+              className="register-icons"
+              src={images.axes}
+              alt="Tiny icon of Crossed Axes"
+            />
+            <p>Sign up and flesh out your profile!</p>
+          </Link>
         </div>
         <div className="col">
-          <h3>Create Parties</h3>
-          <img
-            className="register-icons"
-            src={images.arrows}
-            alt="Tiny icon of Crossed Axes"
-          />
-          <p>
-            You can Create a Party Table for users to view and join with tons of
-            information to find the right roleplayer for your group.
-          </p>
+          <Link to="/Register">
+            <h3>Create Parties</h3>
+            <img
+              className="register-icons"
+              src={images.arrows}
+              alt="Tiny icon of Crossed Axes"
+            />
+            <p>
+              You can Create a Party Table for users to view and join with tons
+              of information to find the right roleplayer for your group.
+            </p>
+          </Link>
         </div>
         <div className="col">
-          <h3>Join Parties</h3>
-          <img
-            className="register-icons"
-            src={images.crossedswords}
-            alt="Tiny icon of Crossed Axes"
-          />
-          <p>
-            Join Parties created by other users and be invited to play the
-            greatest roleplaying game of all time! That's it.
-          </p>
+          <Link to="/Register">
+            <h3>Join Parties</h3>
+            <img
+              className="register-icons"
+              src={images.crossedswords}
+              alt="Tiny icon of Crossed Axes"
+            />
+            <p>
+              Join Parties created by other users and be invited to play the
+              greatest roleplaying game of all time! That's it.
+            </p>
+          </Link>
         </div>
       </div>
     </>

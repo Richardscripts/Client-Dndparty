@@ -66,7 +66,7 @@
 .privacy-policy {
   margin: auto;
   padding-top: 25px;
-  width: 500px;
+  width: 100%;
 }
 
 #privacy_policy {
@@ -82,5 +82,8 @@
   .welcome-message-style {
     font-size: 68px;
     margin: 15px;
+  }
+  .privacy-policy {
+    width: 500px;
   }
 }

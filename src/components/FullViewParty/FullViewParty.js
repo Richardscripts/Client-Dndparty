@@ -16,6 +16,7 @@ class FullViewParty extends React.Component {
     current_joined_users: [],
     party_updated: false,
     toggleDeleteWarning: false,
+    toggleEditParty: false,
   };
 
   acceptRequester = (user_id, type) => {
@@ -179,14 +180,23 @@ class FullViewParty extends React.Component {
         {Validators.ifCreatorOfParty(party.user_id_creator) && (
           <button
             type="button"
+            onClick={() => this.setState({ toggleEditParty: true })}
+            className="PartyTableJoinButton "
+          >
+            Edit Party
+          </button>
+        )}
+        {Validators.ifCreatorOfParty(party.user_id_creator) && (
+          <button
+            type="button"
             onClick={() => this.setState({ toggleDeleteWarning: true })}
             className="PartyTableJoinButton "
           >
             Delete Party
           </button>
         )}
-        {!isRequesterOrJoiner &&
-          !CreatorOfParty &&
+        {!CreatorOfParty &&
+          !isRequesterOrJoiner &&
           !Validators.partyComplete(party.party_complete) && (
             <button
               type="button"

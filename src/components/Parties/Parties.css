@@ -6,8 +6,6 @@
   border-top: 0px;
 }
 
-
-
 .parties-icons {
   width: 25px;
   vertical-align: middle;
@@ -23,6 +21,7 @@
   box-sizing: border-box;
   overflow: hidden;
   background-image: linear-gradient(rgb(5, 5, 5), rgb(0, 0, 0));
+  font-weight: bold;
 }
 
 .parties-dm-image {
