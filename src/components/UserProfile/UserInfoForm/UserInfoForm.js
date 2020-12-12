@@ -30,6 +30,24 @@ export default class UserInfoForm extends React.Component {
               {info.about_me || '�'}{' '}
             </p>
             <br />
+            <span tabIndex="0">Character Sheet:</span>
+            <p tabIndex="0" className="about-me">
+              {info.character_sheets ? (
+                <>
+                  <b>{info.character_sheets.split(' ')[0]}</b> <br />
+                  <br />
+                  <a
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href={`${info.character_sheets.split(' ')[1]}`}
+                  >
+                    {info.character_sheets.split(' ')[1]}
+                  </a>
+                </>
+              ) : (
+                '�'
+              )}{' '}
+            </p>
           </div>
         </div>
       );
@@ -127,7 +145,28 @@ export default class UserInfoForm extends React.Component {
               defaultValue={info.about_me}
               aria-invalid="true"
               aria-describedby="error-msg"
+              maxLength={400}
             ></textarea>{' '}
+            <br />
+            <label>Character Sheet</label>
+            (Please include a url link to a PDF file or txt\doc file)
+            <br />
+            <label htmlFor="char_name">Name: </label>
+            <input
+              name="char_name"
+              id="char_name"
+              aria-invalid="true"
+              maxLength={50}
+              aria-describedby="error-msg"
+            ></input>{' '}
+            <label htmlFor="char_url">PDF URL: </label>
+            <input
+              name="char_url"
+              id="char_url"
+              aria-invalid="true"
+              aria-describedby="error-msg"
+              type="url"
+            ></input>{' '}
           </form>
         </div>
       );

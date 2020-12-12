@@ -34,6 +34,8 @@ class UserProfile extends React.Component {
       contact,
       preferred_editions,
       preferred_classes,
+      char_url,
+      char_name,
     } = e.target;
     const userInfo = {
       user_name: user_name.value,
@@ -45,6 +47,7 @@ class UserProfile extends React.Component {
       contact: contact.value,
       preferred_editions: preferred_editions.value,
       preferred_classes: preferred_classes.value,
+      character_sheets: `${char_name.value}: ${char_url.value}`,
     };
     this.setState({
       error: null,

@@ -45,6 +45,7 @@ body {
 .App-links {
   font-weight: bold;
   color: white;
+  cursor: pointer;
 }
 
 .create-party-bar {

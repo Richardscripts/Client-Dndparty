@@ -14,6 +14,11 @@ export default class CreateParty extends React.Component {
     error: null,
     dm_checked: false,
     camera_checked: false,
+    date: '',
+  };
+
+  handleDate = (date) => {
+    this.setState({ date });
   };
 
   handleSubmit = (e) => {
@@ -27,7 +32,6 @@ export default class CreateParty extends React.Component {
       language,
       online_or_not,
       homebrew_rules,
-      // time_of_event,
       classes_needed,
       group_personality,
       campaign_or_custom,
@@ -47,7 +51,7 @@ export default class CreateParty extends React.Component {
       language: language.value,
       online_or_not: online_or_not.value,
       homebrew_rules: homebrew_rules.value,
-      // time_of_event: time_of_event.value,
+      time_of_event: this.state.date.toString(),
       classes_needed: classes_needed.value,
       group_personality: group_personality.value,
       campaign_or_custom: campaign_or_custom.value,
@@ -56,6 +60,7 @@ export default class CreateParty extends React.Component {
     this.setState({
       error: null,
     });
+    console.log(partyInfo);
     partiesApi
       .createPartyTable(partyInfo)
       .then((res) => {
@@ -161,7 +166,7 @@ export default class CreateParty extends React.Component {
                 <br />
                 <DndEdition />
                 <br />
-                <label htmlFor="about">About Section: </label>
+                <label htmlFor="about">Introduce Campaign: </label>
                 <textarea
                   maxLength={400}
                   name="about"
@@ -204,8 +209,6 @@ export default class CreateParty extends React.Component {
                   aria-describedby="error-msg"
                 />
                 <br />
-                {/* <FormDatePicker /> */}
-                <br />
                 <label htmlFor="homebrew_rules">Homebrew Rules: </label>
                 <textarea
                   maxLength={450}
@@ -216,6 +219,14 @@ export default class CreateParty extends React.Component {
                 ></textarea>
                 <br />
               </div>
+            </div>
+            <br />
+            <div className="calendar">
+              Date of Game:
+              <FormDatePicker
+                handleDate={this.handleDate}
+                date={this.state.date}
+              />
             </div>
             <div className="button-wrapper">
               <button className="myButton" type="submit">
