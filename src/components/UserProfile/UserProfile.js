@@ -37,6 +37,14 @@ class UserProfile extends React.Component {
       char_url,
       char_name,
     } = e.target;
+    let pdfCheck = char_url.value
+      .slice(char_url.value.length - 4, char_url.value.length)
+      .toLowerCase();
+    if (pdfCheck !== '.pdf') {
+      this.setState({ error: 'Character Sheet URL must be a PDF file' });
+      return;
+    }
+
     const userInfo = {
       user_name: user_name.value,
       name: name.value,

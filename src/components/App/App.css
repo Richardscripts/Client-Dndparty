@@ -22,7 +22,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  color: #e45738;
+  color: #e44c2a;
   width: 100%;
   box-sizing: border-box;
   font-weight: bold;
@@ -117,7 +117,7 @@ footer {
   font-family: 'UnifrakturCook';
   padding: 20px;
   font-size: 54px;
-  color: #e05b3d;
+  color: #e44c2a;
 }
 
 .fadeBackground {

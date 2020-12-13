@@ -73,7 +73,11 @@ class App extends React.Component {
     language,
     dnd_edition,
     dm_needed,
-    players_needed
+    players_needed,
+    day,
+    month,
+    year,
+    date
   ) => {
     const filters = [
       party_complete,
@@ -81,6 +85,10 @@ class App extends React.Component {
       dnd_edition,
       dm_needed,
       players_needed,
+      day,
+      month,
+      year,
+      date,
     ];
     if (filters[4].players_needed === '0') {
       filters[4].players_needed = false;
@@ -89,6 +97,10 @@ class App extends React.Component {
     for (let i = 0; i < filters.length; i++) {
       if (filters[i][Object.keys(filters[i])]) {
         filteredParties = filteredParties.filter((party) => {
+          console.log(
+            party[Object.keys(filters[i])],
+            filters[i][Object.keys(filters[i])].toString()
+          );
           return (
             party[Object.keys(filters[i])] ===
             filters[i][Object.keys(filters[i])].toString()

@@ -15,11 +15,32 @@ export default class CreateParty extends React.Component {
     dm_checked: false,
     camera_checked: false,
     date: '',
+    day: '',
+    month: '',
+    dateInteger: '',
+    year: '',
   };
 
   handleDate = (date) => {
-    this.setState({ date });
+    const dateDetails = this.getDayMonthYearDate(date);
+    this.setState({
+      date,
+      day: dateDetails.day,
+      month: dateDetails.month,
+      dateInteger: dateDetails.dateInteger,
+      year: dateDetails.year,
+    });
   };
+
+  getDayMonthYearDate(fullDate) {
+    let datArr = fullDate.toString().split(' ');
+    return {
+      day: datArr[0],
+      month: datArr[1],
+      dateInteger: datArr[2],
+      year: datArr[3],
+    };
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -52,6 +73,10 @@ export default class CreateParty extends React.Component {
       online_or_not: online_or_not.value,
       homebrew_rules: homebrew_rules.value,
       time_of_event: this.state.date.toString(),
+      day: this.state.day,
+      month: this.state.month,
+      date: this.state.dateInteger,
+      year: this.state.year,
       classes_needed: classes_needed.value,
       group_personality: group_personality.value,
       campaign_or_custom: campaign_or_custom.value,
@@ -60,7 +85,7 @@ export default class CreateParty extends React.Component {
     this.setState({
       error: null,
     });
-    console.log(partyInfo);
+
     partiesApi
       .createPartyTable(partyInfo)
       .then((res) => {
@@ -125,7 +150,7 @@ export default class CreateParty extends React.Component {
               <img
                 className="create-icons dm-image"
                 src={images.dm}
-                alt="an icon of 3 people"
+                alt="an icon of a wizard"
               />
               <label htmlFor="dm_needed">Dungeon Master Needed:</label>
               <input

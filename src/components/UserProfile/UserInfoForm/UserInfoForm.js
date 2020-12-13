@@ -149,7 +149,7 @@ export default class UserInfoForm extends React.Component {
             ></textarea>{' '}
             <br />
             <label>Character Sheet</label>
-            (Please include a url link to a PDF file or txt\doc file)
+            (Please include a URL link to a PDF file)
             <br />
             <label htmlFor="char_name">Name: </label>
             <input

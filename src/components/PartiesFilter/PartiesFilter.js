@@ -11,17 +11,24 @@ export default class PartiesFilter extends React.Component {
     dm_checked: false,
     players_needed: '',
     filterTouched: false,
+    filter_day: '',
+    filter_month: '',
+    filter_date: '',
+    filter_year: '',
   };
 
   gatherPartySelections = () => {
     const state = this.state;
-    console.log(state.players_needed);
     this.props.handlePartyFilters(
       { party_complete: state.parties_filter },
       { language: state.language },
       { dnd_edition: state.dnd_edition },
       { dm_needed: state.dm_checked },
-      { players_needed: state.players_needed }
+      { players_needed: state.players_needed },
+      { day: this.state.filter_day },
+      { month: this.state.filter_month },
+      { date: this.state.filter_date },
+      { year: this.state.filter_year }
     );
     this.setState({ filterTouched: false });
   };
@@ -111,9 +118,9 @@ export default class PartiesFilter extends React.Component {
         <img
           className="create-icons dm-image"
           src={images.dm}
-          alt="an icon of 3 people"
+          alt="an icon of a wizard"
         />
-        <label htmlFor="dm_needed">DM:</label>
+        <label htmlFor="dm_needed">DM Needed:</label>
         <input
           type="checkbox"
           name="dm_needed"
@@ -126,6 +133,11 @@ export default class PartiesFilter extends React.Component {
           }}
           aria-invalid="true"
           aria-describedby="error-msg"
+        />
+        <img
+          className="create-icons players-image"
+          src={images.players}
+          alt="an icon of 3 people"
         />
         <label htmlFor="players_needed">Player(s) Needed:</label>
         <input
@@ -140,6 +152,83 @@ export default class PartiesFilter extends React.Component {
           name="players_needed"
           id="players_needed"
           placeholder={0}
+        ></input>
+        <br />
+        <label htmlFor="filter_day">Day: </label>
+        <select
+          onChange={(e) => {
+            this.setState({
+              filter_day: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          id="filter_day"
+          name="filter_day"
+        >
+          <option value="">All</option>
+          <option>Sun</option>
+          <option>Mon</option>
+          <option>Tue</option>
+          <option>Wed</option>
+          <option>Thu</option>
+          <option>Fri</option>
+          <option>Sat</option>
+        </select>
+        <label htmlFor="filter_month">Month: </label>
+        <select
+          onChange={(e) => {
+            this.setState({
+              filter_month: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          id="filter_month"
+          name="filter_month"
+        >
+          <option value="">All</option>
+          <option>Jan</option>
+          <option>Feb</option>
+          <option>Mar</option>
+          <option>Apr</option>
+          <option>May</option>
+          <option>Jun</option>
+          <option>Jul</option>
+          <option>Aug</option>
+          <option>Sep</option>
+          <option>Oct</option>
+          <option>Nov</option>
+          <option>Dec</option>
+        </select>
+        <label htmlFor="filter_year">Year: </label>
+        <select
+          onChange={(e) => {
+            this.setState({
+              filter_year: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          id="filter_year"
+          name="filter_year"
+        >
+          <option value="">All</option>
+          <option>2020</option>
+          <option>2021</option>
+          <option>2022</option>
+        </select>
+        <label htmlFor="filter_date">Date: </label>
+        <input
+          onChange={(e) => {
+            this.setState({
+              filter_date: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          id="filter_date"
+          name="filter_date"
+          type="number"
+          max={31}
+          min={1}
+          style={{ width: '60px', paddingRight: '1px' }}
         ></input>
       </div>
     );
