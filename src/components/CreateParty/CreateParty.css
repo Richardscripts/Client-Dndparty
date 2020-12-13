@@ -66,13 +66,8 @@ textarea {
 }
 
 .players-image {
-  width: 6%;
+  width: 35px;
   margin: 3px;
-}
-
-.dm-image {
-  width: 8%;
-  margin: 4px;
 }
 
 .create-party-border {
@@ -247,13 +242,13 @@ textarea {
   margin-bottom: 40px;
 }
 
-@media all and (min-width: 683px) {
+@media all and (min-width: 785px) {
   .create-party-form-wrapper {
     width: 100%;
   }
 
   .required-inputs {
-    width: 380px;
+    width: 540px;
   }
 
   .optional-inputs {
@@ -280,12 +275,12 @@ textarea {
   }
 
   .create-party-border {
-    width: 685px;
+    width: 785px;
   }
 
   .optional-inputs-left,
   .optional-inputs-right {
-    width: 250px;
+    width: 275px;
     margin-left: 20px;
     margin-right: 10px;
     margin-top: 16px;

@@ -1,5 +1,6 @@
 import React from 'react';
 import images from '../../../Assets/Groups-image/images';
+import './DynamicPartiesImage.css';
 
 export default class DyanmicPartiesImage extends React.Component {
   state = {
@@ -7,21 +8,6 @@ export default class DyanmicPartiesImage extends React.Component {
     players: this.props.players_needed,
     prev_dm: '',
     prev_players: 0,
-  };
-
-  imageHover = () => {
-    this.setState({ prev_dm: this.state.dm, prev_players: this.state.players });
-    this.setState({
-      dm: '',
-      players: 'hover',
-    });
-  };
-
-  imageUnhover = () => {
-    this.setState({
-      dm: this.state.prev_dm,
-      players: this.state.prev_players,
-    });
   };
 
   componentDidMount() {
@@ -41,13 +27,20 @@ export default class DyanmicPartiesImage extends React.Component {
 
   render() {
     return (
-      <div className="group-image">
-        <img
-          src={images[`${this.state.dm}fullparty${this.state.players}`]}
-          alt="A full party of players playing a table top game."
-          onMouseOver={() => this.imageHover()}
-          onMouseOut={() => this.imageUnhover()}
-        />
+      <div id="surround" className="group-image">
+        <span id="initial">
+          <img
+            src={images[`${this.state.dm}fullparty${this.state.players}`]}
+            alt="A full party of players playing a table top game."
+          />
+        </span>
+        <span id="onhover">
+          {' '}
+          <img
+            src={images[`fullpartyhover`]}
+            alt="A full party of players playing a table top game."
+          />
+        </span>
       </div>
     );
   }

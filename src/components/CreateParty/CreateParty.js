@@ -223,6 +223,7 @@ export default class CreateParty extends React.Component {
             <br />
             <div className="calendar">
               Date of Game:
+              <br />
               <FormDatePicker
                 handleDate={this.handleDate}
                 date={this.state.date}
