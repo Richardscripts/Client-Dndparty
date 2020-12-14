@@ -6,3 +6,20 @@
 .create-icons {
   vertical-align: middle;
 }
+
+.PartiesFilter {
+  text-align: center;
+  background-color: rgb(49, 49, 49);
+  padding: 18px;
+}
+
+.PartiesFilter select {
+  padding: 7px;
+  margin-left: 1px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  color: rgb(26, 26, 26);
+  background-color: rgb(192, 192, 192);
+}

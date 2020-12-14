@@ -17,6 +17,37 @@ export default class PartiesFilter extends React.Component {
     filter_year: '',
   };
 
+  handleClearSelections = async function () {
+    await this.setState(
+      {
+        parties_filter: '',
+        language: '',
+        dnd_edition: '',
+        dm_checked: false,
+        players_needed: '',
+        filterTouched: false,
+        filter_day: '',
+        filter_month: '',
+        filter_date: '',
+        filter_year: '',
+      },
+      () => {
+        this.props.handlePartyFilters(
+          { party_complete: this.state.parties_filter },
+          { language: this.state.language },
+          { dnd_edition: this.state.dnd_edition },
+          { dm_needed: this.state.dm_checked },
+          { players_needed: this.state.players_needed },
+          { day: this.state.filter_day },
+          { month: this.state.filter_month },
+          { date: this.state.filter_date },
+          { year: this.state.filter_year }
+        );
+      }
+    );
+    this.props.togglePartyFilter();
+  };
+
   gatherPartySelections = () => {
     const state = this.state;
     this.props.handlePartyFilters(
@@ -25,10 +56,10 @@ export default class PartiesFilter extends React.Component {
       { dnd_edition: state.dnd_edition },
       { dm_needed: state.dm_checked },
       { players_needed: state.players_needed },
-      { day: this.state.filter_day },
-      { month: this.state.filter_month },
-      { date: this.state.filter_date },
-      { year: this.state.filter_year }
+      { day: state.filter_day },
+      { month: state.filter_month },
+      { date: state.filter_date },
+      { year: state.filter_year }
     );
     this.setState({ filterTouched: false });
   };
@@ -56,7 +87,7 @@ export default class PartiesFilter extends React.Component {
           <option value="">All</option>
           <option value="Party Incomplete!">Incomplete Parties</option>
           <option value="Complete Party!">Completed Parties</option>
-          <option value="Joined">My Joined Parties</option>
+          {/* <option value="Joined">My Joined Parties</option> */}
         </select>
         <label htmlFor="filter_language">Language: </label>
         <select
@@ -230,6 +261,13 @@ export default class PartiesFilter extends React.Component {
           min={1}
           style={{ width: '60px', paddingRight: '1px' }}
         ></input>
+        <br />
+        <button
+          onClick={() => this.handleClearSelections()}
+          className="defaultButton"
+        >
+          Clear Selections
+        </button>
       </div>
     );
   }

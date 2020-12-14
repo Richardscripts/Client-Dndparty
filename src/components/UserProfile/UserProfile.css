@@ -334,8 +334,9 @@ a {
   .submit-edit-button-wrapper {
     text-align: center;
     position: relative;
-    margin: 10px;
+    margin: 10px 0px;
     background-image: none;
+    width: 100%;
   }
 
   .profile-top-bar {

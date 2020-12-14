@@ -1,13 +1,17 @@
 import React from 'react';
 import images from '../../Assets/Groups-image/images';
 import { Link } from 'react-router-dom';
+import './LandingPage.css';
 
 export default function LandingPage(props) {
   return (
     <>
       <p>
-        It's Easy. <Link to="/Register">Register.</Link> <br /> Create Parties,
-        Join them and Connect with Fellow Dnders!
+        It's Easy.
+        <Link to="/Register">
+          <span style={{ color: '#ff5833' }}> Register.</span>
+        </Link>{' '}
+        <br /> Create Parties, Join them and Connect with Fellow Dnders!
         <br />
         Find the right game for you.
       </p>
@@ -51,6 +55,14 @@ export default function LandingPage(props) {
             </p>
           </Link>
         </div>
+      </div>
+      <div className="legend">
+        <img src={images.dm} alt="an icon of a wizard" /> Dungeon Master Needed
+        <img src={images.players} alt="an icon of several people" /> Players
+        Needed
+        <img src={images.book} alt="an icon of a tiny book" /> DnD Edition
+        <img src={images.online} alt="an icon of a tiny globee" /> Online or In
+        Person
       </div>
     </>
   );

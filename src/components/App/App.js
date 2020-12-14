@@ -247,6 +247,7 @@ class App extends React.Component {
             </Route>
           </Switch>
         </main>
+        <footer>© 2020 - DndParty. All Rights Reserved.</footer>
       </div>
     );
   }
