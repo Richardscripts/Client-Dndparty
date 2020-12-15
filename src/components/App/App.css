@@ -70,7 +70,8 @@ footer {
   background-color: rgb(41, 41, 41);
   padding: 24px;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
 }
 
 .create-party-button {
@@ -180,5 +181,9 @@ main {
   }
   .App > p {
     font-size: 34px;
+  }
+  .create-party-bar {
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 }

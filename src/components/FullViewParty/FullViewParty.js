@@ -4,6 +4,7 @@ import PartyInfo from '../PartyInfo/PartyInfo';
 import UserRequestList from '../UsersRequestList/UsersRequestList';
 import Validators from '../../Helpers/Validators';
 import Chatbox from '../Chatbox/Chatbox';
+import EditPartyInfo from '../EditPartyInfo/EditPartyInfo';
 
 import './FullViewParty.css';
 import partiesApi from '../../Helpers/ApiHelpers/parties';
@@ -116,21 +117,22 @@ class FullViewParty extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const isRequesterOrJoiner = Validators.ifPartyJoinerOrRequester(
       this.state.current_joined_users,
       this.state.current_user_requests
     );
-
     const party = this.state.current_party[0];
-    // const party_user_id_exists = party.user_id_creator === true;
     const CreatorOfParty = Validators.ifCreatorOfParty(party.user_id_creator);
     const existsJoiners = this.state.current_joined_users.length !== 0;
     const existsRequests = this.state.current_user_requests.length !== 0;
     return (
       <>
         <div className="full-party-view animate__animated animate__fadeIn">
-          <PartyInfo current_party={this.state.current_party} />
+          {this.state.toggleEditParty ? (
+            <EditPartyInfo current_party={this.state.current_party} />
+          ) : (
+            <PartyInfo current_party={this.state.current_party} />
+          )}
           {existsJoiners && (
             <div className="third-row-party">
               <div className="party-users-joined">
@@ -181,7 +183,9 @@ class FullViewParty extends React.Component {
         {Validators.ifCreatorOfParty(party.user_id_creator) && (
           <button
             type="button"
-            onClick={() => this.setState({ toggleEditParty: true })}
+            onClick={() =>
+              this.setState({ toggleEditParty: !this.state.toggleEditParty })
+            }
             className="PartyTableJoinButton "
           >
             Edit Party

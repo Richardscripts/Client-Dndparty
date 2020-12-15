@@ -218,12 +218,13 @@ textarea {
   cursor: pointer;
   color: #d45f45;
   font-family: 'Anton';
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 600;
   padding: 18px 25px;
   letter-spacing: 1px;
   text-decoration: none;
   text-shadow: -1px 4px 1px rgb(14, 14, 14);
+  margin-top: 12px;
 }
 .PartyTableButton:hover {
   background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
@@ -272,6 +273,7 @@ textarea {
 
   .PartyTableButton {
     font-size: 32px;
+    margin-top: 0px;
   }
 
   .create-party-border {
