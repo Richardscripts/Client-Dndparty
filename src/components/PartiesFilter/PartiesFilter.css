@@ -8,9 +8,10 @@
 }
 
 .PartiesFilter {
-  text-align: center;
   background-color: rgb(49, 49, 49);
   padding: 18px;
+  text-align: center;
+  letter-spacing: 1px;
 }
 
 .PartiesFilter select {

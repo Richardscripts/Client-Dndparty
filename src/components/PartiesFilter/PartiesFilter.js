@@ -11,10 +11,29 @@ export default class PartiesFilter extends React.Component {
     dm_checked: false,
     players_needed: '',
     filterTouched: false,
-    filter_day: '',
+    filter_day: null,
+    days: ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'],
     filter_month: '',
+    months: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ],
     filter_date: '',
     filter_year: '',
+    years: [2020, 2021],
+    filter_hour: '',
+    filter_am: 'A.M',
+    filter_GMT: '00',
   };
 
   handleClearSelections = async function () {
@@ -30,6 +49,8 @@ export default class PartiesFilter extends React.Component {
         filter_month: '',
         filter_date: '',
         filter_year: '',
+        filter_hour: '',
+        filter_am: '',
       },
       () => {
         this.props.handlePartyFilters(
@@ -41,11 +62,25 @@ export default class PartiesFilter extends React.Component {
           { day: this.state.filter_day },
           { month: this.state.filter_month },
           { date: this.state.filter_date },
-          { year: this.state.filter_year }
+          { year: this.state.filter_year },
+          { hour: this.state.filter_hour },
+          { am: this.state.filter_am }
         );
       }
     );
     this.props.togglePartyFilter();
+  };
+
+  calculateUniversalTime = () => {
+    let universalTime = 0;
+    let hour = Number(this.state.filter_hour);
+    let GMT = Number(this.state.filter_GMT);
+    if (this.state.filter_am === 'A.M') {
+      universalTime = `${hour + GMT}`;
+    } else {
+      universalTime = `${hour + 12 + GMT}`;
+    }
+    console.log(universalTime);
   };
 
   gatherPartySelections = () => {
@@ -67,10 +102,12 @@ export default class PartiesFilter extends React.Component {
   componentDidUpdate = () => {
     if (this.state.filterTouched === true) {
       this.gatherPartySelections();
+      this.calculateUniversalTime();
     }
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className="PartiesFilter">
         <label htmlFor="parties_filter">Filter Parties: </label>
@@ -261,6 +298,130 @@ export default class PartiesFilter extends React.Component {
           min={1}
           style={{ width: '60px', paddingRight: '1px' }}
         ></input>
+        <br />
+        <label htmlFor="filter_hour">Time: </label>
+        <select
+          onChange={(e) => {
+            this.setState({
+              filter_hour: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          id="filter_hour"
+          name="filter_hour"
+        >
+          <option value="">All</option>
+          <option value="01">1</option>
+          <option value="02">2</option>
+          <option value="03">3</option>
+          <option value="04">4</option>
+          <option value="05">5</option>
+          <option value="06">6</option>
+          <option value="07">7</option>
+          <option value="08">8</option>
+          <option value="09">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <label htmlFor="filter_am"></label>
+        <select
+          onChange={(e) => {
+            this.setState({
+              filter_am: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          id="filter_am"
+          name="filter_am"
+        >
+          <option>A.M.</option>
+          <option>P.M.</option>
+        </select>
+        <label htmlFor="filter_GMT"></label>
+        <select
+          onChange={(e) => {
+            this.setState({
+              filter_GMT: e.target.value,
+              filterTouched: !this.state.filterTouched,
+            });
+          }}
+          id="filter_GMT"
+          name="filter_GMT"
+        >
+          <option value="00">
+            (GMT) Western Europe Time, London, Lisbon, Casablanca
+          </option>
+          <option value="-12">(GMT -1200) Eniwetok, Kwajalein</option>
+          <option value="-11">(GMT -1100) Midway Island, Samoa</option>
+          <option value="-10">(GMT -1000) Hawaii</option>
+          <option value="-09.5">(GMT -930) Taiohae</option>
+          <option value="-09">(GMT -900) Alaska</option>
+          <option value="-08">(GMT -800) Pacific Time (US &amp; Canada)</option>
+          <option value="-07">
+            (GMT -700) Mountain Time (US &amp; Canada)
+          </option>
+          <option value="-06">
+            (GMT -600) Central Time (US &amp; Canada), Mexico City
+          </option>
+          <option value="-05">
+            (GMT -500) Eastern Time (US &amp; Canada), Bogota, Lima
+          </option>
+          <option value="-04.5">(GMT -430) Caracas</option>
+          <option value="-04">
+            (GMT -400) Atlantic Time (Canada), Caracas, La Paz
+          </option>
+          <option value="-03">(GMT -330) Newfoundland</option>
+          <option value="-03">
+            (GMT -300) Brazil, Buenos Aires, Georgetown
+          </option>
+          <option value="-02">(GMT -200) Mid-Atlantic</option>
+          <option value="-01">(GMT -100) Azores, Cape Verde Islands</option>
+          <option value="01">
+            (GMT +100) Brussels, Copenhagen, Madrid, Paris
+          </option>
+          <option value="02">(GMT +200) Kaliningrad, South Africa</option>
+          <option value="03">
+            (GMT +300) Baghdad, Riyadh, Moscow, St. Petersburg
+          </option>
+          <option value="03">(GMT +330) Tehran</option>
+          <option value="04">
+            (GMT +400) Abu Dhabi, Muscat, Baku, Tbilisi
+          </option>
+          <option value="04.5">(GMT +430) Kabul</option>
+          <option value="05">
+            (GMT +500) Ekaterinburg, Islamabad, Karachi, Tashkent
+          </option>
+          <option value="05.5">
+            (GMT +530) Bombay, Calcutta, Madras, New Delhi
+          </option>
+          <option value="05.75">(GMT +545) Kathmandu, Pokhara</option>
+          <option value="06">(GMT +600) Almaty, Dhaka, Colombo</option>
+          <option value="06.50">(GMT +630) Yangon, Mandalay</option>
+          <option value="07">(GMT +700) Bangkok, Hanoi, Jakarta</option>
+          <option value="08">
+            (GMT +800) Beijing, Perth, Singapore, Hong Kong
+          </option>
+          <option value="08">(GMT +845) Eucla</option>
+          <option value="09">
+            (GMT +900) Tokyo, Seoul, Osaka, Sapporo, Yakutsk
+          </option>
+          <option value="09.50">(GMT +930) Adelaide, Darwin</option>
+          <option value="10">
+            (GMT +1000) Eastern Australia, Guam, Vladivostok
+          </option>
+          <option value="10.50">(GMT +1030) Lord Howe Island</option>
+          <option value="11">
+            (GMT +1100) Magadan, Solomon Islands, New Caledonia
+          </option>
+          <option value="11.50">(GMT +1130) Norfolk Island</option>
+          <option value="12">
+            (GMT +1200) Auckland, Wellington, Fiji, Kamchatka
+          </option>
+          <option value="12.75">(GMT +1245) Chatham Islands</option>
+          <option value="13">(GMT +1300) Apia, Nukualofa</option>
+          <option value="14">(GMT +1400) Line Islands, Tokelau</option>
+        </select>
         <br />
         <button
           onClick={() => this.handleClearSelections()}

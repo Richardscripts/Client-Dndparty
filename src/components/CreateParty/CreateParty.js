@@ -19,26 +19,48 @@ export default class CreateParty extends React.Component {
     month: '',
     dateInteger: '',
     year: '',
+    timeZone: '0000',
+    GMT: 'GMT',
+    completeDate: '',
+    am: '',
+    universal: '',
   };
 
   handleDate = (date) => {
     const dateDetails = this.getDayMonthYearDate(date);
     this.setState({
       date,
+      completeDate: dateDetails.date,
       day: dateDetails.day,
       month: dateDetails.month,
       dateInteger: dateDetails.dateInteger,
       year: dateDetails.year,
+      hour: dateDetails.time.split(':')[0],
+      am: dateDetails.time.split(' ')[1],
+      universal: dateDetails.universal,
     });
   };
 
+  handleTimeZone = (e) => {
+    const zones = e.target.value.split(' ');
+    this.setState({ timeZone: zones[0], GMT: zones[1] });
+  };
+
   getDayMonthYearDate(fullDate) {
-    let datArr = fullDate.toString().split(' ');
+    let dateArr = fullDate.toString().split(' ');
+    let universal = dateArr[4];
+    dateArr[5] = `GMT${this.state.timeZone}`;
+    dateArr = dateArr.slice(0, 6);
+    dateArr[6] = this.state.GMT;
+    dateArr[4] = Validators.convert(dateArr[4]);
     return {
-      day: datArr[0],
-      month: datArr[1],
-      dateInteger: datArr[2],
-      year: datArr[3],
+      date: dateArr.join(' '),
+      day: dateArr[0],
+      month: dateArr[1],
+      dateInteger: dateArr[2],
+      year: dateArr[3],
+      time: dateArr[4],
+      universal,
     };
   }
 
@@ -72,11 +94,15 @@ export default class CreateParty extends React.Component {
       language: language.value,
       online_or_not: online_or_not.value,
       homebrew_rules: homebrew_rules.value,
-      time_of_event: this.state.date.toString(),
+      time_of_event: this.state.completeDate,
       day: this.state.day,
       month: this.state.month,
       date: this.state.dateInteger,
       year: this.state.year,
+      hour: this.state.hour,
+      am: this.state.am,
+      universal: this.state.universal,
+      GMT: this.state.GMT,
       classes_needed: classes_needed.value,
       group_personality: group_personality.value,
       campaign_or_custom: campaign_or_custom.value,
@@ -247,12 +273,124 @@ export default class CreateParty extends React.Component {
             </div>
             <br />
             <div className="calendar">
+              <div>
+                Time Zone:
+                <select
+                  onChange={this.handleTimeZone}
+                  name="timezone_offset"
+                  id="timezone_offset"
+                >
+                  <option value="-1200 IDLW">Select Time Zone</option>
+                  <option value="-1200 IDLW">
+                    (GMT -1200) Eniwetok, Kwajalein
+                  </option>
+                  <option value="-1100 NT">
+                    (GMT -1100) Midway Island, Samoa
+                  </option>
+                  <option value="-1000 HST">(GMT -1000) Hawaii</option>
+                  <option value="-0950">(GMT -930) Taiohae</option>
+                  <option value="-0900 AKST">(GMT -900) Alaska</option>
+                  <option value="-0800 PST">
+                    (GMT -800) Pacific Time (US &amp; Canada)
+                  </option>
+                  <option value="-0700 MST">
+                    (GMT -700) Mountain Time (US &amp; Canada)
+                  </option>
+                  <option value="-0600 CST">
+                    (GMT -600) Central Time (US &amp; Canada), Mexico City
+                  </option>
+                  <option value="-0500 EST">
+                    (GMT -500) Eastern Time (US &amp; Canada), Bogota, Lima
+                  </option>
+                  <option value="-0450">(GMT -430) Caracas</option>
+                  <option value="-0400 AST">
+                    (GMT -400) Atlantic Time (Canada), Caracas, La Paz
+                  </option>
+                  <option value="-0350">(GMT -330) Newfoundland</option>
+                  <option value="-0300 ART">
+                    (GMT -300) Brazil, Buenos Aires, Georgetown
+                  </option>
+                  <option value="-0200 AT">(GMT -200) Mid-Atlantic</option>
+                  <option value="-0100 WAT">
+                    (GMT -100) Azores, Cape Verde Islands
+                  </option>
+                  <option value="+0000 GMT">
+                    (GMT) Western Europe Time, London, Lisbon, Casablanca
+                  </option>
+                  <option value="+0100 CET">
+                    (GMT +100) Brussels, Copenhagen, Madrid, Paris
+                  </option>
+                  <option value="+0200 EET">
+                    (GMT +200) Kaliningrad, South Africa
+                  </option>
+                  <option value="+0300 MSK">
+                    (GMT +300) Baghdad, Riyadh, Moscow, St. Petersburg
+                  </option>
+                  <option value="+0350 IRST">(GMT +330) Tehran</option>
+                  <option value="+0400 AMT">
+                    (GMT +400) Abu Dhabi, Muscat, Baku, Tbilisi
+                  </option>
+                  <option value="+0450 AFT">(GMT +430) Kabul</option>
+                  <option value="+0500 PKT">
+                    (GMT +500) Ekaterinburg, Islamabad, Karachi, Tashkent
+                  </option>
+                  <option value="+0550 IST">
+                    (GMT +530) Bombay, Calcutta, Madras, New Delhi
+                  </option>
+                  <option value="+0575 NPT">
+                    (GMT +545) Kathmandu, Pokhara
+                  </option>
+                  <option value="+0600 OMSK">
+                    (GMT +600) Almaty, Dhaka, Colombo
+                  </option>
+                  <option value="+0650 CCT\MMT">
+                    (GMT +630) Yangon, Mandalay
+                  </option>
+                  <option value="+0700 KRAT">
+                    (GMT +700) Bangkok, Hanoi, Jakarta
+                  </option>
+                  <option value="+0800 CST">
+                    (GMT +800) Beijing, Perth, Singapore, Hong Kong
+                  </option>
+                  <option value="+0875 ACWST">(GMT +845) Eucla</option>
+                  <option value="+0900 JST">
+                    (GMT +900) Tokyo, Seoul, Osaka, Sapporo, Yakutsk
+                  </option>
+                  <option value="+0950 ACST">
+                    (GMT +930) Adelaide, Darwin
+                  </option>
+                  <option value="+1000 AEST">
+                    (GMT +1000) Eastern Australia, Guam, Vladivostok
+                  </option>
+                  <option value="+1050 ACDT">
+                    (GMT +1030) Lord Howe Island
+                  </option>
+                  <option value="+1100 SAKT">
+                    (GMT +1100) Magadan, Solomon Islands, New Caledonia
+                  </option>
+                  <option value="+1150 NFT">(GMT +1130) Norfolk Island</option>
+                  <option value="+1200 NZST">
+                    (GMT +1200) Auckland, Wellington, Fiji, Kamchatka
+                  </option>
+                  <option value="+1275 CHAST">
+                    (GMT +1245) Chatham Islands
+                  </option>
+                  <option value="+1300 NZDT">
+                    (GMT +1300) Apia, Nukualofa
+                  </option>
+                  <option value="+1400 LINT">
+                    (GMT +1400) Line Islands, Tokelau
+                  </option>
+                </select>
+              </div>
+              <br />
               Date of Game:
               <br />
               <FormDatePicker
                 handleDate={this.handleDate}
                 date={this.state.date}
               />
+              <br />
             </div>
             <div className="button-wrapper">
               <button className="myButton" type="submit">

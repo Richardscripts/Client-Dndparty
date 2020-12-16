@@ -10,9 +10,9 @@
   width: 100%;
   height: 100%;
   top: 0;
-  background-image: linear-gradient(rgb(153, 153, 153), rgb(114, 114, 114));
+  background-color: rgb(19, 19, 19);
   position: fixed;
-  z-index: 1;
+  z-index: 49;
 }
 
 .loading-img {
