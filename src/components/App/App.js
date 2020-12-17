@@ -15,12 +15,14 @@ import Loading from '../Loading/Loading';
 import NoMatch from '../NoMatch/NoMatch';
 import TokenService from '../../Helpers/TokenService';
 import PrivateRoute from '../../Helpers/PrivateRoute';
-
+import * as usertz from 'user-timezone';
 import partiesApi from '../../Helpers/ApiHelpers/parties';
 
 import './App.css';
 import LandingPage from '../LandingPage/LandingPage';
 import PartiesTablesBar from '../Parties/Parties-tables-bar/PartiesTablesBar';
+
+const timezone = usertz.getTimeZone();
 
 class App extends React.Component {
   state = {
@@ -77,7 +79,9 @@ class App extends React.Component {
     day,
     month,
     year,
-    date
+    date,
+    hour,
+    am
   ) => {
     const filters = [
       party_complete,
@@ -89,6 +93,8 @@ class App extends React.Component {
       month,
       year,
       date,
+      hour,
+      am,
     ];
     if (filters[4].players_needed === '0') {
       filters[4].players_needed = false;
@@ -99,7 +105,9 @@ class App extends React.Component {
         filteredParties = filteredParties.filter((party) => {
           console.log(
             party[Object.keys(filters[i])],
-            filters[i][Object.keys(filters[i])].toString()
+            filters[i][Object.keys(filters[i])].toString(),
+            party[Object.keys(filters[i])] ===
+              filters[i][Object.keys(filters[i])].toString()
           );
           return (
             party[Object.keys(filters[i])] ===
@@ -120,7 +128,7 @@ class App extends React.Component {
       loading: true,
     });
     partiesApi
-      .getPartyTables()
+      .getPartyTables(timezone)
       .then((res) => {
         this.setState({
           current_parties: [...res],
@@ -140,6 +148,7 @@ class App extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className="App">
         <Header

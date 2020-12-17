@@ -18,11 +18,12 @@ const partiesApi = {
       }
     });
   },
-  getPartyTables() {
+  getPartyTables(timezone) {
     return fetch(`${config.API_ENDPOINT}/api/parties`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
+        timezone,
       },
     }).then((res) => {
       if (!res.ok) {
