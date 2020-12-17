@@ -192,11 +192,13 @@ class UserProfile extends React.Component {
             <img src={images.table} alt="A small crafting table" />{' '}
           </Link>
           <br />
-          {requesters.length === 0 ? '' : <>Party Requests: {requesters}</>}
-          <br />{' '}
-          <span className="created-text-style">
-            Created: {Validators.newDate(party.date_created)}{' '}
-          </span>
+          <div>
+            {requesters.length === 0 ? '' : <>Party Requests: {requesters}</>}
+            <br />
+            <span className="created-text-style">
+              Created: {Validators.newDate(party.date_created)}{' '}
+            </span>
+          </div>
           <br />
           <Link to={`/Party/${party.party_id}`}>
             <div className="view-button PartyTableButton">View</div>{' '}

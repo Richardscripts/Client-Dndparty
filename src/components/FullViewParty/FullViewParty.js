@@ -20,6 +20,65 @@ class FullViewParty extends React.Component {
     toggleEditParty: false,
   };
 
+  toggleEditParty = () => {
+    this.setState({ toggleEditParty: !this.state.toggleEditParty });
+  };
+
+  handleEditSubmit = (e) => {
+    e.preventDefault();
+    this.props.handleStartLoading();
+    const {
+      party_name,
+      players_needed,
+      dnd_edition,
+      about,
+      language,
+      online_or_not,
+      homebrew_rules,
+      classes_needed,
+      group_personality,
+      campaign_or_custom,
+    } = e.target;
+    if (!players_needed.value && !this.state.dm_checked) {
+      this.setState({
+        error: 'Must need atleast 1 Player or a Dungeon Master',
+      });
+      return;
+    }
+    const partyInfo = {
+      party_name: party_name.value,
+      players_needed: parseInt(players_needed.value),
+      dm_needed: this.state.dm_checked,
+      dnd_edition: dnd_edition.value,
+      about: about.value,
+      language: language.value,
+      online_or_not: online_or_not.value,
+      homebrew_rules: homebrew_rules.value,
+      time_of_event: this.state.completeDate,
+      classes_needed: classes_needed.value,
+      group_personality: group_personality.value,
+      campaign_or_custom: campaign_or_custom.value,
+      camera_required: this.state.camera_checked,
+    };
+    this.setState({
+      error: null,
+    });
+
+    partiesApi
+      .createPartyTable(partyInfo)
+      .then((res) => {
+        this.props.getPartiesApi();
+        this.props.history.push(`/Party/${res.party_id}`);
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+        Validators.refreshLoginToken(res.error);
+      })
+      .finally(() => {
+        this.props.handleEndLoading();
+      });
+  };
+
   acceptRequester = (user_id, type) => {
     this.props.handleStartLoading();
     const party_id = this.state.current_party[0].party_id;
@@ -129,7 +188,11 @@ class FullViewParty extends React.Component {
       <>
         <div className="full-party-view animate__animated animate__fadeIn">
           {this.state.toggleEditParty ? (
-            <EditPartyInfo current_party={this.state.current_party} />
+            <EditPartyInfo
+              toggleEditParty={this.toggleEditParty}
+              current_party={this.state.current_party}
+              handleEditSubmit={this.handleEditSubmit}
+            />
           ) : (
             <PartyInfo current_party={this.state.current_party} />
           )}
@@ -162,44 +225,49 @@ class FullViewParty extends React.Component {
           />
         </div>
         {this.state.toggleDeleteWarning && (
-          <div className="deleteWarningModal">
-            Are you sure you want to delete this Party?
-            <br />
-            <br />
+          <>
+            <div className="loading-background animate__animated animate__fadeIn animate__delay-1.2s"></div>
+            <div className="deleteWarningModal">
+              Are you sure you want to delete this Party?
+              <br />
+              <br />
+              <button
+                className="defaultButton"
+                onClick={() => this.setState({ toggleDeleteWarning: false })}
+              >
+                Cancel
+              </button>{' '}
+              <button
+                className="defaultButton"
+                onClick={() => this.handleDeleteParty(party.party_id)}
+              >
+                Delete
+              </button>
+            </div>
+          </>
+        )}
+        {Validators.ifCreatorOfParty(party.user_id_creator) &&
+          !this.state.toggleEditParty && (
             <button
-              className="defaultButton"
-              onClick={() => this.setState({ toggleDeleteWarning: false })}
+              type="button"
+              onClick={() =>
+                this.setState({ toggleEditParty: !this.state.toggleEditParty })
+              }
+              className="PartyTableJoinButton "
             >
-              Cancel
-            </button>{' '}
-            <button
-              className="defaultButton"
-              onClick={() => this.handleDeleteParty(party.party_id)}
-            >
-              Delete
+              Edit Party
             </button>
-          </div>
-        )}
-        {Validators.ifCreatorOfParty(party.user_id_creator) && (
-          <button
-            type="button"
-            onClick={() =>
-              this.setState({ toggleEditParty: !this.state.toggleEditParty })
-            }
-            className="PartyTableJoinButton "
-          >
-            Edit Party
-          </button>
-        )}
-        {Validators.ifCreatorOfParty(party.user_id_creator) && (
-          <button
-            type="button"
-            onClick={() => this.setState({ toggleDeleteWarning: true })}
-            className="PartyTableJoinButton "
-          >
-            Delete Party
-          </button>
-        )}
+          )}
+        {Validators.ifCreatorOfParty(party.user_id_creator) &&
+          !this.state.toggleEditParty && (
+            <button
+              type="button"
+              onClick={() => this.setState({ toggleDeleteWarning: true })}
+              className="PartyTableJoinButton "
+            >
+              Delete Party
+            </button>
+          )}
         {!CreatorOfParty &&
           !isRequesterOrJoiner &&
           !Validators.partyComplete(party.party_complete) && (

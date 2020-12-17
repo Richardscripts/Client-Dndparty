@@ -57,7 +57,7 @@
   width: 100%;
   padding: 14px;
   font-size: 20px;
-  text-align: justify;
+  text-align: center;
   word-break: break-word;
 }
 
@@ -197,13 +197,14 @@
   font-size: 18px;
   font-weight: 500;
   background-color: rgb(36, 36, 36);
+  border-radius: 8px;
 }
 
 .deleteWarningModal {
   padding: 40px;
   background-color: #272727;
   opacity: 0.9;
-  z-index: 47;
+  z-index: 49;
   position: absolute;
   bottom: -10%;
   font-size: 20px;

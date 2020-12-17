@@ -116,6 +116,10 @@
   border-radius: 3%;
 }
 
+.view-button {
+  border-radius: 6px;
+}
+
 .join-button:hover {
   background-color: rgb(163, 163, 163);
 }

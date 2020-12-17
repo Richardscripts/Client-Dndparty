@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function UsersRequestList(props) {
   const party = props.party;
   const usersRequestList = props.current_user_requests.map((user, idx) => {
+    console.log(props.party.players_needed);
     return (
       <div key={idx}>
         <img
@@ -26,7 +27,7 @@ export default function UsersRequestList(props) {
               <span tabIndex="0" className="request-style">
                 Accept request as:
               </span>{' '}
-              {props.party.players_needed !== '0' && (
+              {props.party.players_needed !== '' && (
                 <>
                   <img
                     className="fullview-players-img request-img"

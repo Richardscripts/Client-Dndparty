@@ -148,7 +148,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className="App">
         <Header
@@ -172,7 +171,7 @@ class App extends React.Component {
         )}
         {this.state.toggleLogin && (
           <>
-            <div className="fadeBackground"></div>
+            <div className="loading-background animate__animated animate__fadeIn animate__delay-1.2s"></div>
             <Login
               loginUpdateToken={this.loginUpdateToken}
               handleUserInfo={this.handleUserInfo}

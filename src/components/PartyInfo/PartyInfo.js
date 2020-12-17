@@ -5,6 +5,10 @@ import Validators from '../../Helpers/Validators';
 
 export default function PartyInfo(props) {
   const partyInfo = props.current_party.map((party, idx) => {
+    const date = new Date(party.time_of_event).toDateString();
+    const timeOfDay = new Date(party.time_of_event).toLocaleString();
+    const time = timeOfDay.split(' ')[1].slice(0, 5);
+    const am = timeOfDay.slice(-2);
     return (
       <div className="party-legend" key={idx}>
         <div className="top-row-party">
@@ -58,8 +62,8 @@ export default function PartyInfo(props) {
             )}
             {party.time_of_event && (
               <>
-                <span className="party-style-text">Time Of Game:</span>{' '}
-                {party.time_of_event}
+                <span className="party-style-text">Time Of Game:</span> {date},{' '}
+                {time} {am}
                 <br />
               </>
             )}

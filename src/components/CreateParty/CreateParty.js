@@ -17,10 +17,15 @@ export default class CreateParty extends React.Component {
   };
 
   handleDate = (date) => {
-    this.setState({
-      date,
-      completeDate: date.toUTCString(),
-    });
+    if (date)
+      this.setState({
+        date,
+        completeDate: date.toUTCString(),
+      });
+    else
+      this.setState({
+        date,
+      });
   };
 
   handleSubmit = (e) => {
@@ -78,7 +83,6 @@ export default class CreateParty extends React.Component {
       });
   };
   render() {
-    console.log(this.state);
     return (
       <div className="create-party-border">
         <div className="create-party-form-wrapper">

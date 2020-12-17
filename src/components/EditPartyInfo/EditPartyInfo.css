@@ -1,0 +1,13 @@
+.edit-party-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-calendar {
+  margin-top: 38px;
+}
+
+.edit-buttons-wrapper {
+  text-align: center;
+  margin: 25px;
+}
