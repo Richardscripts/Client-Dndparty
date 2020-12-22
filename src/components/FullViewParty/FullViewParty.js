@@ -140,7 +140,6 @@ class FullViewParty extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const isRequesterOrJoiner = Validators.ifPartyJoinerOrRequester(
       this.state.current_joined_users,
       this.state.current_user_requests

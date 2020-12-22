@@ -105,7 +105,7 @@ class App extends React.Component {
         filteredParties = filteredParties.filter((party) => {
           return (
             party[Object.keys(filters[i])] ===
-            filters[i][Object.keys(filters[i])].toString()
+            filters[i][Object.keys(filters[i])]
           );
         });
       }

@@ -55,7 +55,8 @@ export default class EditPartyInfo extends React.Component {
       language: language.value,
       online_or_not: online_or_not.value,
       homebrew_rules: homebrew_rules.value,
-      time_of_event: this.state.completeDate,
+      time_of_event:
+        this.state.completeDate || this.props.current_party[0].date_object,
       classes_needed: classes_needed.value,
       group_personality: group_personality.value,
       campaign_or_custom: campaign_or_custom.value,

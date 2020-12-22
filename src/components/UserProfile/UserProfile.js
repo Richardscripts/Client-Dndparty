@@ -42,7 +42,7 @@ class UserProfile extends React.Component {
     let pdfCheck = char_url.value
       .slice(char_url.value.length - 4, char_url.value.length)
       .toLowerCase();
-    if (pdfCheck !== '.pdf') {
+    if (char_url.value && pdfCheck !== '.pdf') {
       this.setState({ error: 'Character Sheet URL must be a PDF file' });
       return;
     }
