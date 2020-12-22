@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import images from '../../Assets/Groups-image/images';
+import images from '../../assets/groups-image/images';
 
 export default function UsersJoined(props) {
   const usersJoined = props.current_joined_users.map((user, idx) => {

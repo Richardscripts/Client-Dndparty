@@ -31,7 +31,7 @@ hr {
 .fourth-row-profile {
   display: flex;
   flex-direction: column;
-  background-image: url('../../Assets/Groups-image/fantasy.png');
+  background-image: url('../../assets/groups-image/fantasy.png');
 }
 
 .fifth-row-profile {

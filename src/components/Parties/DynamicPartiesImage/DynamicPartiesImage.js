@@ -1,5 +1,5 @@
 import React from 'react';
-import images from '../../../Assets/Groups-image/images';
+import images from '../../../assets/groups-image/images';
 import './DynamicPartiesImage.css';
 
 export default class DyanmicPartiesImage extends React.Component {

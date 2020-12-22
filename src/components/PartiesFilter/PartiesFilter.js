@@ -1,6 +1,6 @@
 import React from 'react';
 
-import images from '../../Assets/Groups-image/images';
+import images from '../../assets/groups-image/images';
 import './PartiesFilter.css';
 
 export default class PartiesFilter extends React.Component {
