@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 export default function UsersRequestList(props) {
   const party = props.party;
   const usersRequestList = props.current_user_requests.map((user, idx) => {
-    console.log(props.party.players_needed);
     return (
       <div key={idx}>
         <img

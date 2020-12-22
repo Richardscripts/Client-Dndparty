@@ -18,6 +18,22 @@ const partiesApi = {
       }
     });
   },
+  editPartyTable(partyInfo, party_id) {
+    return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(partyInfo),
+    }).then((res) => {
+      if (!res.ok) {
+        return res.json().then((e) => Promise.reject(e));
+      } else {
+        return;
+      }
+    });
+  },
   getPartyTables(timezone) {
     return fetch(`${config.API_ENDPOINT}/api/parties`, {
       method: 'GET',
@@ -33,11 +49,12 @@ const partiesApi = {
       }
     });
   },
-  getIndividualParty(party_id) {
+  getIndividualParty(timezone, party_id) {
     return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
+        timezone,
       },
     }).then((res) => {
       if (!res.ok) {

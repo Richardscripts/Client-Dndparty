@@ -55,7 +55,6 @@ export default class PartiesFilter extends React.Component {
   };
 
   gatherPartySelections = () => {
-    console.log(this.state.filter_month);
     const state = this.state;
     this.props.handlePartyFilters(
       { party_complete: state.parties_filter },

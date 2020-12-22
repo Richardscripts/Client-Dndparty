@@ -103,12 +103,6 @@ class App extends React.Component {
     for (let i = 0; i < filters.length; i++) {
       if (filters[i][Object.keys(filters[i])]) {
         filteredParties = filteredParties.filter((party) => {
-          console.log(
-            party[Object.keys(filters[i])],
-            filters[i][Object.keys(filters[i])].toString(),
-            party[Object.keys(filters[i])] ===
-              filters[i][Object.keys(filters[i])].toString()
-          );
           return (
             party[Object.keys(filters[i])] ===
             filters[i][Object.keys(filters[i])].toString()
@@ -171,7 +165,7 @@ class App extends React.Component {
         )}
         {this.state.toggleLogin && (
           <>
-            <div className="loading-background animate__animated animate__fadeIn animate__delay-1.2s"></div>
+            <div className="fadeBackground"></div>
             <Login
               loginUpdateToken={this.loginUpdateToken}
               handleUserInfo={this.handleUserInfo}
@@ -226,6 +220,7 @@ class App extends React.Component {
                   handleEndLoading={this.handleEndLoading}
                   getPartiesApi={this.getPartiesApi}
                   loading={this.state.loading}
+                  timezone={timezone}
                 />
               )}
             />

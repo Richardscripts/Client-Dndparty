@@ -14,6 +14,7 @@ export default class CreateParty extends React.Component {
     dm_checked: false,
     camera_checked: false,
     completeDate: '',
+    date: '',
   };
 
   handleDate = (date) => {
@@ -59,6 +60,7 @@ export default class CreateParty extends React.Component {
       online_or_not: online_or_not.value,
       homebrew_rules: homebrew_rules.value,
       time_of_event: this.state.completeDate,
+      date_object: this.state.date,
       classes_needed: classes_needed.value,
       group_personality: group_personality.value,
       campaign_or_custom: campaign_or_custom.value,

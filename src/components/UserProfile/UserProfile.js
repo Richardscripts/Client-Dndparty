@@ -18,7 +18,9 @@ class UserProfile extends React.Component {
 
   handleEditProfile = () => {
     this.setState({ editing: !this.state.editing, error: null });
-    document.getElementById('second-row-profile').scrollIntoView();
+    document
+      .getElementById('second-row-profile')
+      .scrollIntoView({ behavior: 'smooth' });
   };
 
   handleSubmitEditProfile = (e) => {

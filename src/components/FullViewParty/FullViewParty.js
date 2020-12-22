@@ -24,55 +24,19 @@ class FullViewParty extends React.Component {
     this.setState({ toggleEditParty: !this.state.toggleEditParty });
   };
 
-  handleEditSubmit = (e) => {
-    e.preventDefault();
+  updateEditParty = () => {
+    const { match } = this.props;
+    const party_id = match.params.party_id;
     this.props.handleStartLoading();
-    const {
-      party_name,
-      players_needed,
-      dnd_edition,
-      about,
-      language,
-      online_or_not,
-      homebrew_rules,
-      classes_needed,
-      group_personality,
-      campaign_or_custom,
-    } = e.target;
-    if (!players_needed.value && !this.state.dm_checked) {
-      this.setState({
-        error: 'Must need atleast 1 Player or a Dungeon Master',
-      });
-      return;
-    }
-    const partyInfo = {
-      party_name: party_name.value,
-      players_needed: parseInt(players_needed.value),
-      dm_needed: this.state.dm_checked,
-      dnd_edition: dnd_edition.value,
-      about: about.value,
-      language: language.value,
-      online_or_not: online_or_not.value,
-      homebrew_rules: homebrew_rules.value,
-      time_of_event: this.state.completeDate,
-      classes_needed: classes_needed.value,
-      group_personality: group_personality.value,
-      campaign_or_custom: campaign_or_custom.value,
-      camera_required: this.state.camera_checked,
-    };
-    this.setState({
-      error: null,
-    });
-
     partiesApi
-      .createPartyTable(partyInfo)
+      .getIndividualParty(this.props.timezone, party_id)
       .then((res) => {
-        this.props.getPartiesApi();
-        this.props.history.push(`/Party/${res.party_id}`);
+        this.setState({
+          current_party: [...res],
+        });
       })
       .catch((res) => {
         this.setState({ error: res.error });
-        Validators.refreshLoginToken(res.error);
       })
       .finally(() => {
         this.props.handleEndLoading();
@@ -129,7 +93,7 @@ class FullViewParty extends React.Component {
     const party_id = match.params.party_id;
     this.props.handleStartLoading();
     partiesApi
-      .getIndividualParty(party_id)
+      .getIndividualParty(this.props.timezone, party_id)
       .then((res) => {
         this.setState({
           current_party: [...res],
@@ -176,6 +140,7 @@ class FullViewParty extends React.Component {
   }
 
   render() {
+    console.log(this.state);
     const isRequesterOrJoiner = Validators.ifPartyJoinerOrRequester(
       this.state.current_joined_users,
       this.state.current_user_requests
@@ -186,12 +151,18 @@ class FullViewParty extends React.Component {
     const existsRequests = this.state.current_user_requests.length !== 0;
     return (
       <>
-        <div className="full-party-view animate__animated animate__fadeIn">
+        <div
+          id="full-party-view"
+          className="full-party-view animate__animated animate__fadeIn"
+        >
           {this.state.toggleEditParty ? (
             <EditPartyInfo
               toggleEditParty={this.toggleEditParty}
               current_party={this.state.current_party}
-              handleEditSubmit={this.handleEditSubmit}
+              updateEditParty={this.updateEditParty}
+              handleStartLoading={this.props.handleStartLoading}
+              handleEndLoading={this.props.handleEndLoading}
+              party_id={this.props.match.params.party_id}
             />
           ) : (
             <PartyInfo current_party={this.state.current_party} />
@@ -226,7 +197,7 @@ class FullViewParty extends React.Component {
         </div>
         {this.state.toggleDeleteWarning && (
           <>
-            <div className="loading-background animate__animated animate__fadeIn animate__delay-1.2s"></div>
+            <div className="fadeBackground"></div>
             <div className="deleteWarningModal">
               Are you sure you want to delete this Party?
               <br />
