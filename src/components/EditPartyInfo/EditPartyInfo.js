@@ -263,6 +263,7 @@ export default class EditPartyInfo extends React.Component {
                   name="about"
                   id="about"
                   aria-invalid="true"
+                  defaultValue={party.about}
                 />
                 <br />
               </>

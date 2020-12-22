@@ -8,6 +8,7 @@ export default class FormDatePicker extends React.Component {
       <DateTimePicker
         onChange={this.props.handleDate}
         value={this.props.date}
+        required={true}
       />
     );
   }
