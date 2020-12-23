@@ -43,11 +43,6 @@
   flex-direction: column;
 }
 
-/* .sixth-row-party {
-  padding: 40px;
-  background-color: rgb(36, 36, 36);
-} */
-
 .party-about-section {
   box-sizing: border-box;
   margin: auto;
@@ -163,6 +158,10 @@
   letter-spacing: 1px;
   text-decoration: none;
   text-shadow: -1px 4px 1px rgb(14, 14, 14);
+  width: 50%;
+}
+
+.JoinButton-wrapper {
   bottom: 0;
   position: fixed;
   width: 100%;
@@ -275,5 +274,11 @@
     margin: auto;
     margin-top: 15px;
     margin-bottom: 6px;
+  }
+
+  .JoinButton-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
   }
 }

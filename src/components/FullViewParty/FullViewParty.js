@@ -218,26 +218,28 @@ class FullViewParty extends React.Component {
         )}
         {Validators.ifCreatorOfParty(party.user_id_creator) &&
           !this.state.toggleEditParty && (
-            <button
-              type="button"
-              onClick={() =>
-                this.setState({ toggleEditParty: !this.state.toggleEditParty })
-              }
-              className="PartyTableJoinButton "
-            >
-              Edit Party
-            </button>
+            <div className="JoinButton-wrapper">
+              <button
+                type="button"
+                onClick={() =>
+                  this.setState({
+                    toggleEditParty: !this.state.toggleEditParty,
+                  })
+                }
+                className="PartyTableJoinButton "
+              >
+                Edit Party
+              </button>
+              <button
+                type="button"
+                onClick={() => this.setState({ toggleDeleteWarning: true })}
+                className="PartyTableJoinButton "
+              >
+                Delete Party
+              </button>
+            </div>
           )}
-        {Validators.ifCreatorOfParty(party.user_id_creator) &&
-          !this.state.toggleEditParty && (
-            <button
-              type="button"
-              onClick={() => this.setState({ toggleDeleteWarning: true })}
-              className="PartyTableJoinButton "
-            >
-              Delete Party
-            </button>
-          )}
+
         {!CreatorOfParty &&
           !isRequesterOrJoiner &&
           !Validators.partyComplete(party.party_complete) && (

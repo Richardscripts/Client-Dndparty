@@ -105,8 +105,13 @@ export default class EditPartyInfo extends React.Component {
             <br />
             {party.about && (
               <div tabIndex="0" className="party-about-section">
+                <label htmlFor="about">Introduce Campaign</label>
+                <br />
                 <textarea
-                  aria-label="party_about"
+                  maxLength={400}
+                  id="about"
+                  name="about"
+                  style={{ width: '80%' }}
                   defaultValue={party.about}
                 ></textarea>
                 <br />
@@ -254,17 +259,6 @@ export default class EditPartyInfo extends React.Component {
                   id="group_personality"
                   defaultValue={party.group_personality}
                 ></input>
-                <br />
-              </>
-              <>
-                <label htmlFor="about">Introduce Campaign: </label>
-                <textarea
-                  maxLength={400}
-                  name="about"
-                  id="about"
-                  aria-invalid="true"
-                  defaultValue={party.about}
-                />
                 <br />
               </>
               <>
