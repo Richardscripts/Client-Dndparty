@@ -10,7 +10,7 @@
   width: 100%;
   height: 100%;
   top: 0;
-  background-color: rgb(19, 19, 19);
+  background-color: rgba(0, 0, 0, 70%);
   position: fixed;
   z-index: 49;
 }
@@ -22,6 +22,7 @@
 
 .animate__animated.animate__fadeIn {
   --animate-duration: 0.3s;
+  animation-delay: .3s;
 }
 
 .animate__animated.animate__fadeOut {

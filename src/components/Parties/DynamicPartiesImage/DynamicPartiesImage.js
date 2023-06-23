@@ -27,7 +27,14 @@ export default class DyanmicPartiesImage extends React.Component {
 
   render() {
     return (
-      <div id="surround" className="group-image">
+      <div
+        id="surround"
+        className={`group-image ${
+          this.props.party_complete === 'Complete Party!'
+            ? 'complete-party'
+            : ''
+        }`}
+      >
         <span id="initial">
           <img
             src={images[`${this.state.dm}fullparty${this.state.players}`]}

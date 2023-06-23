@@ -51,7 +51,7 @@ export default class EditPartyInfo extends React.Component {
       players_needed: parseInt(players_needed.value),
       dm_needed: this.state.dm_checked,
       dnd_edition: dnd_edition.value,
-      about: about.value,
+      about: about?.value,
       language: language.value,
       online_or_not: online_or_not.value,
       homebrew_rules: homebrew_rules.value,

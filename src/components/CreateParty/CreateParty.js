@@ -31,7 +31,7 @@ export default class CreateParty extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.handleStartLoading();
+
     const {
       party_name,
       players_needed,
@@ -44,45 +44,49 @@ export default class CreateParty extends React.Component {
       group_personality,
       campaign_or_custom,
     } = e.target;
+
     if (!players_needed.value && !this.state.dm_checked) {
       this.setState({
         error: 'Must need atleast 1 Player or a Dungeon Master',
       });
       return;
-    }
-    const partyInfo = {
-      party_name: party_name.value,
-      players_needed: parseInt(players_needed.value),
-      dm_needed: this.state.dm_checked,
-      dnd_edition: dnd_edition.value,
-      about: about.value,
-      language: language.value,
-      online_or_not: online_or_not.value,
-      homebrew_rules: homebrew_rules.value,
-      time_of_event: this.state.completeDate,
-      date_object: this.state.date,
-      classes_needed: classes_needed.value,
-      group_personality: group_personality.value,
-      campaign_or_custom: campaign_or_custom.value,
-      camera_required: this.state.camera_checked,
-    };
-    this.setState({
-      error: null,
-    });
+    } else {
+      this.props.handleStartLoading();
 
-    partiesApi
-      .createPartyTable(partyInfo)
-      .then((res) => {
-        this.props.getPartiesApi();
-        this.props.history.push(`/Party/${res.party_id}`);
-      })
-      .catch((res) => {
-        this.setState({ error: res.error });
-        Validators.refreshLoginToken(res.error);
-      })
-      .finally(() => {
-        this.props.handleEndLoading();
+      const partyInfo = {
+        party_name: party_name.value,
+        players_needed: parseInt(players_needed.value),
+        dm_needed: this.state.dm_checked,
+        dnd_edition: dnd_edition.value,
+        about: about?.value,
+        language: language.value,
+        online_or_not: online_or_not.value,
+        homebrew_rules: homebrew_rules.value,
+        time_of_event: this.state.completeDate,
+        date_object: this.state.date,
+        classes_needed: classes_needed.value,
+        group_personality: group_personality.value,
+        campaign_or_custom: campaign_or_custom.value,
+        camera_required: this.state.camera_checked,
+      };
+      this.setState({
+        error: null,
       });
+
+      partiesApi
+        .createPartyTable(partyInfo)
+        .then((res) => {
+          this.props.getPartiesApi();
+          this.props.history.push(`/Party/${res.party_id}`);
+        })
+        .catch((res) => {
+          this.setState({ error: res.error });
+          Validators.refreshLoginToken(res.error);
+        })
+        .finally(() => {
+          this.props.handleEndLoading();
+        });
+    }
   };
   render() {
     return (
