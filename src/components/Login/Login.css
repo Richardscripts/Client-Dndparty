@@ -5,8 +5,9 @@
 }
 
 .login-form > form {
-  background-image: linear-gradient(rgb(85, 85, 85), rgb(53, 53, 53));
-  border: 4px rgb(54, 54, 54) solid;
+  background-image: linear-gradient(rgb(85, 85, 85), rgb(32, 32, 32));
+  border: 1px rgb(54, 54, 54) solid;
+  border-radius: 2px;
   font-family: 'Anton', Arial, Helvetica, sans-serif;
   font-size: 24px;
   display: flex;
@@ -49,7 +50,8 @@
 
 @media all and (min-width: 500px) {
   .login-form > form {
-    width: 500px;
+    width: 490px;
+    height: 520px;
     bottom: 10%;
   }
 }

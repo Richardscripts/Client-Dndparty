@@ -47,6 +47,7 @@ class Login extends React.Component {
         <form onSubmit={(e) => this.handleSubmit(e)} action="#">
           <div className=" cancel-button-wrapper">
             <button
+              style={{ cursor: 'pointer' }}
               type="button"
               onClick={() => this.handleCancelButton()}
               className="cancel-button"

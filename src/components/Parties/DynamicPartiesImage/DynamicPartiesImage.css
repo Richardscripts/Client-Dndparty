@@ -14,6 +14,5 @@
 }
 
 #initial > img {
-  filter: saturate(1.2);
-  filter: hue-rotate(2deg);
+  filter: saturate(1.4);
 }

@@ -7,7 +7,7 @@ export default function UsersRequestList(props) {
   const party = props.party;
   const usersRequestList = props.current_user_requests.map((user, idx) => {
     return (
-      <div key={idx}>
+      <div style={{ cursor: 'pointer' }} key={idx}>
         <img
           className="fullview-players-img request-img"
           src={images.players}
