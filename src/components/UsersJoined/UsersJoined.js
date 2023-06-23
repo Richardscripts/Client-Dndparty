@@ -13,7 +13,12 @@ export default function UsersJoined(props) {
           <span className="username-style">
             {user.user_name}
             <span className="visuallyhidden">has Joined Party</span>
-          </span>
+          </span>{' '}
+          <img
+            style={{ maxWidth: '18px', verticalAlign: 'baseline' }}
+            alt="link out icon"
+            src={images.linkOut}
+          />
         </Link>{' '}
         has joined party.
       </div>

@@ -135,6 +135,10 @@ class App extends React.Component {
       .finally(() => {
         this.handleEndLoading();
       });
+
+    if (window.location.pathname === '/') {
+      setTimeout(this.getPartiesApi, 15000);
+    }
   };
 
   componentDidMount = () => {

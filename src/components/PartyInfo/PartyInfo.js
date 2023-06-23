@@ -19,7 +19,16 @@ export default function PartyInfo(props) {
             {' '}
             Party Creator:{' '}
             <Link to={`/Player_Profile/${party.user_id_creator}`}>
-              {party.user_name}
+              {party.user_name}{' '}
+              <img
+                style={{
+                  maxWidth: '18px',
+                  verticalAlign: 'baseline',
+                  filter: 'brightness(10)',
+                }}
+                alt="link out icon"
+                src={images.linkOut}
+              />
             </Link>
           </span>
           <br />
@@ -97,7 +106,12 @@ export default function PartyInfo(props) {
             )}
             {party.dm_needed && (
               <span className="party-important-text">
-                Dungeon Master Needed
+                Dungeon Master Needed{' '}
+                <img
+                  alt="wizard icon"
+                  style={{ maxWidth: '23px', verticalAlign: 'middle' }}
+                  src={images.dm}
+                />
                 <br />
               </span>
             )}

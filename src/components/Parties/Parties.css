@@ -9,7 +9,7 @@
 
 .complete-party {
   border: 3px rgb(146 76 166) solid;
-  border-top: 3px  rgb(146 76 166) solid;
+  border-bottom: 0;
 }
 
 .group-image:hover {
@@ -60,7 +60,7 @@
   height: 33px;
   align-self: flex-end;
   word-break: break-all;
-  border-radius: 2px;
+  border-radius: 2px 2px 0 0;
 }
 
 .info-party-id {
@@ -140,7 +140,7 @@
 .checked-image {
   width: 22px;
   position: absolute;
-  bottom: 75px;
+  bottom: 50px;
   right: 10px;
   z-index: 10;
   filter: saturate(1.2);

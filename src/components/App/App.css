@@ -85,6 +85,7 @@ main {
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  padding: 10px;
 }
 
 .register-icons {
@@ -152,6 +153,7 @@ main {
     flex-direction: row;
     flex-wrap: wrap;
     margin: auto;
+    padding: 0;
   }
   .App-nav {
     width: 190px;

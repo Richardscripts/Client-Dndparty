@@ -7,17 +7,25 @@ export default function UsersRequestList(props) {
   const party = props.party;
   const usersRequestList = props.current_user_requests.map((user, idx) => {
     return (
-      <div style={{ cursor: 'pointer' }} key={idx}>
+      <div key={idx}>
         <img
           className="fullview-players-img request-img"
           src={images.players}
           alt=""
         />
-        <Link to={`/Player_Profile/${user.user_id}`}>
+        <Link
+          style={{ cursor: 'pointer' }}
+          to={`/Player_Profile/${user.user_id}`}
+        >
           <span className="username-style">
             {user.user_name}
             <span className="visuallyhidden">Requests to Join Party</span>
-          </span>
+          </span>{' '}
+          <img
+            style={{ maxWidth: '18px', verticalAlign: 'baseline' }}
+            alt="link out icon"
+            src={images.linkOut}
+          />
         </Link>{' '}
         has requested to join.{' '}
         {Validators.ifCreatorOfParty(party.user_id_creator) &&
@@ -27,36 +35,30 @@ export default function UsersRequestList(props) {
                 Accept request as:
               </span>{' '}
               {props.party.players_needed !== '' && (
-                <>
+                <div
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => props.acceptRequester(user.user_id, 'player')}
+                >
                   <img
                     className="fullview-players-img request-img"
                     src={images.players}
                     alt="Player Icon"
                   />
-                  <u
-                    tabIndex="0"
-                    onClick={() =>
-                      props.acceptRequester(user.user_id, 'player')
-                    }
-                  >
-                    (Player)
-                  </u>
-                </>
+                  <u tabIndex="0">Player</u>
+                </div>
               )}
               {props.party.dm_needed && (
-                <>
+                <div
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => props.acceptRequester(user.user_id, 'dm')}
+                >
                   <img
                     className="fullview-players-img request-img"
                     src={images.dm}
                     alt="Player Icon"
                   />
-                  <u
-                    tabIndex="0"
-                    onClick={() => props.acceptRequester(user.user_id, 'dm')}
-                  >
-                    (Dungeon Master)
-                  </u>
-                </>
+                  <u tabIndex="0">Dungeon Master</u>
+                </div>
               )}
             </div>
           )}

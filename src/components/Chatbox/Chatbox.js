@@ -42,6 +42,7 @@ export default class Chatbox extends React.Component {
     const { match } = this.props;
     const party_id = match.params.party_id;
     this.props.handleStartLoading();
+
     partiesApi
       .getChatboxMessages(party_id)
       .then((res) => {
@@ -53,6 +54,10 @@ export default class Chatbox extends React.Component {
       .finally(() => {
         this.props.handleEndLoading();
       });
+
+    if (window.location.pathname.includes('Party')) {
+      setTimeout(this.chatMessagesApi, 15000);
+    }
   };
 
   componentDidMount() {

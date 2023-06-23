@@ -31,6 +31,7 @@ import dmfullparty7 from './dmfullparty6.png';
 import fullpartycomplete from './fullpartycomplete.png';
 import fullpartyhover from './fullpartyhover.png';
 import checked from './checked.png';
+import linkOut from './linkout.png';
 
 const images = {
   fullparty1,
@@ -66,6 +67,7 @@ const images = {
   knight,
   swords,
   checked,
+  linkOut,
 };
 
 export default images;
