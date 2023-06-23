@@ -91,7 +91,6 @@ class FullViewParty extends React.Component {
   fullviewPartyApiCalls = () => {
     const { match } = this.props;
     const party_id = match.params.party_id;
-    this.props.handleStartLoading();
     partiesApi
       .getIndividualParty(this.props.timezone, party_id)
       .then((res) => {
@@ -136,6 +135,7 @@ class FullViewParty extends React.Component {
   };
 
   componentDidMount() {
+    this.props.handleStartLoading();
     this.fullviewPartyApiCalls();
   }
 

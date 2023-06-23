@@ -28,7 +28,7 @@ class Parties extends React.Component {
   };
 
   render() {
-    const isLoginedIn = Validators.ifPartyJoinerOrRequester();
+    const isLoggedIn = Validators.ifPartyJoinerOrRequester();
     const DndParties = this.props.filtered_parties.map((party, idx) => {
       const partyComplete = party.party_complete === 'Complete Party!';
       return (
@@ -85,6 +85,13 @@ class Parties extends React.Component {
               )}
             </div>
           </div>
+          {partyComplete && (
+            <img
+              src={images.checked}
+              alt="checked icon"
+              className="checked-image"
+            />
+          )}
           <Link to={`/Party/${party.party_id}`}>
             <DynamicPartiesImage
               players_needed={party.players_needed}
@@ -104,7 +111,7 @@ class Parties extends React.Component {
               </div>{' '}
             </Link>
             {!Validators.ifCreatorOfParty(party.user_id_creator) &&
-              !isLoginedIn &&
+              !isLoggedIn &&
               !partyComplete && (
                 <button
                   onClick={() => this.handleRequestToJoinParty(party.party_id)}

@@ -2,6 +2,10 @@ import TokenService from './TokenService';
 
 const Validators = {
   ifCreatorOfParty(creator_id) {
+    if (creator_id === '') {
+      return false;
+    }
+
     return (
       Number(creator_id) === TokenService.getUserInfoFromAuthToken().user_id
     );
