@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import partiesApi from '../../Helpers/ApiHelpers/parties';
 import Validators from '../../Helpers/Validators';
 import TokenService from '../../Helpers/TokenService';
@@ -79,8 +80,10 @@ export default class Chatbox extends React.Component {
     const messages = this.state.current_messages.map((chat, idx) => {
       return (
         <div key={idx}>
-          <span className="chatbox-user_name">{chat.user_name}</span>:{' '}
-          <span className="chatbox-message">{chat.message} </span>
+          <Link to={`/Player_Profile/${chat.user_id}`}>
+            <span className="chatbox-user_name">{chat.user_name}</span>
+          </Link>
+          : <span className="chatbox-message">{chat.message} </span>
           <span className="chatbox-time">
             {Validators.newDate(chat.date_created)}
           </span>

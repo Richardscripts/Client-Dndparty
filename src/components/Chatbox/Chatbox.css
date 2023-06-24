@@ -23,6 +23,11 @@
   font-weight: bold;
   font-size: 19px;
   margin-left: 4px;
+  cursor: pointer;
+}
+
+.chatbox-user_name:hover {
+  color: #8a5aba;
 }
 
 .chatbox-message {
