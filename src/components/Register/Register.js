@@ -88,6 +88,11 @@ class Register extends React.Component {
               required
             ></input>
             <br />
+            <div className="tip-style">
+              {' '}
+              Password Must be min. 8 characters.
+            </div>
+            <br />
             <label htmlFor="privacy_policy">I agree to Privacy Policy:</label>
             <input
               required
@@ -100,11 +105,6 @@ class Register extends React.Component {
               aria-invalid="true"
               aria-describedby="error-msg"
             />
-            <br />
-            <div className="tip-style">
-              {' '}
-              Password Must be min. 8 characters.
-            </div>
             <br />
             <div className="register-button-wrapper">
               <button
