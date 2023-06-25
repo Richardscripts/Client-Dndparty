@@ -103,6 +103,7 @@ main {
 
 .col {
   border: 1px white solid;
+  border-radius: 4px;
   width: 200px;
   min-height: 250px;
   margin: auto;

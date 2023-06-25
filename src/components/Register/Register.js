@@ -88,10 +88,7 @@ class Register extends React.Component {
               required
             ></input>
             <br />
-            <div className="tip-style">
-              {' '}
-              Password Must be min. 8 characters.
-            </div>
+            <div className="tip-style">Password Must be min. 8 characters.</div>
             <br />
             <label htmlFor="privacy_policy">I agree to Privacy Policy:</label>
             <input
@@ -106,6 +103,7 @@ class Register extends React.Component {
               aria-describedby="error-msg"
             />
             <br />
+            <br />
             <div className="register-button-wrapper">
               <button
                 className="PartyTableButton register-submit"
@@ -113,6 +111,12 @@ class Register extends React.Component {
               >
                 Submit
               </button>
+              <br />
+              <br />
+              <span>
+                Test Account: user1@email.com <br />
+                Password: password
+              </span>
             </div>
             <br />
             {this.state.error && (

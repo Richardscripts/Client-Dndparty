@@ -77,8 +77,8 @@ class Login extends React.Component {
             aria-describedby="register-error"
           ></input>
           <span className="register-error">
-            Test account: user1@email.com <br />
-            Pw: password
+            Test Account: user1@email.com <br />
+            Password: password
           </span>
           <br />
           <button className="PartyTableButton login-submit" type="submit">
