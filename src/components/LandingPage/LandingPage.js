@@ -6,15 +6,17 @@ import './LandingPage.css';
 export default function LandingPage(props) {
   return (
     <>
-      <p>
-        It's Easy.
-        <Link to="/Register">
-          <span style={{ color: '#ff5833' }}> Register.</span>
-        </Link>{' '}
-        <br /> Create Parties, Join them and Connect with Fellow Dnders!
-        <br />
-        Find the right game for you.
-      </p>
+      <section className="hero-section">
+        <p>
+          It's Easy.
+          <Link to="/Register">
+            <span style={{ color: '#ff5833' }}> Register.</span>
+          </Link>{' '}
+          <br /> Create Parties, Join them and Connect with Fellow Dnders!
+          <br />
+          <h5>Find the right game for you.</h5>
+        </p>
+      </section>
       <div className="instructions-row">
         <div className="col">
           <Link to="/Register">
