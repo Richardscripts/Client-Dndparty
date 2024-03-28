@@ -7,7 +7,7 @@ import Chatbox from '../Chatbox/Chatbox';
 import EditPartyInfo from '../EditPartyInfo/EditPartyInfo';
 
 import './FullViewParty.css';
-import partiesApi from '../../Helpers/ApiHelpers/parties';
+import partiesApi from '../../Helpers/ApiHelpers/Parties';
 
 const FullViewParty = (props) => {
   const [error, setError] = useState(null);
@@ -135,7 +135,7 @@ const FullViewParty = (props) => {
     currentRequests
   );
   const party = currentParty[0];
-  const CreatorOfParty = Validators.ifCreatorOfParty(party.user_id_creator);
+  const creatorOfParty = Validators.ifCreatorOfParty(party.user_id_creator);
   const existsJoiners = currentJoinedUsers.length !== 0;
   const existsRequests = currentRequests.length !== 0;
 
@@ -225,7 +225,7 @@ const FullViewParty = (props) => {
           </div>
         )}
 
-      {!CreatorOfParty &&
+      {!creatorOfParty &&
         !isRequesterOrJoiner &&
         !Validators.partyComplete(party.party_complete) && (
           <button

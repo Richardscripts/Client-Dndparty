@@ -3,8 +3,8 @@ import images from '../../assets/groups-image/images';
 import UserInfoForm from './UserInfoForm/UserInfoForm';
 import Validators from '../../Helpers/Validators';
 import { Link } from 'react-router-dom';
-import profileApi from '../../Helpers/ApiHelpers/profile';
-import partiesApi from '../../Helpers/ApiHelpers/parties';
+import profileApi from '../../Helpers/ApiHelpers/Profile';
+import partiesApi from '../../Helpers/ApiHelpers/Parties';
 import './UserProfile.css';
 
 class UserProfile extends React.Component {

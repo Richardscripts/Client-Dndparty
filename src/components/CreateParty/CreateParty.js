@@ -3,7 +3,7 @@ import Language from './Language/Language';
 import DndEdition from './DndEdition/DndEdition';
 import OnlineOrNot from './OnlineOrNot/OnlineOrNot';
 import images from '../../assets/groups-image/images';
-import partiesApi from '../../Helpers/ApiHelpers/parties';
+import partiesApi from '../../Helpers/ApiHelpers/Parties';
 import Validators from '../../Helpers/Validators';
 import FormDatePicker from './FormDatePicker/FormDatePicker';
 import './CreateParty.css';

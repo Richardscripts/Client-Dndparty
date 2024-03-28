@@ -59,7 +59,6 @@ export default class UserInfoForm extends React.Component {
             action="#"
             id="edit-profile"
             onSubmit={this.props.handleSubmitEditProfile}
-            aria-invalid="true"
             aria-describedby="error-msg"
           >
             <label htmlFor="user_name">Nickname: </label>

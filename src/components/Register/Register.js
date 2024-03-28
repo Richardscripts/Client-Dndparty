@@ -1,7 +1,7 @@
 import React from 'react';
 
 import TokenService from '../../Helpers/TokenService';
-import authApi from '../../Helpers/ApiHelpers/auth';
+import authApi from '../../Helpers/ApiHelpers/AuthHelper';
 
 import './Register.css';
 

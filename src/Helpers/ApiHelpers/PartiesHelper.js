@@ -1,7 +1,7 @@
 import config from '../../config';
 import TokenService from '../TokenService';
 
-const partiesApi = {
+const partiesApiHelpers = {
   createPartyTable(partyInfo) {
     return fetch(`${config.API_ENDPOINT}/api/parties`, {
       method: 'POST',
@@ -194,4 +194,4 @@ const partiesApi = {
   },
 };
 
-export default partiesApi;
+export default partiesApiHelpers;

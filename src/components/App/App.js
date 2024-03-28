@@ -17,7 +17,7 @@ import Parties from '../Parties/Parties';
 import PartiesTablesBar from '../Parties/Parties-tables-bar/PartiesTablesBar';
 import Register from '../Register/Register';
 import UserProfile from '../UserProfile/UserProfile';
-import partiesApi from '../../Helpers/ApiHelpers/parties';
+import partiesApi from '../../Helpers/ApiHelpers/Parties';
 import PrivateRoute from '../../Helpers/PrivateRoute';
 import TokenService from '../../Helpers/TokenService';
 import './App.css';

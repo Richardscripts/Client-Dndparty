@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import partiesApi from '../../Helpers/ApiHelpers/parties';
+import partiesApi from '../../Helpers/ApiHelpers/Parties';
 import Validators from '../../Helpers/Validators';
 import TokenService from '../../Helpers/TokenService';
 import './Chatbox.css';

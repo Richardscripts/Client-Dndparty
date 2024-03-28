@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import images from '../../assets/groups-image/images';
-import partiesApi from '../../Helpers/ApiHelpers/parties';
+import partiesApi from '../../Helpers/ApiHelpers/Parties';
 import Validators from '../../Helpers/Validators';
 import DynamicPartiesImage from './DynamicPartiesImage/DynamicPartiesImage';
 

@@ -1,7 +1,7 @@
 import config from '../../config';
 import TokenService from '../TokenService';
 
-const profileApi = {
+const profileApiHelpers = {
   getUserProfile(user_id) {
     return fetch(`${config.API_ENDPOINT}/api/profile/${user_id}`, {
       method: 'GET',
@@ -17,6 +17,7 @@ const profileApi = {
       }
     });
   },
+
   getUserCreatedParties(id) {
     return fetch(`${config.API_ENDPOINT}/api/profile/created_parties/${id}`, {
       method: 'GET',
@@ -32,6 +33,7 @@ const profileApi = {
       }
     });
   },
+
   editUserProfile(userInfo, user_id) {
     return fetch(`${config.API_ENDPOINT}/api/profile/${user_id}`, {
       method: 'PATCH',
@@ -48,6 +50,7 @@ const profileApi = {
       }
     });
   },
-};
 
-export default profileApi;
+}
+
+export default profileApiHelpers;

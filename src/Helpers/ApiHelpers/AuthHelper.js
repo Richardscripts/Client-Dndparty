@@ -1,6 +1,6 @@
 import config from '../../config';
 
-const authApi = {
+const authApiHelpers = {
   registerUser(email, password, user_name, policyChecked) {
     return fetch(`${config.API_ENDPOINT}/api/auth/register`, {
       method: 'POST',
@@ -47,4 +47,4 @@ const authApi = {
   },
 };
 
-export default authApi;
+export default authApiHelpers;
