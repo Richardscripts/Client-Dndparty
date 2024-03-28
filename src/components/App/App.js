@@ -17,7 +17,7 @@ import Parties from '../Parties/Parties';
 import PartiesTablesBar from '../Parties/Parties-tables-bar/PartiesTablesBar';
 import Register from '../Register/Register';
 import UserProfile from '../UserProfile/UserProfile';
-import partiesApi from '../../Helpers/ApiHelpers/Parties';
+import partiesApiHelper from '../../Helpers/ApiHelpers/PartiesHelper';
 import PrivateRoute from '../../Helpers/PrivateRoute';
 import TokenService from '../../Helpers/TokenService';
 import './App.css';
@@ -110,13 +110,13 @@ export const App = () => {
     setFilteredParties(filteredParties);
   };
 
-  const getPartiesApi = () => {
+  const getPartiesApiHelper = () => {
     const user = TokenService.getUserInfoFromAuthToken();
     setUser(user.user_id);
     setUserName(user.user_name);
     setUserEmail(user.sub);
     setLoading(true);
-    partiesApi
+    partiesApiHelper
       .getPartyTables(timezone)
       .then((res) => {
         setCurrentParties([...res]);
@@ -130,12 +130,12 @@ export const App = () => {
       });
 
     if (window.location.pathname === '/') {
-      setTimeout(getPartiesApi, 15000);
+      setTimeout(getPartiesApiHelper, 15000);
     }
   };
 
   useEffect(() => {
-    getPartiesApi();
+    getPartiesApiHelper();
   }, []);
 
   return (
@@ -212,7 +212,7 @@ export const App = () => {
                 {...props}
                 handleStartLoading={handleStartLoading}
                 handleEndLoading={handleEndLoading}
-                getPartiesApi={getPartiesApi}
+                getPartiesApiHelper={getPartiesApiHelper}
                 loading={loading}
                 timezone={timezone}
               />
@@ -235,7 +235,7 @@ export const App = () => {
                 {...props}
                 handleStartLoading={handleStartLoading}
                 handleEndLoading={handleEndLoading}
-                getPartiesApi={getPartiesApi}
+                getPartiesApiHelper={getPartiesApiHelper}
               />
             )}
           />

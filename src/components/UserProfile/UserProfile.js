@@ -3,8 +3,8 @@ import images from '../../assets/groups-image/images';
 import UserInfoForm from './UserInfoForm/UserInfoForm';
 import Validators from '../../Helpers/Validators';
 import { Link } from 'react-router-dom';
-import profileApi from '../../Helpers/ApiHelpers/Profile';
-import partiesApi from '../../Helpers/ApiHelpers/Parties';
+import profileApiHelper from '../../Helpers/ApiHelpers/ProfileHelper';
+import partiesApiHelper from '../../Helpers/ApiHelpers/PartiesHelper';
 import './UserProfile.css';
 
 class UserProfile extends React.Component {
@@ -63,7 +63,7 @@ class UserProfile extends React.Component {
       error: null,
     });
     this.props.handleStartLoading();
-    profileApi
+    profileApiHelper
       .editUserProfile(userInfo, user_id)
       .then(() => {
         this.setState({ editing: !this.state.editing });
@@ -90,7 +90,7 @@ class UserProfile extends React.Component {
     const { match } = this.props;
     const user_id = match.params.user_id;
     this.props.handleStartLoading();
-    profileApi
+    profileApiHelper
       .getUserProfile(user_id)
       .then((res) => {
         this.setState({
@@ -105,12 +105,12 @@ class UserProfile extends React.Component {
         this.props.handleEndLoading();
       });
     this.props.handleStartLoading();
-    profileApi
+    profileApiHelper
       .getUserCreatedParties(user_id)
       .then((res) => {
         res.forEach((party) => {
           party.requesters = [];
-          partiesApi.getUserRequests(party.party_id).then((result) => {
+          partiesApiHelper.getUserRequests(party.party_id).then((result) => {
             for (let i = 0; i < result.length; i++) {
               this.setState(() =>
                 party.requesters.push([
@@ -134,7 +134,7 @@ class UserProfile extends React.Component {
         this.props.handleEndLoading();
       });
     this.props.handleStartLoading();
-    partiesApi
+    partiesApiHelper
       .getUserJoinedParty(user_id)
       .then((res) => {
         this.setState({

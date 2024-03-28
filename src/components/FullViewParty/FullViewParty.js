@@ -5,9 +5,9 @@ import UserRequestList from '../UsersRequestList/UsersRequestList';
 import Validators from '../../Helpers/Validators';
 import Chatbox from '../Chatbox/Chatbox';
 import EditPartyInfo from '../EditPartyInfo/EditPartyInfo';
-
+import partiesApi from '../../Helpers/ApiHelpers/PartiesHelper';
 import './FullViewParty.css';
-import partiesApi from '../../Helpers/ApiHelpers/Parties';
+
 
 const FullViewParty = (props) => {
   const [error, setError] = useState(null);

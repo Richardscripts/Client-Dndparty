@@ -9,11 +9,11 @@ const profileApiHelpers = {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
-        return res.json();
+        return response.json();
       }
     });
   },
@@ -25,11 +25,11 @@ const profileApiHelpers = {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
-        return res.json();
+        return response.json();
       }
     });
   },
@@ -42,11 +42,12 @@ const profileApiHelpers = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(userInfo),
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    })
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
-        return res.json();
+        return response.json();
       }
     });
   },

@@ -18,6 +18,7 @@ const partiesApiHelpers = {
       }
     });
   },
+
   editPartyTable(partyInfo, party_id) {
     return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}`, {
       method: 'PATCH',
@@ -34,6 +35,7 @@ const partiesApiHelpers = {
       }
     });
   },
+
   getPartyTables(timezone) {
     return fetch(`${config.API_ENDPOINT}/api/parties`, {
       method: 'GET',
@@ -49,6 +51,7 @@ const partiesApiHelpers = {
       }
     });
   },
+
   getIndividualParty(timezone, party_id) {
     return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}`, {
       method: 'GET',
@@ -64,6 +67,7 @@ const partiesApiHelpers = {
       }
     });
   },
+
   requestTojoinParty(party_id) {
     return fetch(`${config.API_ENDPOINT}/api/parties/join`, {
       method: 'POST',
@@ -80,6 +84,7 @@ const partiesApiHelpers = {
       }
     });
   },
+
   getUserRequests(party_id) {
     return fetch(`${config.API_ENDPOINT}/api/parties/requests`, {
       method: 'POST',
@@ -96,6 +101,7 @@ const partiesApiHelpers = {
       }
     });
   },
+
   acceptPartyJoinRequest(user_id, party_id, type) {
     return fetch(`${config.API_ENDPOINT}/api/parties/accept_request`, {
       method: 'POST',
@@ -112,6 +118,7 @@ const partiesApiHelpers = {
       }
     });
   },
+
   getUsersWhoJoinedParty(party_id) {
     return fetch(`${config.API_ENDPOINT}/api/parties/joined`, {
       method: 'POST',
@@ -128,6 +135,7 @@ const partiesApiHelpers = {
       }
     });
   },
+  
   getUserJoinedParty(user_id) {
     return fetch(`${config.API_ENDPOINT}/api/parties/joined/${user_id}`, {
       method: 'GET',
@@ -143,6 +151,7 @@ const partiesApiHelpers = {
       }
     });
   },
+
   submitChatboxMessage(message, party_id) {
     return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}/chat`, {
       method: 'POST',
@@ -162,6 +171,7 @@ const partiesApiHelpers = {
       }
     });
   },
+
   getChatboxMessages(party_id) {
     return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}/chat`, {
       method: 'GET',
@@ -177,6 +187,7 @@ const partiesApiHelpers = {
       }
     });
   },
+
   deleteParty(party_id) {
     return fetch(`${config.API_ENDPOINT}/api/parties/${party_id}`, {
       method: 'DELETE',
