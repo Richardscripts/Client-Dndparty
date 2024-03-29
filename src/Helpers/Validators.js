@@ -49,7 +49,7 @@ const Validators = {
     return isJoinerOrRequester;
   },
 
-  partyComplete(isParty) {
+  isPartyComplete(isParty) {
     return isParty === 'Complete Party!';
   },
 
@@ -66,32 +66,12 @@ const Validators = {
     return newEvent;
   },
 
-  sortMessagesByDate(dates) {
+  getSortMessagesByDate(dates) {
     const sortedDates = [...dates].sort(function (a, b) {
       return a.date_created.localeCompare(b.date_created);
     });
 
     return sortedDates;
-  },
-
-  convertTime(time) {
-    time = time.split(':');
-    let hours = Number(time[0]);
-    let minutes = Number(time[1]);
-    let timeValue;
-
-    if (hours > 0 && hours <= 12) {
-      timeValue = '' + hours;
-    } else if (hours > 12) {
-      timeValue = '' + (hours - 12);
-    } else if (hours === 0) {
-      timeValue = '12';
-    }
-
-    timeValue += minutes < 10 ? ':0' + minutes : ':' + minutes; // get minutes
-    timeValue += hours >= 12 ? ' P.M.' : ' A.M.'; // get AM/PM
-
-    return timeValue;
   },
 };
 

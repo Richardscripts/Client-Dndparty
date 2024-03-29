@@ -2,7 +2,7 @@ import React from 'react';
 import Language from './Language/Language';
 import DndEdition from './DndEdition/DndEdition';
 import OnlineOrNot from './OnlineOrNot/OnlineOrNot';
-import images from '../../assets/groups-image/images';
+import images from '../../Assets/groups-image/images';
 import partiesApiHelper from '../../Helpers/ApiHelpers/PartiesHelper';
 import Validators from '../../Helpers/Validators';
 import FormDatePicker from './FormDatePicker/FormDatePicker';

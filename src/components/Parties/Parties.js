@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import images from '../../assets/groups-image/images';
+import images from '../../Assets/groups-image/images';
 import partiesApiHelper from '../../Helpers/ApiHelpers/PartiesHelper';
 import Validators from '../../Helpers/Validators';
 import DynamicPartiesImage from './DynamicPartiesImage/DynamicPartiesImage';

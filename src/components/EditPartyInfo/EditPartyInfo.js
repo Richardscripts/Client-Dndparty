@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import images from '../../assets/groups-image/images';
+import images from '../../Assets/groups-image/images';
 import Validators from '../../Helpers/Validators';
 import FormDatePicker from '../CreateParty/FormDatePicker/FormDatePicker';
 import partiesApi from '../../Helpers/ApiHelpers/PartiesHelper';
