@@ -124,7 +124,7 @@ export default function PartyInfo(props) {
             ) : (
               ''
             )}
-            Created: {Validators.newDate(party.date_created)}{' '}
+            Created: {Validators.getNewDate(party.date_created)}{' '}
             <div className="party-completed">
               {party.party_complete === 'Complete Party!' ? (
                 <img

@@ -53,8 +53,8 @@ const Validators = {
     return isParty === 'Complete Party!';
   },
 
-  refreshLoginToken(error) {
-    if (error === 'Login Token Expired. Please Login again.') {
+  refreshLoginToken(errorMessage) {
+    if (errorMessage === 'Login Token Expired. Please Login again.') {
       TokenService.clearAuthToken();
       window.location.reload();
     }

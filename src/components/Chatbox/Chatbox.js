@@ -78,7 +78,7 @@ const Chatbox = (props) => {
         </Link>
         : <span className="chatbox-message">{chat.message} </span>
         <span className="chatbox-time">
-          {Validators.newDate(chat.date_created)}
+          {Validators.getNewDate(chat.date_created)}
         </span>
       </div>
     );

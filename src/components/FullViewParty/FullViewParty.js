@@ -18,7 +18,7 @@ const FullViewParty = (props) => {
   const [currentJoinedUsers, setCurrentJoinedUsers] = useState([]);
   const [toggleDeleteWarning, setToggleDeleteWarning] = useState(false);
   const [toggleEditParty, setToggleEditParty] = useState(false);
-
+ 
   const updateToggleEditParty = () => {
     setToggleEditParty(!toggleEditParty);
   };
@@ -73,7 +73,7 @@ const FullViewParty = (props) => {
     props.handleStartLoading();
     partiesApi
       .deleteParty(party_id)
-      .then(() => {
+      .then((res) => {
         props.getPartiesApi();
         props.history.push('/');
       })
@@ -94,6 +94,7 @@ const FullViewParty = (props) => {
         setCurrentParty([...res]);
       })
       .catch((res) => {
+        props.history.push('/');
         setError(res.error);
       })
       .finally(() => {
@@ -130,12 +131,12 @@ const FullViewParty = (props) => {
     fullviewPartyApiCalls();
   }, []);
 
-  const isRequesterOrJoiner = Validators.ifPartyJoinerOrRequester(
+  const isRequesterOrJoiner = Validators.isPartyJoinerOrRequester(
     currentJoinedUsers,
     currentRequests
   );
   const party = currentParty[0];
-  const creatorOfParty = Validators.ifCreatorOfParty(party.user_id_creator);
+  const creatorOfParty = Validators.isCreatorOfParty(party.user_id_creator);
   const existsJoiners = currentJoinedUsers.length !== 0;
   const existsRequests = currentRequests.length !== 0;
 
@@ -205,7 +206,7 @@ const FullViewParty = (props) => {
           </div>
         </>
       )}
-      {Validators.ifCreatorOfParty(party.user_id_creator) &&
+      {Validators.isCreatorOfParty(party.user_id_creator) &&
         !toggleEditParty && (
           <div className="JoinButton-wrapper">
             <button
@@ -227,7 +228,7 @@ const FullViewParty = (props) => {
 
       {!creatorOfParty &&
         !isRequesterOrJoiner &&
-        !Validators.partyComplete(party.party_complete) && (
+        !Validators.isPartyComplete(party.party_complete) && (
           <button
             type="button"
             onClick={() => handleRequestToJoinParty(party.party_id)}

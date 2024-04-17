@@ -1,22 +1,19 @@
 import config from '../../config';
 import TokenService from '../TokenService';
+import { getHeaders, callApiWithFetch } from './Utility';
 
 const partiesApiHelpers = {
   createPartyTable(partyInfo) {
-    return fetch(`${config.API_ENDPOINT}/api/parties`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${TokenService.getAuthToken()}`,
+    const payload = getHeaders('POST', partyInfo);
+    return fetch(`${config.API_ENDPOINT}/api/parties`,  {...payload}).then(
+      (response) => {
+        if (!response.ok) {
+          return response.json().then((e) => Promise.reject(e));
+        } else {
+          return {};
+        }
       },
-      body: JSON.stringify(partyInfo),
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
-      } else {
-        return res.json();
-      }
-    });
+    );
   },
 
   editPartyTable(partyInfo, party_id) {
@@ -27,9 +24,9 @@ const partiesApiHelpers = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(partyInfo),
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
         return;
       }
@@ -43,11 +40,11 @@ const partiesApiHelpers = {
         'content-type': 'application/json',
         timezone,
       },
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
-        return res.json();
+        return response.json();
       }
     });
   },
@@ -59,11 +56,11 @@ const partiesApiHelpers = {
         'content-type': 'application/json',
         timezone,
       },
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
-        return res.json();
+        return response.json();
       }
     });
   },
@@ -76,9 +73,9 @@ const partiesApiHelpers = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({ party_id }),
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
         return;
       }
@@ -86,20 +83,8 @@ const partiesApiHelpers = {
   },
 
   getUserRequests(party_id) {
-    return fetch(`${config.API_ENDPOINT}/api/parties/requests`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-      body: JSON.stringify({ party_id }),
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
-      } else {
-        return res.json();
-      }
-    });
+    const payload = getHeaders('POST', { party_id });
+    return callApiWithFetch('api/parties/requests', payload);
   },
 
   acceptPartyJoinRequest(user_id, party_id, type) {
@@ -110,9 +95,9 @@ const partiesApiHelpers = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({ user_id, party_id, type }),
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
         return;
       }
@@ -127,29 +112,18 @@ const partiesApiHelpers = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({ party_id }),
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
-        return res.json();
+        return response.json();
       }
     });
   },
-  
-  getUserJoinedParty(user_id) {
-    return fetch(`${config.API_ENDPOINT}/api/parties/joined/${user_id}`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
-      } else {
-        return res.json();
-      }
-    });
+
+  async getUserJoinedParty(user_id) {
+    const payload = getHeaders('GET');
+    return await callApiWithFetch(`api/parties/joined/${user_id}`, payload);
   },
 
   submitChatboxMessage(message, party_id) {
@@ -160,14 +134,14 @@ const partiesApiHelpers = {
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({ message }),
-    }).then((res) => {
-      if (res.statusText === 'Too Many Requests') {
+    }).then((response) => {
+      if (response.statusText === 'Too Many Requests') {
         return Promise.reject({ error: "You're doing that too much!" });
       }
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
-        return res.json();
+        return response.json();
       }
     });
   },
@@ -179,11 +153,11 @@ const partiesApiHelpers = {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
-        return res.json();
+        return response.json();
       }
     });
   },
@@ -195,11 +169,11 @@ const partiesApiHelpers = {
         'content-type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    }).then((res) => {
-      if (!res.ok) {
-        return res.json().then((e) => Promise.reject(e));
+    }).then((response) => {
+      if (!response.ok) {
+        return response.json().then((e) => Promise.reject(e));
       } else {
-        return;
+        return response.json();
       }
     });
   },

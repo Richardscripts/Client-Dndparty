@@ -30,8 +30,8 @@ export default function UsersRequestList({
         />
       </Link>{' '}
       has requested to join.{' '}
-      {Validators.ifCreatorOfParty(party.user_id_creator) &&
-        !Validators.partyComplete(party.party_complete) && (
+      {Validators.isCreatorOfParty(party.user_id_creator) &&
+        !Validators.isPartyComplete(party.party_complete) && (
           <div className="request-list-style">
             <span tabIndex="0" className="request-style">
               Accept request as:
