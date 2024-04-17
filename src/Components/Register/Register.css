@@ -1,0 +1,89 @@
+.register-view {
+  text-align: center;
+}
+
+.register-form {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.register-form > form {
+  background-image: linear-gradient(rgb(85, 85, 85), rgb(53, 53, 53));
+  border: 4px rgb(54, 54, 54) solid;
+  font-family: 'Anton', Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  box-sizing: border-box;
+  opacity: 0.97;
+  flex-direction: column;
+  width: 100%;
+  box-shadow: 0px 11px 11px 6px rgb(12, 12, 12);
+}
+
+.register-error {
+  text-align: center;
+  color: #d45f45;
+}
+
+.register-form > form > label {
+  margin-left: 10px;
+}
+
+.register-button-wrapper {
+  text-align: center;
+}
+
+.register-submit {
+  padding: 0px;
+  width: 200px;
+}
+
+.welcome-message-style {
+  text-align: center;
+  font-family: 'Anton', Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 48px;
+  text-shadow: -2px 2px 0px #070707;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.register-style {
+  text-align: center;
+  font-family: 'Anton', Arial, Helvetica, sans-serif;
+  color: white;
+  font-size: 42px;
+  text-shadow: -2px 2px 0px #070707;
+  box-sizing: border-box;
+}
+
+.tip-style {
+  text-align: center;
+  font-size: 16px;
+}
+
+.privacy-policy {
+  margin: auto;
+  padding-top: 25px;
+  width: 100%;
+}
+
+#privacy_policy {
+  width: 40px;
+  vertical-align: middle;
+}
+
+@media all and (min-width: 900px) {
+  .register-form > form {
+    width: 500px;
+    bottom: 50%;
+  }
+  .welcome-message-style {
+    font-size: 68px;
+    margin: 15px;
+  }
+  .privacy-policy {
+    width: 500px;
+  }
+}
