@@ -2,8 +2,8 @@ import React from 'react';
 import Language from './Language/Language';
 import DndEdition from './DndEdition/DndEdition';
 import OnlineOrNot from './OnlineOrNot/OnlineOrNot';
-import images from '../../assets/groups-image/images';
-import partiesApi from '../../Helpers/ApiHelpers/parties';
+import images from '../../Assets/groups-image/images';
+import partiesApiHelper from '../../Helpers/ApiHelpers/PartiesHelper';
 import Validators from '../../Helpers/Validators';
 import FormDatePicker from './FormDatePicker/FormDatePicker';
 import './CreateParty.css';
@@ -73,10 +73,10 @@ export default class CreateParty extends React.Component {
         error: null,
       });
 
-      partiesApi
+      partiesApiHelper
         .createPartyTable(partyInfo)
         .then((res) => {
-          this.props.getPartiesApi();
+          this.props.getPartiesApiHelper();
           this.props.history.push(`/Party/${res.party_id}`);
         })
         .catch((res) => {

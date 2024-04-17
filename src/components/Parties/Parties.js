@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import images from '../../assets/groups-image/images';
-import partiesApi from '../../Helpers/ApiHelpers/parties';
+import images from '../../Assets/groups-image/images';
+import partiesApiHelper from '../../Helpers/ApiHelpers/PartiesHelper';
 import Validators from '../../Helpers/Validators';
 import DynamicPartiesImage from './DynamicPartiesImage/DynamicPartiesImage';
 
@@ -14,7 +14,7 @@ class Parties extends React.Component {
 
   handleRequestToJoinParty = (party_id) => {
     this.props.handleStartLoading();
-    partiesApi
+    partiesApiHelper
       .requestTojoinParty(party_id)
       .then(() => {
         this.props.history.push(`/Party/${party_id}`);
@@ -28,9 +28,9 @@ class Parties extends React.Component {
   };
 
   render() {
-    const isLoggedIn = Validators.ifPartyJoinerOrRequester();
+    const isLoggedIn = Validators.isPartyJoinerOrRequester();
     const DndParties = this.props.filtered_parties.map((party, idx) => {
-      const partyComplete = party.party_complete === 'Complete Party!';
+      const isPartyComplete = Validators.isPartyComplete(party.party_complete);
       return (
         <div
           key={idx}
@@ -85,7 +85,7 @@ class Parties extends React.Component {
               )}
             </div>
           </div>
-          {partyComplete && (
+          {isPartyComplete && (
             <img
               src={images.checked}
               alt="checked icon"
@@ -110,9 +110,9 @@ class Parties extends React.Component {
                 </span>
               </div>{' '}
             </Link>
-            {!Validators.ifCreatorOfParty(party.user_id_creator) &&
+            {!Validators.isCreatorOfParty(party.user_id_creator) &&
               !isLoggedIn &&
-              !partyComplete && (
+              !isPartyComplete && (
                 <button
                   onClick={() => this.handleRequestToJoinParty(party.party_id)}
                   className="join-button PartyTableButton"

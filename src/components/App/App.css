@@ -148,6 +148,12 @@ main {
   z-index: 49;
 }
 
+.errorMessage-msg {
+  color: red;
+  font-size: 20px;
+  text-align: center;
+}
+
 @media all and (min-width: 500px) {
   main {
     flex-direction: row;

@@ -3,9 +3,13 @@ import React from 'react';
 export default class UserInfoForm extends React.Component {
   render() {
     const editing = this.props.editing;
-    const userInfo = this.props.info.map((info, idx) => {
-      return (
-        <div tabIndex="0" className="user-info-container" key={idx}>
+    const {info} = this.props;
+    const isCharacterSheets = info?.character_sheets?.length > 4;
+    const char_name = isCharacterSheets ? info?.character_sheets.split(' ')[0] : '';
+    const char_url = isCharacterSheets ? info?.character_sheets.split(' ')[1] : '';
+ 
+    const userInfo =  (
+        <div tabIndex="0" className="user-info-container">
           <div className="left-content">
             <span tabIndex="0">Nickname:</span>
             <p tabIndex="0">{info.user_name || '�'}</p> <br />
@@ -32,7 +36,7 @@ export default class UserInfoForm extends React.Component {
             <br />
             <span tabIndex="0">Character Sheet:</span>
             <p tabIndex="0" className="about-me">
-              {info.character_sheets ? (
+              {isCharacterSheets ? (
                 <>
                   <b>{info.character_sheets.split(' ')[0]}</b> <br />
                   <br />
@@ -51,15 +55,14 @@ export default class UserInfoForm extends React.Component {
           </div>
         </div>
       );
-    });
-    const editingInfo = this.props.info.map((info, idx) => {
-      return (
-        <div className="user-info-container" key={idx}>
+   
+    const editingInfo = 
+  (
+        <div className="user-info-container">
           <form
             action="#"
             id="edit-profile"
             onSubmit={this.props.handleSubmitEditProfile}
-            aria-invalid="true"
             aria-describedby="error-msg"
           >
             <label htmlFor="user_name">Nickname: </label>
@@ -158,6 +161,7 @@ export default class UserInfoForm extends React.Component {
               aria-invalid="true"
               maxLength={50}
               aria-describedby="error-msg"
+              defaultValue={char_name}
             ></input>{' '}
             <label htmlFor="char_url">PDF URL: </label>
             <input
@@ -166,11 +170,12 @@ export default class UserInfoForm extends React.Component {
               aria-invalid="true"
               aria-describedby="error-msg"
               type="url"
+              defaultValue={char_url}
             ></input>{' '}
           </form>
         </div>
       );
-    });
+    
     return <>{editing ? editingInfo : userInfo}</>;
   }
 }

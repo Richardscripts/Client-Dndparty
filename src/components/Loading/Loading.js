@@ -1,5 +1,5 @@
 import React from 'react';
-import images from '../../assets/groups-image/images';
+import images from '../../Assets/groups-image/images';
 import './Loading.css';
 
 export default function Loading(props) {

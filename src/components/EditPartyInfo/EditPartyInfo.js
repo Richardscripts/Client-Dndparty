@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import images from '../../assets/groups-image/images';
+import images from '../../Assets/groups-image/images';
 import Validators from '../../Helpers/Validators';
 import FormDatePicker from '../CreateParty/FormDatePicker/FormDatePicker';
-import partiesApi from '../../Helpers/ApiHelpers/parties';
+import partiesApi from '../../Helpers/ApiHelpers/PartiesHelper';
 
 import './EditPartyInfo.css';
 
@@ -295,7 +295,7 @@ export default class EditPartyInfo extends React.Component {
                 ></input>
                 <br />
               </>
-              Created: {Validators.newDate(party.date_created)}{' '}
+              Created: {Validators.getNewDate(party.date_created)}{' '}
               <div className="party-completed">
                 {party.party_complete === 'Complete Party!' ? (
                   <img
