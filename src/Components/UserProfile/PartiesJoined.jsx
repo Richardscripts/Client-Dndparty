@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import images from '../../Assets/groups-image/images';
+import Loading from '../Loading/Loading';
+import { useGetUserJoinedParties } from '../../Api/UserProfile';
 
-export default function PartiesJoined({ joined_parties }) {
-  const partiesJoined = joined_parties?.map((party, idx) => {
+export const PartiesJoined = ({ user_id }) => {
+  const { isUserJoinedPartiesLoading, userJoinedParties } =
+    useGetUserJoinedParties(user_id);
+
+  const partiesJoined = userJoinedParties?.map((party, idx) => {
     return (
-      <Link key={idx} to={`/Party/${party.party_id}`}>
+      <Link key={idx} to={`/Party/${party?.party_id}`}>
         <div className="parties-joined-container" key={idx}>
           <div className="parties-joined-style">
             <span className="parties-joined-user">
@@ -15,7 +20,7 @@ export default function PartiesJoined({ joined_parties }) {
                 src={images.swordsblue}
                 alt="Swords crossing icon"
               />
-              {party.party_name}
+              {party?.party_name}
             </span>
           </div>
           <br />
@@ -35,8 +40,10 @@ export default function PartiesJoined({ joined_parties }) {
           />
           Parties Joined:
         </div>
-        <div className="parties-joined-container">{partiesJoined}</div>
+        <div className="parties-joined-container">
+          {isUserJoinedPartiesLoading ? <Loading relative /> : partiesJoined}
+        </div>
       </div>
     </div>
   );
-}
+};

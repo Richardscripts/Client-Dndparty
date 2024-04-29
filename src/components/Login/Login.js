@@ -1,6 +1,6 @@
 import React from 'react';
 import TokenService from '../../Helpers/TokenService';
-import authApi from '../../Helpers/ApiHelpers/AuthHelper';
+import authApiHelpers from '../../Helpers/ApiHelpers/AuthHelpers';
 
 import './Login.css';
 
@@ -20,7 +20,7 @@ class Login extends React.Component {
       error: null,
     });
     this.props.handleStartLoading();
-    authApi
+    authApiHelpers
       .loginUser(user_email.value, password.value)
       .then((res) => {
         user_email.value = '';

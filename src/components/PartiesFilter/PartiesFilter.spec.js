@@ -11,7 +11,7 @@ it('renders without crashing', () => {
     <BrowserRouter>
       <PartiesFilter />
     </BrowserRouter>,
-    div
+    div,
   );
 
   ReactDOM.unmountComponentAtNode(div);

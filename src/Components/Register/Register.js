@@ -1,7 +1,7 @@
 import React from 'react';
 
 import TokenService from '../../Helpers/TokenService';
-import authApi from '../../Helpers/ApiHelpers/AuthHelper';
+import authApi from '../../Helpers/ApiHelpers/AuthHelpers';
 
 import './Register.css';
 
@@ -23,7 +23,7 @@ class Register extends React.Component {
         user_email.value,
         password.value,
         user_name.value,
-        this.state.policyChecked
+        this.state.policyChecked,
       )
       .then((res) => {
         user_email.value = '';

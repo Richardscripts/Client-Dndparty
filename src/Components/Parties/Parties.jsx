@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import images from '../../Assets/groups-image/images';
-import partiesApiHelper from '../../Helpers/ApiHelpers/PartiesHelper';
+import partiesApiHelpers from '../../Helpers/ApiHelpers/PartiesHelpers';
 import Validators from '../../Helpers/Validators';
 import DynamicPartiesImage from './DynamicPartiesImage/DynamicPartiesImage';
-
+import Loading from '../Loading/Loading';
 import './Parties.css';
 
 class Parties extends React.Component {
@@ -14,7 +14,7 @@ class Parties extends React.Component {
 
   handleRequestToJoinParty = (party_id) => {
     this.props.handleStartLoading();
-    partiesApiHelper
+    partiesApiHelpers
       .requestTojoinParty(party_id)
       .then(() => {
         this.props.history.push(`/Party/${party_id}`);

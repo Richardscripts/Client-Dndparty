@@ -10,21 +10,20 @@ import FullViewParty from '../FullViewParty/FullViewParty';
 import FullViewPartyTopBar from '../FullViewParty/FullViewPartyTopBar';
 import Header from '../Header/Header';
 import LandingPage from '../LandingPage/LandingPage';
-import Loading from '../Loading/Loading';
 import Login from '../Login/Login';
 import NoMatch from '../NoMatch/NoMatch';
 import Parties from '../Parties/Parties';
 import PartiesTablesBar from '../Parties/Parties-tables-bar/PartiesTablesBar';
 import Register from '../Register/Register';
-import UserProfile from '../UserProfile/UserProfile';
-import partiesApiHelper from '../../Helpers/ApiHelpers/PartiesHelper';
+import { UserProfileLayout } from '../UserProfile/UserProfileLayout';
+import partiesApiHelpers from '../../Helpers/ApiHelpers/PartiesHelpers';
 import PrivateRoute from '../../Helpers/PrivateRoute';
 import TokenService from '../../Helpers/TokenService';
 import './App.css';
 
 const timezone = usertz.getTimeZone();
 
-export const App = () => {
+export const App = ({ isAppLoading, setIsAppLoading }) => {
   const history = useHistory();
   const [tokenExists, setTokenExists] = useState(TokenService.hasAuthToken());
   const [user, setUser] = useState(0);
@@ -32,7 +31,6 @@ export const App = () => {
   const [userEmail, setUserEmail] = useState('');
   const [profileUpdated, setProfileUpdated] = useState(false);
   const [toggleLogin, setToggleLogin] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [currentParties, setCurrentParties] = useState([]);
   const [filteredParties, setFilteredParties] = useState([]);
 
@@ -60,11 +58,11 @@ export const App = () => {
   };
 
   const handleStartLoading = () => {
-    setLoading(true);
+    setIsAppLoading(true);
   };
 
   const handleEndLoading = () => {
-    setLoading(false);
+    setIsAppLoading(false);
   };
 
   const handlePartyFilters = (
@@ -78,7 +76,7 @@ export const App = () => {
     year,
     date,
     hour,
-    am
+    am,
   ) => {
     const filters = [
       party_complete,
@@ -115,8 +113,8 @@ export const App = () => {
     setUser(user.user_id);
     setUserName(user.user_name);
     setUserEmail(user.sub);
-    setLoading(true);
-    partiesApiHelper
+    setIsAppLoading(true);
+    partiesApiHelpers
       .getPartyTables(timezone)
       .then((res) => {
         setCurrentParties([...res]);
@@ -179,7 +177,6 @@ export const App = () => {
         <Route exact path="/" component={PartiesTablesBar} />
       )}
       <main>
-        {loading && <Loading />}
         <Switch>
           <Route
             path="/Register"
@@ -202,6 +199,7 @@ export const App = () => {
                 handleStartLoading={handleStartLoading}
                 handleEndLoading={handleEndLoading}
                 filtered_parties={filteredParties}
+                isAppLoading={isAppLoading}
               />
             )}
           />
@@ -213,14 +211,14 @@ export const App = () => {
                 handleStartLoading={handleStartLoading}
                 handleEndLoading={handleEndLoading}
                 getPartiesApiHelper={getPartiesApiHelper}
-                loading={loading}
+                loading={isAppLoading}
                 timezone={timezone}
               />
             )}
           />
           <PrivateRoute
             path="/Player_Profile/:user_id"
-            component={UserProfile}
+            component={UserProfileLayout}
             user_email={userEmail}
             profile_updated={profileUpdated}
             handleProfileUpdate={handleProfileUpdate}

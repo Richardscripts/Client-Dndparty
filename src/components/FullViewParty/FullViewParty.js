@@ -5,9 +5,8 @@ import UserRequestList from '../UsersRequestList/UsersRequestList';
 import Validators from '../../Helpers/Validators';
 import Chatbox from '../Chatbox/Chatbox';
 import EditPartyInfo from '../EditPartyInfo/EditPartyInfo';
-import partiesApi from '../../Helpers/ApiHelpers/PartiesHelper';
+import partiesApi from '../../Helpers/ApiHelpers/PartiesHelpers';
 import './FullViewParty.css';
-
 
 const FullViewParty = (props) => {
   const [error, setError] = useState(null);
@@ -18,7 +17,7 @@ const FullViewParty = (props) => {
   const [currentJoinedUsers, setCurrentJoinedUsers] = useState([]);
   const [toggleDeleteWarning, setToggleDeleteWarning] = useState(false);
   const [toggleEditParty, setToggleEditParty] = useState(false);
- 
+
   const updateToggleEditParty = () => {
     setToggleEditParty(!toggleEditParty);
   };
@@ -133,7 +132,7 @@ const FullViewParty = (props) => {
 
   const isRequesterOrJoiner = Validators.isPartyJoinerOrRequester(
     currentJoinedUsers,
-    currentRequests
+    currentRequests,
   );
   const party = currentParty[0];
   const creatorOfParty = Validators.isCreatorOfParty(party.user_id_creator);

@@ -11,7 +11,7 @@ it('renders without crashing', () => {
     <BrowserRouter>
       <UsersJoined current_joined_users={[]} />
     </BrowserRouter>,
-    div
+    div,
   );
 
   ReactDOM.unmountComponentAtNode(div);

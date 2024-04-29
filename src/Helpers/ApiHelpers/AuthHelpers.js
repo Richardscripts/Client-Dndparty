@@ -24,7 +24,7 @@ const authApiHelpers = {
       }
     });
   },
-  
+
   loginUser(email, password) {
     return fetch(`${config.API_ENDPOINT}/api/auth/login`, {
       method: 'POST',

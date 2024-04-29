@@ -5,7 +5,7 @@ import { getHeaders, callApiWithFetch } from './Utility';
 const partiesApiHelpers = {
   createPartyTable(partyInfo) {
     const payload = getHeaders('POST', partyInfo);
-    return fetch(`${config.API_ENDPOINT}/api/parties`,  {...payload}).then(
+    return fetch(`${config.API_ENDPOINT}/api/parties`, { ...payload }).then(
       (response) => {
         if (!response.ok) {
           return response.json().then((e) => Promise.reject(e));
@@ -82,7 +82,7 @@ const partiesApiHelpers = {
     });
   },
 
-  getUserRequests(party_id) {
+  async getUserRequests(party_id) {
     const payload = getHeaders('POST', { party_id });
     return callApiWithFetch('api/parties/requests', payload);
   },
@@ -121,7 +121,7 @@ const partiesApiHelpers = {
     });
   },
 
-  async getUserJoinedParty(user_id) {
+  async getUserJoinedParties(user_id) {
     const payload = getHeaders('GET');
     return await callApiWithFetch(`api/parties/joined/${user_id}`, payload);
   },

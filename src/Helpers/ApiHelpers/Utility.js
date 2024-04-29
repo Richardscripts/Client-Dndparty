@@ -1,26 +1,33 @@
-import TokenService from '../TokenService'
-import config from '../../config'
-import Validators from '../Validators'
+import TokenService from '../TokenService';
+import config from '../../config';
+import Validators from '../Validators';
 
-export const scrollTo = refElement => {
+export const scrollTo = (refElement) => {
   window.scrollTo({
     behavior: 'smooth',
     top: refElement.current.offsetTop,
-  })
-}
+  });
+};
 
 export const callApiWithFetch = async (endpoint, payload) => {
-  return await fetch(`${config.API_ENDPOINT}/${endpoint}`, { ...payload }).then(
-    response => {
-      if (response.error) {
-        Validators.refreshLoginToken(response.error)
-        return response.json().then(error => Promise.reject(error))
-      } else {
-        return response.json()
-      }
-    },
-  )
-}
+  try {
+    const response = await fetch(`${config.API_ENDPOINT}/${endpoint}`, {
+      ...payload,
+    });
+    const responseJSON = await response.json();
+ 
+    const error = responseJSON?.error;
+
+    if (error) {
+      Validators.refreshLoginToken(error);
+      throw new Error(error);
+    }
+
+    return responseJSON;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 export const getHeaders = (method, body) => ({
   method,
@@ -29,4 +36,4 @@ export const getHeaders = (method, body) => ({
     authorization: `bearer ${TokenService.getAuthToken()}`,
   },
   body: body && JSON.stringify(body),
-})
+});

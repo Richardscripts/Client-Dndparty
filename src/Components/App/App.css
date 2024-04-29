@@ -38,6 +38,8 @@ footer {
   box-sizing: border-box;
   font-weight: bold;
   padding-bottom: 10px;
+  z-index: 50;
+  position: relative;
 }
 
 .dndparty-logo {

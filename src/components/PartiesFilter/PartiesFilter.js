@@ -46,9 +46,9 @@ export default class PartiesFilter extends React.Component {
           { date: this.state.filter_date },
           { year: this.state.filter_year },
           { hour: this.state.filter_hour },
-          { am: this.state.filter_am }
+          { am: this.state.filter_am },
         );
-      }
+      },
     );
     this.props.togglePartyFilter();
   };
@@ -66,7 +66,7 @@ export default class PartiesFilter extends React.Component {
       { date: state.filter_date },
       { year: state.filter_year },
       { hour: state.filter_hour },
-      { am: state.filter_am }
+      { am: state.filter_am },
     );
     this.setState({ filterTouched: false });
   };

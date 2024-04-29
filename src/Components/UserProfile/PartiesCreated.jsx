@@ -2,14 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import images from '../../Assets/groups-image/images';
 import Validators from '../../Helpers/Validators';
+import { useGetUserCreatedParties } from '../../Api/UserProfile';
+import Loading from '../Loading/Loading';
 
-export default function PartiesCreated({ created_parties }) {
-  const partiesCreated = created_parties?.map((party, idx) => {
+export const PartiesCreated = ({ user_id }) => {
+  const { userCreatedParties, isUserCreatedPartiesLoading } =
+    useGetUserCreatedParties(user_id);
+  const partiesCreated = userCreatedParties?.map((party, idx) => {
     const requesters = party?.requesters?.map((requesters) => {
       return requesters?.map((requester, idx) => {
         return (
-          <a key={idx} href={`/Player_Profile/${requester.user_id}`}>
-            <span className="requester-name">{requester.user_name} </span>
+          <a key={idx} href={`/Player_Profile/${requester?.user_id}`}>
+            <span className="requester-name">{requester?.user_name} </span>
           </a>
         );
       });
@@ -42,8 +46,10 @@ export default function PartiesCreated({ created_parties }) {
         <span tabIndex="0" className="player-info-style">
           Party Tables Created:
         </span>
-        <div className="parties-created-container">{partiesCreated}</div>
+        <div className="parties-created-container">
+          {isUserCreatedPartiesLoading ? <Loading relative /> : partiesCreated}
+        </div>
       </div>
     </div>
   );
-}
+};

@@ -18,7 +18,7 @@ it('renders without crashing', () => {
         handleEndLoading={handleEndLoading}
       />
     </BrowserRouter>,
-    div
+    div,
   );
 
   ReactDOM.unmountComponentAtNode(div);

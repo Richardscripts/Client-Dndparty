@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import partiesApiHelper from '../../Helpers/ApiHelpers/PartiesHelper';
+import partiesApiHelpers from '../../Helpers/ApiHelpers/PartiesHelpers';
 import Validators from '../../Helpers/Validators';
 import TokenService from '../../Helpers/TokenService';
-import { animateScroll } from 'react-scroll';
 import './Chatbox.css';
 
 const Chatbox = (props) => {
@@ -20,7 +19,7 @@ const Chatbox = (props) => {
       return;
     }
     props.handleStartLoading();
-    partiesApiHelper
+    partiesApiHelpers
       .submitChatboxMessage(message, props.party_id)
       .then(() => {
         chatMessagesApi();
@@ -38,7 +37,7 @@ const Chatbox = (props) => {
     const party_id = match.params.party_id;
     props.handleStartLoading();
 
-    partiesApiHelper
+    partiesApiHelpers
       .getChatboxMessages(party_id)
       .then((res) => {
         setCurrentMessages(Validators.sortMessagesByDate(res));
@@ -60,15 +59,8 @@ const Chatbox = (props) => {
   }, []);
 
   useEffect(() => {
-    scrollToBottom();
+    // scrollToBottom();
   }, [currentMessages]);
-
-  const scrollToBottom = () => {
-    animateScroll.scrollToBottom({
-      containerId: 'chatbox-window',
-      duration: 0,
-    });
-  };
 
   const messages = currentMessages.map((chat, idx) => {
     return (

@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tanstack/react-query": "^5.31.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "animate.css": "^4.1.1",
-    "react": "^16.13.1",
-    "react-datetime-picker": "^3.0.4",
-    "react-dom": "^16.13.1",
+    "react": "^18.2.0",
+    "react-datetime-picker": "^5.6.0",
+    "react-dom": "^18.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.2.2",
     "react-scripts": "^5.0.1",
-    "react-scroll": "^1.8.1",
     "user-timezone": "^1.0.3"
   },
   "scripts": {

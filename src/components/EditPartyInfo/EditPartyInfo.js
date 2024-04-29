@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import images from '../../Assets/groups-image/images';
 import Validators from '../../Helpers/Validators';
 import FormDatePicker from '../CreateParty/FormDatePicker/FormDatePicker';
-import partiesApi from '../../Helpers/ApiHelpers/PartiesHelper';
+import partiesApiHelpers from '../../Helpers/ApiHelpers/PartiesHelpers';
 
 import './EditPartyInfo.css';
 
@@ -65,7 +65,7 @@ export default class EditPartyInfo extends React.Component {
     this.setState({
       error: null,
     });
-    partiesApi
+    partiesApiHelpers
       .editPartyTable(partyInfo, this.props.party_id)
       .then(() => {
         this.props.updateEditParty();

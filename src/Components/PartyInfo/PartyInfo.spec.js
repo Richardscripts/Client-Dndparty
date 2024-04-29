@@ -11,7 +11,7 @@ it('renders without crashing', () => {
     <BrowserRouter>
       <PartyInfo current_party={[]} />
     </BrowserRouter>,
-    div
+    div,
   );
 
   ReactDOM.unmountComponentAtNode(div);
