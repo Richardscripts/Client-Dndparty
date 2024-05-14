@@ -19,10 +19,8 @@ const UserProfile = ({
   setErrorMessage,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
-
   const { userProfileData, refetchUserProfileData, isUserProfileLoading } =
     useGetUserProfile(user_id, history);
-
   const {
     updateUserProfile,
     isUpdateUserProfileSuccess,

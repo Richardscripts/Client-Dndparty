@@ -29,7 +29,7 @@ export default class CreateParty extends React.Component {
       });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
 
     const {
@@ -51,8 +51,6 @@ export default class CreateParty extends React.Component {
       });
       return;
     } else {
-      this.props.handleStartLoading();
-
       const partyInfo = {
         party_name: party_name.value,
         players_needed: parseInt(players_needed.value),
@@ -73,19 +71,9 @@ export default class CreateParty extends React.Component {
         error: null,
       });
 
-      partiesApiHelpers
-        .createPartyTable(partyInfo)
-        .then((res) => {
-          this.props.getPartiesApiHelper();
-          this.props.history.push(`/Party/${res.party_id}`);
-        })
-        .catch((res) => {
-          this.setState({ error: res.error });
-          Validators.refreshLoginToken(res.error);
-        })
-        .finally(() => {
-          this.props.handleEndLoading();
-        });
+      const response = await partiesApiHelpers.createPartyTable(partyInfo);
+
+      this.props.history.push(`/Party/${response.party_id}`);
     }
   };
   render() {

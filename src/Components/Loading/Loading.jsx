@@ -9,6 +9,7 @@ export default function Loading({ relative }) {
         className="loading-background"
         style={relative ? { position: 'relative' } : {}}
       ></div>
+
       <div
         style={relative ? { position: 'relative' } : {}}
         className="loading-img-wrapper"

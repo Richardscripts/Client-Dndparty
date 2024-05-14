@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import * as usertz from 'user-timezone';
-
 import CreateParty from '../CreateParty/CreateParty';
 import CreatePartyButton from '../CreateParty/CreatePartyButton';
 import CreatePartyTopBar from '../CreateParty/CreatePartyTopBar/CreatePartyTopBar';
@@ -16,54 +14,61 @@ import Parties from '../Parties/Parties';
 import PartiesTablesBar from '../Parties/Parties-tables-bar/PartiesTablesBar';
 import Register from '../Register/Register';
 import { UserProfileLayout } from '../UserProfile/UserProfileLayout';
-import partiesApiHelpers from '../../Helpers/ApiHelpers/PartiesHelpers';
 import PrivateRoute from '../../Helpers/PrivateRoute';
 import TokenService from '../../Helpers/TokenService';
+import { useGetPartyTables } from '../../Api/App';
 import './App.css';
 
-const timezone = usertz.getTimeZone();
-
-export const App = ({ isAppLoading, setIsAppLoading }) => {
+export const App = () => {
   const history = useHistory();
-  const [tokenExists, setTokenExists] = useState(TokenService.hasAuthToken());
-  const [user, setUser] = useState(0);
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [profileUpdated, setProfileUpdated] = useState(false);
+  const [isAuthToken, setIsAuthToken] = useState(TokenService.hasAuthToken());
+  const [userInfo, setUserInfo] = useState({
+    user_id: 0,
+    user_name: '',
+    userEmail: '',
+  });
   const [toggleLogin, setToggleLogin] = useState(false);
-  const [currentParties, setCurrentParties] = useState([]);
+  const { partyTablesData, isPartyTablesDataLoading, refetchPartyTables } =
+    useGetPartyTables();
   const [filteredParties, setFilteredParties] = useState([]);
 
   const loginUpdateToken = () => {
-    setTokenExists(TokenService.hasAuthToken());
+    setIsAuthToken(TokenService.hasAuthToken());
   };
 
   const handleToggleLogin = () => {
     setToggleLogin(!toggleLogin);
   };
 
-  const handleProfileLink = () => {
-    history.push(`/Player_Profile/${user}`);
-    setProfileUpdated(true);
+  const handleUserInfo = ({ user_id, user_name, sub }) => {
+    setUserInfo({ user_id, user_name, sub });
   };
 
-  const handleProfileUpdate = () => {
-    setProfileUpdated(false);
-  };
+  useEffect(() => {
+    if (partyTablesData) {
+      setFilteredParties(partyTablesData);
+    }
+  }, [partyTablesData]);
 
-  const handleUserInfo = (user) => {
-    setUser(user.user_id);
-    setUserName(user.user_name);
-    setUserEmail(user.sub);
-  };
+  // const { user_id, user_name, sub } = TokenService.getUserInfoFromAuthToken();
+  // setUserInfo({ user_id, user_name, sub });
+  // setIsAppLoading(true);
+  // partiesApiHelpers
+  //   .getPartyTables(timezone)
+  //   .then((res) => {
+  //     setCurrentParties([...res]);
+  //     setFilteredParties([...res]);
+  //   })
+  //   .catch((res) => {
+  //     console.error(res.error);
+  //   })
+  //   .finally(() => {
+  //     handleEndLoading();
+  //   });
 
-  const handleStartLoading = () => {
-    setIsAppLoading(true);
-  };
-
-  const handleEndLoading = () => {
-    setIsAppLoading(false);
-  };
+  // if (window.location.pathname === '/') {
+  //   setTimeout(getPartiesApiHelper, 15000);
+  // }
 
   const handlePartyFilters = (
     party_complete,
@@ -94,7 +99,7 @@ export const App = ({ isAppLoading, setIsAppLoading }) => {
     if (filters[4].players_needed === '0') {
       filters[4].players_needed = false;
     }
-    let filteredParties = currentParties;
+    let filteredParties = partyTablesData;
     for (let i = 0; i < filters.length; i++) {
       if (filters[i][Object.keys(filters[i])]) {
         filteredParties = filteredParties.filter((party) => {
@@ -108,44 +113,25 @@ export const App = ({ isAppLoading, setIsAppLoading }) => {
     setFilteredParties(filteredParties);
   };
 
-  const getPartiesApiHelper = () => {
-    const user = TokenService.getUserInfoFromAuthToken();
-    setUser(user.user_id);
-    setUserName(user.user_name);
-    setUserEmail(user.sub);
-    setIsAppLoading(true);
-    partiesApiHelpers
-      .getPartyTables(timezone)
-      .then((res) => {
-        setCurrentParties([...res]);
-        setFilteredParties([...res]);
-      })
-      .catch((res) => {
-        console.error(res.error);
-      })
-      .finally(() => {
-        handleEndLoading();
-      });
+  useEffect(() => {
+    const { user_id, user_name, sub } = TokenService.getUserInfoFromAuthToken();
+    setUserInfo({ user_id, user_name, sub });
 
     if (window.location.pathname === '/') {
-      setTimeout(getPartiesApiHelper, 15000);
+      refetchPartyTables();
     }
-  };
-
-  useEffect(() => {
-    getPartiesApiHelper();
   }, []);
 
   return (
     <div className="App">
       <Header
-        ifToken={tokenExists}
+        isAuthToken={isAuthToken}
         handleToggleLogin={handleToggleLogin}
         loginUpdateToken={loginUpdateToken}
-        handleProfileLink={handleProfileLink}
-        user_name={userName}
+        userInfo={userInfo}
+        history={history}
       />
-      {tokenExists && (
+      {isAuthToken && (
         <Route
           exact
           path="/"
@@ -165,15 +151,13 @@ export const App = ({ isAppLoading, setIsAppLoading }) => {
             handleUserInfo={handleUserInfo}
             handleToggleLogin={handleToggleLogin}
             history={history}
-            handleStartLoading={handleStartLoading}
-            handleEndLoading={handleEndLoading}
           />
         </>
       )}
       <Route path="/create_party" component={CreatePartyTopBar} />
       <Route path="/Party" component={FullViewPartyTopBar} />
-      {!tokenExists && <Route exact path="/" component={LandingPage} />}
-      {currentParties.length !== 0 && (
+      {!isAuthToken && <Route exact path="/" component={LandingPage} />}
+      {!!partyTablesData && (
         <Route exact path="/" component={PartiesTablesBar} />
       )}
       <main>
@@ -185,8 +169,6 @@ export const App = ({ isAppLoading, setIsAppLoading }) => {
                 {...props}
                 handleUserInfo={handleUserInfo}
                 loginUpdateToken={loginUpdateToken}
-                handleStartLoading={handleStartLoading}
-                handleEndLoading={handleEndLoading}
               />
             )}
           />
@@ -196,10 +178,8 @@ export const App = ({ isAppLoading, setIsAppLoading }) => {
             render={(props) => (
               <Parties
                 {...props}
-                handleStartLoading={handleStartLoading}
-                handleEndLoading={handleEndLoading}
                 filtered_parties={filteredParties}
-                isAppLoading={isAppLoading}
+                isPartyTableDataLoading={isPartyTablesDataLoading}
               />
             )}
           />
@@ -208,33 +188,20 @@ export const App = ({ isAppLoading, setIsAppLoading }) => {
             render={(props) => (
               <FullViewParty
                 {...props}
-                handleStartLoading={handleStartLoading}
-                handleEndLoading={handleEndLoading}
-                getPartiesApiHelper={getPartiesApiHelper}
-                loading={isAppLoading}
-                timezone={timezone}
+                refetchPartyTables={refetchPartyTables}
               />
             )}
           />
           <PrivateRoute
             path="/Player_Profile/:user_id"
             component={UserProfileLayout}
-            user_email={userEmail}
-            profile_updated={profileUpdated}
-            handleProfileUpdate={handleProfileUpdate}
-            handleStartLoading={handleStartLoading}
-            handleEndLoading={handleEndLoading}
+            user_email={userInfo.userEmail}
           />
 
           <Route
             path="/Create_Party"
             render={(props) => (
-              <CreateParty
-                {...props}
-                handleStartLoading={handleStartLoading}
-                handleEndLoading={handleEndLoading}
-                getPartiesApiHelper={getPartiesApiHelper}
-              />
+              <CreateParty {...props} refetchPartyTables={refetchPartyTables} />
             )}
           />
           <Route>
@@ -242,7 +209,7 @@ export const App = ({ isAppLoading, setIsAppLoading }) => {
           </Route>
         </Switch>
       </main>
-      <footer>© 2023 - DndParty. All Rights Reserved.</footer>
+      <footer>© 2024 - DndParty. All Rights Reserved.</footer>
     </div>
   );
 };

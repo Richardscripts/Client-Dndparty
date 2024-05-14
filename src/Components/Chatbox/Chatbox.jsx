@@ -3,40 +3,35 @@ import { Link } from 'react-router-dom';
 import partiesApiHelpers from '../../Helpers/ApiHelpers/PartiesHelpers';
 import Validators from '../../Helpers/Validators';
 import TokenService from '../../Helpers/TokenService';
+
 import './Chatbox.css';
 
-const Chatbox = (props) => {
+const Chatbox = ({ party_id }) => {
   const [error, setError] = useState(null);
   const [currentMessages, setCurrentMessages] = useState([]);
 
-  const handleSubmitChatMessage = (e) => {
-    e.preventDefault();
-    const message = e.target.chat_msg.value;
-    e.target.chat_msg.value = '';
+  const handleSubmitChatMessage = (event) => {
+    event.preventDefault();
+    const message = event.target.chat_msg.value;
+    event.target.chat_msg.value = '';
     setError(null);
     if (!message) {
       setError('Please enter a message.');
       return;
     }
-    props.handleStartLoading();
+
     partiesApiHelpers
-      .submitChatboxMessage(message, props.party_id)
+      .submitChatboxMessage(message, party_id)
       .then(() => {
         chatMessagesApi();
       })
       .catch((res) => {
         setError(res.error);
       })
-      .finally(() => {
-        props.handleEndLoading();
-      });
+      .finally(() => {});
   };
 
   const chatMessagesApi = () => {
-    const { match } = props;
-    const party_id = match.params.party_id;
-    props.handleStartLoading();
-
     partiesApiHelpers
       .getChatboxMessages(party_id)
       .then((res) => {
@@ -45,9 +40,7 @@ const Chatbox = (props) => {
       .catch((res) => {
         setError(res.error);
       })
-      .finally(() => {
-        props.handleEndLoading();
-      });
+      .finally(() => {});
 
     if (window.location.pathname.includes('Party')) {
       setTimeout(chatMessagesApi, 15000);

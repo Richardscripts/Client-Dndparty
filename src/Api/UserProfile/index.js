@@ -86,7 +86,7 @@ export const useUpdateUserProfile = () => {
       return profileApiHelpers.updateUserProfile(userInfo, user_id);
     },
   });
-  console.log('isLoading', isPending);
+ 
   return {
     isUpdateUserProfileSuccess: isSuccess,
     updateUserProfile: mutate,

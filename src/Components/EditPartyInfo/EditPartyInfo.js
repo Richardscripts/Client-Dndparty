@@ -29,7 +29,7 @@ export default class EditPartyInfo extends React.Component {
 
   handleEditSubmit = (e) => {
     e.preventDefault();
-    this.props.handleStartLoading();
+
     const {
       players_needed,
       dnd_edition,
@@ -76,7 +76,7 @@ export default class EditPartyInfo extends React.Component {
       })
       .finally(() => {
         this.props.toggleEditParty();
-        this.props.handleEndLoading();
+  
       });
   };
 

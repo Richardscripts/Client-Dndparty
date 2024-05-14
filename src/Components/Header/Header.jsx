@@ -3,8 +3,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import TokenService from '../../Helpers/TokenService';
 
-export default function Header(props) {
-  const ifToken = props.ifToken;
+export default function Header({
+  isAuthToken,
+  history,
+  userInfo,
+  handleToggleLogin,
+  loginUpdateToken,
+}) {
   return (
     <header className="App-header">
       <Link to="/">
@@ -12,34 +17,36 @@ export default function Header(props) {
       </Link>
       <nav className="App-nav">
         <Link to="/">Home </Link>
-        {!ifToken && (
+        {!isAuthToken && (
           <span>
             {' '}
             | <Link to="/Register">Register</Link> |{' '}
           </span>
         )}
-        {!ifToken && (
+        {!isAuthToken && (
           <span
             tabIndex="0"
             className="App-links"
-            onClick={() => props.handleToggleLogin()}
+            onClick={() => handleToggleLogin()}
           >
             Login
           </span>
         )}
-        {ifToken && (
+        {isAuthToken && (
           <span>
             |{' '}
             <span
               tabIndex="0"
               className="App-links"
-              onClick={props.handleProfileLink}
+              onClick={() => {
+                history.push(`/Player_Profile/${userInfo.user_id}`);
+              }}
             >
               Profile
             </span>
           </span>
         )}
-        {ifToken && (
+        {isAuthToken && (
           <span>
             {' '}
             |{' '}
@@ -48,17 +55,17 @@ export default function Header(props) {
               className="App-links"
               onClick={() => {
                 TokenService.clearAuthToken();
-                props.loginUpdateToken();
+                loginUpdateToken();
               }}
             >
               Logout
             </span>
           </span>
         )}
-        {ifToken && (
+        {isAuthToken && (
           <>
             <br />
-            <span>Logged in as {props.user_name}</span>
+            <span>Logged in as {userInfo.user_name}</span>
           </>
         )}
       </nav>

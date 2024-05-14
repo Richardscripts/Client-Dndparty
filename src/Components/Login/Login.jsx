@@ -19,7 +19,7 @@ class Login extends React.Component {
     this.setState({
       error: null,
     });
-    this.props.handleStartLoading();
+
     authApiHelpers
       .loginUser(user_email.value, password.value)
       .then((res) => {
@@ -36,9 +36,7 @@ class Login extends React.Component {
       .catch((res) => {
         this.setState({ error: res.error });
       })
-      .finally(() => {
-        this.props.handleEndLoading();
-      });
+      .finally(() => {});
   };
   render() {
     return (

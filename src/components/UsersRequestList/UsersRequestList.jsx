@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export default function UsersRequestList({
   party,
   current_user_requests,
-  acceptRequester,
+  acceptPartyJoinRequest,
 }) {
   const usersRequestList = current_user_requests.map((user) => (
     <div key={user.user_id}>
@@ -30,16 +30,22 @@ export default function UsersRequestList({
         />
       </Link>{' '}
       has requested to join.{' '}
-      {Validators.isCreatorOfParty(party.user_id_creator) &&
-        !Validators.isPartyComplete(party.party_complete) && (
+      {Validators.isCreatorOfParty(party?.user_id_creator) &&
+        !Validators.isPartyComplete(party?.party_complete) && (
           <div className="request-list-style">
             <span tabIndex="0" className="request-style">
               Accept request as:
             </span>{' '}
-            {party.players_needed !== '' && (
+            {party?.players_needed !== '' && (
               <div
                 style={{ cursor: 'pointer' }}
-                onClick={() => acceptRequester(user.user_id, 'player')}
+                onClick={() =>
+                  acceptPartyJoinRequest({
+                    user_id: user.user_id,
+                    type: 'player',
+                    user_name: user.user_name,
+                  })
+                }
               >
                 <img
                   className="fullview-players-img request-img"
@@ -49,10 +55,16 @@ export default function UsersRequestList({
                 <u tabIndex="0">Player</u>
               </div>
             )}
-            {party.dm_needed && (
+            {party?.dm_needed && (
               <div
                 style={{ cursor: 'pointer' }}
-                onClick={() => acceptRequester(user.user_id, 'dm')}
+                onClick={() =>
+                  acceptPartyJoinRequest({
+                    user_id: user.user_id,
+                    type: 'dm',
+                    user_name: user.user_name,
+                  })
+                }
               >
                 <img
                   className="fullview-players-img request-img"

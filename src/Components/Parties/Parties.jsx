@@ -13,7 +13,6 @@ class Parties extends React.Component {
   };
 
   handleRequestToJoinParty = (party_id) => {
-    this.props.handleStartLoading();
     partiesApiHelpers
       .requestTojoinParty(party_id)
       .then(() => {
@@ -21,13 +20,14 @@ class Parties extends React.Component {
       })
       .catch((res) => {
         this.setState({ error: res.error });
-      })
-      .finally(() => {
-        this.props.handleEndLoading();
       });
   };
 
   render() {
+    if (this.props.isPartyTableDataLoading) {
+      return <Loading relative />;
+    }
+
     const isLoggedIn = Validators.isPartyJoinerOrRequester();
     const DndParties = this.props.filtered_parties.map((party, idx) => {
       const isPartyComplete = Validators.isPartyComplete(party.party_complete);

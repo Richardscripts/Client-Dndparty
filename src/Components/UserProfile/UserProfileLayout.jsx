@@ -8,35 +8,17 @@ import {
 } from '../../Api/UserProfile';
 
 export const UserProfileLayout = (props) => {
-  const { profile_update, history, user_id, handleProfileUpdate } = props;
-  const [errorMessage, setErrorMessage] = useState('');
-  const { userProfileError, refetchUserProfileData } = useGetUserProfile(
-    user_id,
-    history,
-  );
-  const { updateUserProfileError } = useUpdateUserProfile();
-  const { refetchUserJoinedParties, userJoinedPartiesError } =
-    useGetUserJoinedParties(user_id);
   const {
-    refetchUserCreatedParties,
-
-    userCreatedPartiesError,
-  } = useGetUserCreatedParties(user_id);
-
-  useEffect(() => {
-    if (profile_update) {
-      refetchUserProfileData();
-      refetchUserJoinedParties();
-      refetchUserCreatedParties();
-      handleProfileUpdate();
-    }
-  }, [
-    profile_update,
-    refetchUserProfileData,
-    refetchUserJoinedParties,
-    refetchUserCreatedParties,
-    handleProfileUpdate,
-  ]);
+    history,
+    match: {
+      params: { user_id },
+    },
+  } = props;
+  const [errorMessage, setErrorMessage] = useState('');
+  const { userProfileError } = useGetUserProfile(user_id, history);
+  const { updateUserProfileError } = useUpdateUserProfile();
+  const { userJoinedPartiesError } = useGetUserJoinedParties(user_id);
+  const { userCreatedPartiesError } = useGetUserCreatedParties(user_id);
 
   useEffect(() => {
     const errorMessage =
