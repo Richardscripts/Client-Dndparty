@@ -14,7 +14,11 @@ export const callApiWithFetch = async (endpoint, payload) => {
     const response = await fetch(`${config.API_ENDPOINT}/${endpoint}`, {
       ...payload,
     });
-    if (response.status === 200 || response.status === 201) {
+    if (
+      response.status === 200 ||
+      response.status === 201 ||
+      response.status === 400
+    ) {
       const responseJSON = await response?.json();
       console.log(responseJSON, 'responseJSON', payload);
       const error = responseJSON?.error;
@@ -27,8 +31,7 @@ export const callApiWithFetch = async (endpoint, payload) => {
       return responseJSON;
     }
   } catch (error) {
-    console.log(error, 'error');
-    throw new Error(error);
+    throw new Error(error?.message);
   }
 };
 
@@ -53,4 +56,21 @@ export const getAllRequesters = (requesters, joiners) => {
   });
 
   return allRequesters;
+};
+
+export const filterParties = (partyTablesData, filterOptions) => {
+  let filteredParties = [...partyTablesData];
+
+  filterOptions.forEach((filterOption) => {
+    const currentFilter = Object.keys(filterOption);
+    const isFilter = !!filterOption[currentFilter];
+
+    if (isFilter) {
+      filteredParties = filteredParties.filter(
+        (party) => party[currentFilter] === filterOption[currentFilter],
+      );
+    }
+  });
+
+  return filteredParties;
 };
