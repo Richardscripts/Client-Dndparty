@@ -20,7 +20,6 @@ export const callApiWithFetch = async (endpoint, payload) => {
       response.status === 400
     ) {
       const responseJSON = await response?.json();
-      console.log(responseJSON, 'responseJSON', payload);
       const error = responseJSON?.error;
 
       if (error) {

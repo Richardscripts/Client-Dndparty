@@ -28,6 +28,7 @@ export const App = () => {
     user_name: '',
     userEmail: '',
   });
+  const { user_id, user_name, sub } = TokenService.getUserInfoFromAuthToken();
   const [toggleLogin, setToggleLogin] = useState(false);
   const {
     partyTablesData,
@@ -45,10 +46,6 @@ export const App = () => {
     setToggleLogin(!toggleLogin);
   };
 
-  const handleUserInfo = ({ user_id, user_name, sub }) => {
-    setUserInfo({ user_id, user_name, sub });
-  };
-
   useEffect(() => {
     if (partyTablesData) {
       setFilteredParties(partyTablesData);
@@ -61,9 +58,7 @@ export const App = () => {
   };
 
   useEffect(() => {
-    const { user_id, user_name, sub } = TokenService.getUserInfoFromAuthToken();
     setUserInfo({ user_id, user_name, sub });
-
     refreshPartyTables();
   }, []);
 
@@ -93,7 +88,7 @@ export const App = () => {
           <div className="fadeBackground"></div>
           <Login
             loginUpdateToken={loginUpdateToken}
-            handleUserInfo={handleUserInfo}
+            handleUserInfo={() => setUserInfo({ user_id, user_name, sub })}
             handleToggleLogin={handleToggleLogin}
             history={history}
           />
@@ -112,7 +107,7 @@ export const App = () => {
             render={(props) => (
               <Register
                 {...props}
-                handleUserInfo={handleUserInfo}
+                handleUserInfo={() => setUserInfo({ user_id, user_name, sub })}
                 loginUpdateToken={loginUpdateToken}
               />
             )}

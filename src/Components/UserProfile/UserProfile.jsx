@@ -17,6 +17,8 @@ const UserProfile = ({
   user_email,
   errorMessage,
   setErrorMessage,
+  userCreatedParties,
+  isUserCreatedPartiesLoading,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const { userProfileData, refetchUserProfileData, isUserProfileLoading } =
@@ -176,7 +178,11 @@ const UserProfile = ({
             </div>
           </div>
           <PartiesJoined user_id={user_id} />
-          <PartiesCreated user_id={user_id} />
+          <PartiesCreated
+            user_id={user_id}
+            userCreatedParties={userCreatedParties}
+            isUserCreatedPartiesLoading={isUserCreatedPartiesLoading}
+          />
           <div className="bottom-bar" />
         </div>
       )}

@@ -36,7 +36,7 @@ const Chatbox = ({ party_id }) => {
       partiesApiHelpers
         .getChatboxMessages(party_id)
         .then((res) => {
-          setCurrentMessages(Validators.sortMessagesByDate(res));
+          setCurrentMessages(Validators.getSortMessagesByDate(res));
         })
         .catch((res) => {
           setError(res.error);
