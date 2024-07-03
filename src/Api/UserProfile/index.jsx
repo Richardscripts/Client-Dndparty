@@ -52,7 +52,6 @@ export const useGetUserCreatedParties = (userId) => {
 
   useEffect(() => {
     if (isSuccess) {
-      console.log(data, isSuccess, error, isLoading, updatedData);
       const userCreatedParties = getUserRequests([...data]);
       setUpdatedData(userCreatedParties);
     }

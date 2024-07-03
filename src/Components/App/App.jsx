@@ -43,10 +43,6 @@ export const App = () => {
     history.push('/');
   };
 
-  const handleToggleLogin = () => {
-    setToggleLogin(!toggleLogin);
-  };
-
   useEffect(() => {
     if (partyTablesData) {
       setFilteredParties(partyTablesData);
@@ -67,7 +63,7 @@ export const App = () => {
     <div className="App">
       <Header
         isAuthToken={isAuthToken}
-        handleToggleLogin={handleToggleLogin}
+        handleToggleLogin={() => setToggleLogin(!toggleLogin)}
         updateLoginToken={updateLoginToken}
         userInfo={userInfo}
         history={history}
@@ -90,7 +86,7 @@ export const App = () => {
           <Login
             updateLoginToken={updateLoginToken}
             handleUserInfo={() => setUserInfo({ user_id, user_name, sub })}
-            handleToggleLogin={handleToggleLogin}
+            handleToggleLogin={() => setToggleLogin(!toggleLogin)}
             history={history}
           />
         </>

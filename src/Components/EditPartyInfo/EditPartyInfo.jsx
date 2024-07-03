@@ -85,7 +85,6 @@ export default class EditPartyInfo extends React.Component {
   };
 
   render() {
-    console.log(this.state.time_of_event);
     const party = this.props.current_party;
 
     if (party.players_needed === '') party.players_needed = '0';
