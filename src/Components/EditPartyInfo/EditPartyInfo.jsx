@@ -13,22 +13,22 @@ export default class EditPartyInfo extends React.Component {
     dm_checked: Boolean(this.props.current_party.dm_needed),
     camera_checked: false,
     completeDate: '',
-    time_of_event: new Date(this.props.current_party.date_object),
+    time_of_event: '',
   };
 
   componentDidMount = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  handleDate = (date) => {
+  handleDate = (event) => {
     this.setState({
-      time_of_event: date,
-      completeDate: date.toUTCString(),
+      time_of_event: event.target.value,
+      completeDate: new Date(event.target.value).toUTCString(),
     });
   };
 
-  handleEditSubmit = (e) => {
-    e.preventDefault();
+  handleEditSubmit = (event) => {
+    event.preventDefault();
 
     const {
       players_needed,
@@ -40,13 +40,18 @@ export default class EditPartyInfo extends React.Component {
       classes_needed,
       group_personality,
       campaign_or_custom,
-    } = e.target;
-    if (!players_needed.value && !this.state.dm_checked) {
+    } = event.target;
+
+    const isNoPlayersNeeded =
+      !Number(players_needed.value) && !this.state.dm_checked;
+
+    if (isNoPlayersNeeded) {
       this.setState({
         error: 'Must need atleast 1 Player or a Dungeon Master',
       });
       return;
     }
+
     const partyInfo = {
       players_needed: parseInt(players_needed.value),
       dm_needed: this.state.dm_checked,
@@ -80,6 +85,7 @@ export default class EditPartyInfo extends React.Component {
   };
 
   render() {
+    console.log(this.state.time_of_event);
     const party = this.props.current_party;
 
     if (party.players_needed === '') party.players_needed = '0';
@@ -212,7 +218,11 @@ export default class EditPartyInfo extends React.Component {
               <span className="party-style-text">Time Of Game:</span>{' '}
               <FormDatePicker
                 handleDate={this.handleDate}
-                date={this.state.time_of_event}
+                date={
+                  this.state.time_of_event ||
+                  this.props.current_party.date_object
+                }
+                isEditing
               />
               <br />
             </div>

@@ -8,7 +8,7 @@ export default function Header({
   history,
   userInfo,
   handleToggleLogin,
-  loginUpdateToken,
+  updateLoginToken,
 }) {
   return (
     <header className="App-header">
@@ -55,7 +55,7 @@ export default function Header({
               className="App-links"
               onClick={() => {
                 TokenService.clearAuthToken();
-                loginUpdateToken();
+                updateLoginToken();
               }}
             >
               Logout

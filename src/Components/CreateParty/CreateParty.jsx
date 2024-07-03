@@ -37,8 +37,8 @@ export const CreateParty = ({ history }) => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     const {
       party_name,
@@ -51,38 +51,41 @@ export const CreateParty = ({ history }) => {
       classes_needed,
       group_personality,
       campaign_or_custom,
-    } = e.target;
+    } = event?.target || {};
 
-    if (!players_needed.value && !state.dm_checked) {
+    const isNoPlayersNeeded =
+      !Number(players_needed.value) && !state.dm_checked;
+
+    if (isNoPlayersNeeded) {
       setState((prevState) => ({
         ...prevState,
         error: 'Must need atleast 1 Player or Dungeon Master',
       }));
       return;
-    } else {
-      const partyInfo = {
-        party_name: party_name.value,
-        players_needed: parseInt(players_needed.value),
-        dm_needed: state.dm_checked,
-        dnd_edition: dnd_edition.value,
-        about: about?.value,
-        language: language.value,
-        online_or_not: online_or_not.value,
-        homebrew_rules: homebrew_rules.value,
-        time_of_event: state.completeDate,
-        date_object: state.date,
-        classes_needed: classes_needed.value,
-        group_personality: group_personality.value,
-        campaign_or_custom: campaign_or_custom.value,
-        camera_required: state.camera_checked,
-      };
-      setState((prevState) => ({
-        ...prevState,
-        error: null,
-      }));
-
-      createPartyTable(partyInfo);
     }
+
+    const partyInfo = {
+      party_name: party_name.value,
+      players_needed: parseInt(players_needed.value),
+      dm_needed: state.dm_checked,
+      dnd_edition: dnd_edition.value,
+      about: about?.value,
+      language: language.value,
+      online_or_not: online_or_not.value,
+      homebrew_rules: homebrew_rules.value,
+      time_of_event: state.completeDate,
+      date_object: state.date,
+      classes_needed: classes_needed.value,
+      group_personality: group_personality.value,
+      campaign_or_custom: campaign_or_custom.value,
+      camera_required: state.camera_checked,
+    };
+    setState((prevState) => ({
+      ...prevState,
+      error: null,
+    }));
+
+    createPartyTable(partyInfo);
   };
 
   return (

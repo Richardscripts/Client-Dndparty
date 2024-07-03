@@ -38,8 +38,9 @@ export const App = () => {
   } = useGetPartyTables();
   const [filteredParties, setFilteredParties] = useState([]);
 
-  const loginUpdateToken = () => {
+  const updateLoginToken = () => {
     setIsAuthToken(TokenService.hasAuthToken());
+    history.push('/');
   };
 
   const handleToggleLogin = () => {
@@ -67,7 +68,7 @@ export const App = () => {
       <Header
         isAuthToken={isAuthToken}
         handleToggleLogin={handleToggleLogin}
-        loginUpdateToken={loginUpdateToken}
+        updateLoginToken={updateLoginToken}
         userInfo={userInfo}
         history={history}
       />
@@ -87,7 +88,7 @@ export const App = () => {
         <>
           <div className="fadeBackground"></div>
           <Login
-            loginUpdateToken={loginUpdateToken}
+            updateLoginToken={updateLoginToken}
             handleUserInfo={() => setUserInfo({ user_id, user_name, sub })}
             handleToggleLogin={handleToggleLogin}
             history={history}
@@ -108,7 +109,7 @@ export const App = () => {
               <Register
                 {...props}
                 handleUserInfo={() => setUserInfo({ user_id, user_name, sub })}
-                loginUpdateToken={loginUpdateToken}
+                updateLoginToken={updateLoginToken}
               />
             )}
           />

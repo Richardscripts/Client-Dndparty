@@ -27,7 +27,7 @@ class Login extends React.Component {
         password.value = '';
         TokenService.clearAuthToken();
         TokenService.saveAuthToken(res.authToken);
-        this.props.loginUpdateToken();
+        this.props.updateLoginToken();
         const user = TokenService.getUserInfoFromAuthToken();
         this.props.handleUserInfo(user);
         this.props.handleToggleLogin();
