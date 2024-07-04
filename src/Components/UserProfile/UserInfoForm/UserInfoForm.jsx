@@ -3,6 +3,8 @@ import Loading from '../../Loading/Loading';
 
 export default class UserInfoForm extends React.Component {
   render() {
+    // Need to check if introducing vulnerability
+    const hasPassedSecurityCheck = false;
     const { isEditing, userProfileData, isUpdateUserProfileLoading } =
       this.props;
     const isCharacterSheets = userProfileData?.character_sheets?.length > 4;
@@ -40,24 +42,29 @@ export default class UserInfoForm extends React.Component {
             {userProfileData?.about_me || '�'}{' '}
           </p>
           <br />
-          <span tabIndex="0">Character Sheet:</span>
-          <p tabIndex="0" className="about-me">
-            {isCharacterSheets ? (
-              <>
-                <b>{userProfileData?.character_sheets.split(' ')[0]}</b> <br />
-                <br />
-                <a
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  href={`${userProfileData?.character_sheets.split(' ')[1]}`}
-                >
-                  {userProfileData?.character_sheets.split(' ')[1]}
-                </a>
-              </>
-            ) : (
-              '�'
-            )}{' '}
-          </p>
+          {hasPassedSecurityCheck && (
+            <>
+              <span tabIndex="0">Character Sheet:</span>
+              <p tabIndex="0" className="about-me">
+                {isCharacterSheets ? (
+                  <>
+                    <b>{userProfileData?.character_sheets.split(' ')[0]}</b>{' '}
+                    <br />
+                    <br />
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={`${userProfileData?.character_sheets.split(' ')[1]}`}
+                    >
+                      {userProfileData?.character_sheets.split(' ')[1]}
+                    </a>
+                  </>
+                ) : (
+                  '�'
+                )}{' '}
+              </p>
+            </>
+          )}
         </div>
       </div>
     );
@@ -156,27 +163,31 @@ export default class UserInfoForm extends React.Component {
             maxLength={400}
           ></textarea>{' '}
           <br />
-          <label>Character Sheet</label>
-          (Please include a URL link to a PDF file)
-          <br />
-          <label htmlFor="char_name">Name: </label>
-          <input
-            name="char_name"
-            id="char_name"
-            aria-invalid="true"
-            maxLength={50}
-            aria-describedby="error-msg"
-            defaultValue={char_name}
-          ></input>{' '}
-          <label htmlFor="char_url">PDF URL: </label>
-          <input
-            name="char_url"
-            id="char_url"
-            aria-invalid="true"
-            aria-describedby="error-msg"
-            type="url"
-            defaultValue={char_url}
-          ></input>{' '}
+          {hasPassedSecurityCheck && (
+            <>
+              <label>Character Sheet</label> (Please include a URL link to a PDF
+              file)
+              <br />
+              <label htmlFor="char_name">Name: </label>
+              <input
+                name="char_name"
+                id="char_name"
+                aria-invalid="true"
+                maxLength={50}
+                aria-describedby="error-msg"
+                defaultValue={char_name}
+              ></input>{' '}
+              <label htmlFor="char_url">PDF URL: </label>
+              <input
+                name="char_url"
+                id="char_url"
+                aria-invalid="true"
+                aria-describedby="error-msg"
+                type="url"
+                defaultValue={char_url}
+              ></input>{' '}
+            </>
+          )}
         </form>
       </div>
     );

@@ -51,10 +51,6 @@ const Chatbox = ({ party_id }) => {
     chatMessagesApi();
   }, []);
 
-  useEffect(() => {
-    // scrollToBottom();
-  }, [currentMessages]);
-
   const messages = currentMessages.map((chat, idx) => {
     return (
       <div key={idx}>

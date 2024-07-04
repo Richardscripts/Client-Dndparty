@@ -41,13 +41,6 @@ export default class DyanmicPartiesImage extends React.Component {
             alt="A full party of players playing a table top game."
           />
         </span>
-        <span id="onhover">
-          {' '}
-          <img
-            src={images[`fullpartyhover`]}
-            alt="A full party of players playing a table top game."
-          />
-        </span>
       </div>
     );
   }

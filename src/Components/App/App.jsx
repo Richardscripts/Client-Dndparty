@@ -11,7 +11,6 @@ import LandingPage from '../LandingPage/LandingPage';
 import Login from '../Login/Login';
 import NoMatch from '../NoMatch/NoMatch';
 import Parties from '../Parties/Parties';
-import PartiesTablesBar from '../Parties/Parties-tables-bar/PartiesTablesBar';
 import Register from '../Register/Register';
 import { UserProfileLayout } from '../UserProfile/UserProfileLayout';
 import PrivateRoute from '../../Helpers/PrivateRoute';
@@ -95,7 +94,7 @@ export const App = () => {
       <Route path="/Party" component={FullViewPartyTopBar} />
       {!isAuthToken && <Route exact path="/" component={LandingPage} />}
       {!!partyTablesData && (
-        <Route exact path="/" component={PartiesTablesBar} />
+        <div className="party-tables-bar">Party Tables:</div>
       )}
       <main>
         <Switch>
