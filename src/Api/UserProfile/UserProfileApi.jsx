@@ -55,7 +55,7 @@ export const useGetUserCreatedParties = (userId) => {
       const userCreatedParties = getUserRequests([...data]);
       setUpdatedData(userCreatedParties);
     }
-  }, [isSuccess, data]);
+  }, [isSuccess, data, isLoading]);
 
   return {
     userCreatedParties: updatedData,
@@ -86,7 +86,7 @@ export const useUpdateUserProfile = () => {
       return profileApiHelpers.updateUserProfile(userInfo, user_id);
     },
   });
- 
+
   return {
     isUpdateUserProfileSuccess: isSuccess,
     updateUserProfile: mutate,

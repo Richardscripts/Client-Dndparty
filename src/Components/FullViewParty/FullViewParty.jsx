@@ -24,7 +24,6 @@ const FullViewParty = ({
   },
   history,
 }) => {
-  // const [error, setError] = useState(null);
   const [toggleDeleteWarning, setToggleDeleteWarning] = useState(false);
   const [toggleEditParty, setToggleEditParty] = useState(false);
   const {

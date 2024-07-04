@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import images from '../../Assets/groups-image/images';
 import Validators from '../../Helpers/Validators';
-import { useGetUserCreatedParties } from '../../Api/UserProfile';
 import Loading from '../Loading/Loading';
 
-export const PartiesCreated = ({ user_id }) => {
-  const { userCreatedParties, isUserCreatedPartiesLoading } =
-    useGetUserCreatedParties(user_id);
+export const PartiesCreated = ({
+  userCreatedParties,
+  isUserCreatedPartiesLoading,
+}) => {
   const partiesCreated = userCreatedParties?.map((party, idx) => {
     const requesters = party?.requesters?.map((requesters) => {
       return requesters?.map((requester, idx) => {

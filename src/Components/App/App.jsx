@@ -17,6 +17,7 @@ import { UserProfileLayout } from '../UserProfile/UserProfileLayout';
 import PrivateRoute from '../../Helpers/PrivateRoute';
 import TokenService from '../../Helpers/TokenService';
 import { useGetPartyTables } from '../../Api/App';
+import { filterParties } from '../../Helpers/ApiHelpers/Utility';
 import './App.css';
 
 export const App = () => {
@@ -27,21 +28,19 @@ export const App = () => {
     user_name: '',
     userEmail: '',
   });
+  const { user_id, user_name, sub } = TokenService.getUserInfoFromAuthToken();
   const [toggleLogin, setToggleLogin] = useState(false);
-  const { partyTablesData, isPartyTablesDataLoading, refetchPartyTables } =
-    useGetPartyTables();
+  const {
+    partyTablesData,
+    isPartyTablesDataLoading,
+    refreshPartyTables,
+    refetchPartyTables,
+  } = useGetPartyTables();
   const [filteredParties, setFilteredParties] = useState([]);
 
-  const loginUpdateToken = () => {
+  const updateLoginToken = () => {
     setIsAuthToken(TokenService.hasAuthToken());
-  };
-
-  const handleToggleLogin = () => {
-    setToggleLogin(!toggleLogin);
-  };
-
-  const handleUserInfo = ({ user_id, user_name, sub }) => {
-    setUserInfo({ user_id, user_name, sub });
+    history.push('/');
   };
 
   useEffect(() => {
@@ -50,84 +49,22 @@ export const App = () => {
     }
   }, [partyTablesData]);
 
-  // const { user_id, user_name, sub } = TokenService.getUserInfoFromAuthToken();
-  // setUserInfo({ user_id, user_name, sub });
-  // setIsAppLoading(true);
-  // partiesApiHelpers
-  //   .getPartyTables(timezone)
-  //   .then((res) => {
-  //     setCurrentParties([...res]);
-  //     setFilteredParties([...res]);
-  //   })
-  //   .catch((res) => {
-  //     console.error(res.error);
-  //   })
-  //   .finally(() => {
-  //     handleEndLoading();
-  //   });
-
-  // if (window.location.pathname === '/') {
-  //   setTimeout(getPartiesApiHelper, 15000);
-  // }
-
-  const handlePartyFilters = (
-    party_complete,
-    language,
-    dnd_edition,
-    dm_needed,
-    players_needed,
-    day,
-    month,
-    year,
-    date,
-    hour,
-    am,
-  ) => {
-    const filters = [
-      party_complete,
-      language,
-      dnd_edition,
-      dm_needed,
-      players_needed,
-      day,
-      month,
-      year,
-      date,
-      hour,
-      am,
-    ];
-    if (filters[4].players_needed === '0') {
-      filters[4].players_needed = false;
-    }
-    let filteredParties = partyTablesData;
-    for (let i = 0; i < filters.length; i++) {
-      if (filters[i][Object.keys(filters[i])]) {
-        filteredParties = filteredParties.filter((party) => {
-          return (
-            party[Object.keys(filters[i])] ===
-            filters[i][Object.keys(filters[i])]
-          );
-        });
-      }
-    }
+  const handlePartyFilters = (filters) => {
+    const filteredParties = filterParties(partyTablesData, filters);
     setFilteredParties(filteredParties);
   };
 
   useEffect(() => {
-    const { user_id, user_name, sub } = TokenService.getUserInfoFromAuthToken();
     setUserInfo({ user_id, user_name, sub });
-
-    if (window.location.pathname === '/') {
-      refetchPartyTables();
-    }
+    refreshPartyTables();
   }, []);
 
   return (
     <div className="App">
       <Header
         isAuthToken={isAuthToken}
-        handleToggleLogin={handleToggleLogin}
-        loginUpdateToken={loginUpdateToken}
+        handleToggleLogin={() => setToggleLogin(!toggleLogin)}
+        updateLoginToken={updateLoginToken}
         userInfo={userInfo}
         history={history}
       />
@@ -147,9 +84,9 @@ export const App = () => {
         <>
           <div className="fadeBackground"></div>
           <Login
-            loginUpdateToken={loginUpdateToken}
-            handleUserInfo={handleUserInfo}
-            handleToggleLogin={handleToggleLogin}
+            updateLoginToken={updateLoginToken}
+            handleUserInfo={() => setUserInfo({ user_id, user_name, sub })}
+            handleToggleLogin={() => setToggleLogin(!toggleLogin)}
             history={history}
           />
         </>
@@ -167,8 +104,8 @@ export const App = () => {
             render={(props) => (
               <Register
                 {...props}
-                handleUserInfo={handleUserInfo}
-                loginUpdateToken={loginUpdateToken}
+                handleUserInfo={() => setUserInfo({ user_id, user_name, sub })}
+                updateLoginToken={updateLoginToken}
               />
             )}
           />

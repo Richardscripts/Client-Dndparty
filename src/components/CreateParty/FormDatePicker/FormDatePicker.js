@@ -1,15 +1,31 @@
 import React from 'react';
-import DateTimePicker from 'react-datetime-picker';
 import './FormDatePicker.css';
 
-export default class FormDatePicker extends React.Component {
-  render() {
-    return (
-      <DateTimePicker
-        onChange={this.props.handleDate}
-        value={this.props.date}
-        required={true}
-      />
-    );
-  }
-}
+export const FormDatePicker = (props) => {
+  const getDate = () => {
+    const date = new Date(props.date);
+
+    const formattingDate = props.date.split('T')[0];
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const hourWithTimezone = hour < 10 ? `0${hour}` : hour;
+    const minutes = minute < 10 ? `0${minute}` : minute;
+
+    return `${formattingDate}T${hourWithTimezone}:${minutes}`;
+  };
+
+  const options = props?.isEditing && { value: getDate() };
+
+  return (
+    <input
+      id="party"
+      type="datetime-local"
+      name="partydate"
+      onChange={props.handleDate}
+      required={true}
+      {...options}
+    />
+  );
+};
+
+export default FormDatePicker;
