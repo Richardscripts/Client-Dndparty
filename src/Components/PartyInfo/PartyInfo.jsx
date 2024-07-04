@@ -8,6 +8,7 @@ export default function PartyInfo({ current_party }) {
   const timeOfDay = new Date(current_party?.time_of_event).toLocaleString();
   const time = timeOfDay.split(' ')[1].slice(0, 5);
   const am = timeOfDay.slice(-2);
+
   return (
     <div className="party-legend">
       <div className="top-row-party">

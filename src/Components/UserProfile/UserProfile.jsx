@@ -6,7 +6,10 @@ import { scrollTo } from '../../Helpers/ApiHelpers/Utility';
 import './UserProfile.css';
 import { PartiesJoined } from './PartiesJoined';
 import { PartiesCreated } from './PartiesCreated';
-import { useGetUserProfile, useUpdateUserProfile } from '../../Api/UserProfile';
+import {
+  useGetUserProfile,
+  useUpdateUserProfile,
+} from '../../Api/UserProfile/UserProfileApi';
 import Loading from '../Loading/Loading';
 
 const UserProfile = ({
@@ -17,6 +20,8 @@ const UserProfile = ({
   user_email,
   errorMessage,
   setErrorMessage,
+  userCreatedParties,
+  isUserCreatedPartiesLoading,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const { userProfileData, refetchUserProfileData, isUserProfileLoading } =
@@ -176,7 +181,11 @@ const UserProfile = ({
             </div>
           </div>
           <PartiesJoined user_id={user_id} />
-          <PartiesCreated user_id={user_id} />
+          <PartiesCreated
+            user_id={user_id}
+            userCreatedParties={userCreatedParties}
+            isUserCreatedPartiesLoading={isUserCreatedPartiesLoading}
+          />
           <div className="bottom-bar" />
         </div>
       )}

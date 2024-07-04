@@ -32,17 +32,17 @@ const Chatbox = ({ party_id }) => {
   };
 
   const chatMessagesApi = () => {
-    partiesApiHelpers
-      .getChatboxMessages(party_id)
-      .then((res) => {
-        setCurrentMessages(Validators.sortMessagesByDate(res));
-      })
-      .catch((res) => {
-        setError(res.error);
-      })
-      .finally(() => {});
-
     if (window.location.pathname.includes('Party')) {
+      partiesApiHelpers
+        .getChatboxMessages(party_id)
+        .then((res) => {
+          setCurrentMessages(Validators.getSortMessagesByDate(res));
+        })
+        .catch((res) => {
+          setError(res.error);
+        })
+        .finally(() => {});
+
       setTimeout(chatMessagesApi, 15000);
     }
   };

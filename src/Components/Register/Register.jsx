@@ -33,7 +33,7 @@ class Register extends React.Component {
         this.setState({ policyChecked: false });
         TokenService.clearAuthToken();
         TokenService.saveAuthToken(res.authToken);
-        this.props.loginUpdateToken();
+        this.props.updateLoginToken();
         const user = TokenService.getUserInfoFromAuthToken();
         this.props.handleUserInfo(user);
         this.props.history.push(`/Player_Profile/${user.user_id}`);

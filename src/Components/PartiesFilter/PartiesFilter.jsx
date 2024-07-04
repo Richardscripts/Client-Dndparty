@@ -35,19 +35,22 @@ export default class PartiesFilter extends React.Component {
         filter_am: '',
       },
       () => {
-        this.props.handlePartyFilters(
-          { party_complete: this.state.parties_filter },
-          { language: this.state.language },
-          { dnd_edition: this.state.dnd_edition },
-          { dm_needed: this.state.dm_checked },
-          { players_needed: this.state.players_needed },
-          { day: this.state.filter_day },
-          { month: this.state.filter_month },
-          { date: this.state.filter_date },
-          { year: this.state.filter_year },
-          { hour: this.state.filter_hour },
-          { am: this.state.filter_am },
-        );
+        this.props.handlePartyFilters([
+          {
+            parties_filter: '',
+            language: '',
+            dnd_edition: '',
+            dm_checked: false,
+            players_needed: '',
+            filterTouched: false,
+            filter_day: '',
+            filter_month: '',
+            filter_date: '',
+            filter_year: '',
+            filter_hour: '',
+            filter_am: '',
+          },
+        ]);
       },
     );
     this.props.togglePartyFilter();
@@ -55,19 +58,21 @@ export default class PartiesFilter extends React.Component {
 
   gatherPartySelections = () => {
     const state = this.state;
-    this.props.handlePartyFilters(
+    this.props.handlePartyFilters([
       { party_complete: state.parties_filter },
       { language: state.language },
       { dnd_edition: state.dnd_edition },
       { dm_needed: state.dm_checked },
-      { players_needed: state.players_needed },
+      {
+        players_needed: state.players_needed === '0' ? 0 : state.players_needed,
+      },
       { day: state.filter_day },
       { month: state.filter_month },
       { date: state.filter_date },
       { year: state.filter_year },
       { hour: state.filter_hour },
       { am: state.filter_am },
-    );
+    ]);
     this.setState({ filterTouched: false });
   };
 

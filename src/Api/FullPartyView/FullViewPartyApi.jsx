@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import partiesApiHelpers from '../../Helpers/ApiHelpers/PartiesHelpers';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useGetPartyTables } from '../App/AppApi';
 import TokenService from '../../Helpers/TokenService';
 
 export const useGetIndividualParty = (party_id) => {
@@ -54,6 +55,8 @@ export const useRequestToJoinParty = (party_id) => {
 };
 
 export const useDeleteParty = (party_id, history) => {
+  const { refetchPartyTables } = useGetPartyTables();
+
   const { mutate, isSuccess, isPending } = useMutation({
     mutationKey: ['deleteParty', party_id],
     mutationFn: () => {
@@ -64,8 +67,9 @@ export const useDeleteParty = (party_id, history) => {
   useEffect(() => {
     if (isSuccess) {
       history.push('/');
+      refetchPartyTables();
     }
-  }, [isSuccess, history]);
+  }, [isSuccess, history, refetchPartyTables]);
 
   return {
     deleteParty: mutate,

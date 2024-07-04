@@ -5,7 +5,7 @@ import {
   useGetUserJoinedParties,
   useGetUserCreatedParties,
   useUpdateUserProfile,
-} from '../../Api/UserProfile';
+} from '../../Api/UserProfile/UserProfileApi';
 
 export const UserProfileLayout = (props) => {
   const {
@@ -13,12 +13,17 @@ export const UserProfileLayout = (props) => {
     match: {
       params: { user_id },
     },
+    user_email,
   } = props;
   const [errorMessage, setErrorMessage] = useState('');
   const { userProfileError } = useGetUserProfile(user_id, history);
   const { updateUserProfileError } = useUpdateUserProfile();
   const { userJoinedPartiesError } = useGetUserJoinedParties(user_id);
-  const { userCreatedPartiesError } = useGetUserCreatedParties(user_id);
+  const {
+    userCreatedPartiesError,
+    userCreatedParties,
+    isUserCreatedPartiesLoading,
+  } = useGetUserCreatedParties(user_id);
 
   useEffect(() => {
     const errorMessage =
@@ -39,6 +44,9 @@ export const UserProfileLayout = (props) => {
       {...props}
       errorMessage={errorMessage}
       setErrorMessage={setErrorMessage}
+      userCreatedParties={userCreatedParties}
+      isUserCreatedPartiesLoading={isUserCreatedPartiesLoading}
+      user_email={user_email}
     />
   );
 };
