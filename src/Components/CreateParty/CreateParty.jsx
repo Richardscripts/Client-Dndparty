@@ -4,7 +4,7 @@ import DndEdition from './DndEdition/DndEdition';
 import OnlineOrNot from './OnlineOrNot/OnlineOrNot';
 import images from '../../Assets/groups-image/images';
 import FormDatePicker from './FormDatePicker/FormDatePicker';
-import { useCreatePartyTable } from '../../Api/CreateParty/CreateParty';
+import { useCreatePartyTable } from '../../Api/CreateParty/CreatePartyApi';
 import { scrollTo } from '../../Helpers/ApiHelpers/Utility';
 import './CreateParty.css';
 

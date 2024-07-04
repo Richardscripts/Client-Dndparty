@@ -12,7 +12,7 @@ import {
   useDeleteParty,
   useGetUserRequests,
   useGetUsersWhoJoinedParty,
-} from '../../Api/FullPartyView';
+} from '../../Api/FullPartyView/FullViewPartyApi';
 import Loading from '../Loading/Loading';
 import { getAllRequesters } from '../../Helpers/ApiHelpers/Utility';
 

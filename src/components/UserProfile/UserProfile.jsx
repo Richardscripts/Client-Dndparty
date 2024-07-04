@@ -6,7 +6,10 @@ import { scrollTo } from '../../Helpers/ApiHelpers/Utility';
 import './UserProfile.css';
 import { PartiesJoined } from './PartiesJoined';
 import { PartiesCreated } from './PartiesCreated';
-import { useGetUserProfile, useUpdateUserProfile } from '../../Api/UserProfile';
+import {
+  useGetUserProfile,
+  useUpdateUserProfile,
+} from '../../Api/UserProfile/UserProfileApi';
 import Loading from '../Loading/Loading';
 
 const UserProfile = ({

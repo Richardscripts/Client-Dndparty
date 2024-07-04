@@ -5,7 +5,7 @@ import {
   useGetUserJoinedParties,
   useGetUserCreatedParties,
   useUpdateUserProfile,
-} from '../../Api/UserProfile';
+} from '../../Api/UserProfile/UserProfileApi';
 
 export const UserProfileLayout = (props) => {
   const {

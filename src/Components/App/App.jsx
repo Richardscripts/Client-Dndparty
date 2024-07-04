@@ -16,7 +16,7 @@ import Register from '../Register/Register';
 import { UserProfileLayout } from '../UserProfile/UserProfileLayout';
 import PrivateRoute from '../../Helpers/PrivateRoute';
 import TokenService from '../../Helpers/TokenService';
-import { useGetPartyTables } from '../../Api/App';
+import { useGetPartyTables } from '../../Api/App/AppApi';
 import { filterParties } from '../../Helpers/ApiHelpers/Utility';
 import './App.css';
 

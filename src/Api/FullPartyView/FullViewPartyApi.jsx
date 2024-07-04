@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import partiesApiHelpers from '../../Helpers/ApiHelpers/PartiesHelpers';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useGetPartyTables } from '../App';
+import { useGetPartyTables } from '../App/AppApi';
 import TokenService from '../../Helpers/TokenService';
 
 export const useGetIndividualParty = (party_id) => {

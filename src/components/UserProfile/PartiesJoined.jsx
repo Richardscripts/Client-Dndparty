@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import images from '../../Assets/groups-image/images';
 import Loading from '../Loading/Loading';
-import { useGetUserJoinedParties } from '../../Api/UserProfile';
+import { useGetUserJoinedParties } from '../../Api/UserProfile/UserProfileApi';
 
 export const PartiesJoined = ({ user_id }) => {
   const { isUserJoinedPartiesLoading, userJoinedParties } =
