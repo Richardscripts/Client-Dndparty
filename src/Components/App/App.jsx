@@ -93,7 +93,7 @@ export const App = () => {
       <Route path="/create_party" component={CreatePartyTopBar} />
       <Route path="/Party" component={FullViewPartyTopBar} />
       {!isAuthToken && <Route exact path="/" component={LandingPage} />}
-      {!!partyTablesData && (
+      {!!partyTablesData && window.location.pathname === '/' && (
         <div className="party-tables-bar">Party Tables:</div>
       )}
       <main>
